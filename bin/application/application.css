@@ -1,0 +1,94 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+
+
+.btn
+{
+  -fx-pref-width: 40px;
+  -fx-pref-height: 40px;
+  -fx-padding: 5;
+  -fx-font-size: 30px;
+  -fx-font-family: 'Comic Sans MS';
+}
+.color-gray 
+{
+  -fx-background-color: #DDDDDD;
+}
+.console 
+{
+  -fx-control-inner-background:#000000; 
+  -fx-font-family: Consolas; 
+  -fx-highlight-fill: #00ff00; 
+  -fx-highlight-text-fill: #000000; 
+  -fx-text-fill: #00ff00;
+}
+
+.label {
+  -fx-font: 12px  sans-serif;
+}
+
+.bordered-titled-title 
+{
+  -fx-background-color: #DDDDDD;
+  -fx-translate-y: -15;
+}
+
+.bordered-titled-border 
+{
+  -fx-content-display: top;
+  -fx-border-insets: 10 2 2 2;
+  -fx-background-color: #DDDDDD;
+  -fx-border-color: #AAAAAA;
+  -fx-border-width: 1;
+  -fx-padding: 6;
+}
+
+
+
+.block
+{
+  -fx-content-display: top;
+  -fx-border-color: black;
+  -fx-border-width: 1;
+  -fx-border-radius: 0px 10px 10px 10px;
+  -fx-background-radius: 0px 10px 10px 10px;
+  -fx-padding: 5;
+}
+.block-content
+{
+	
+}
+.block-title
+{
+  -fx-font-family: Consolas; 
+}
+.block-close-button
+{
+  -fx-font-family: Consolas; 
+  -fx-color: #FF0000;
+  -fx-font-size: 20px;
+  -fx-padding: 3px;
+  -fx-font-weight: bold;
+}
+
+.block .scroll-bar
+{
+  -fx-background-color: transparent;
+}
+.block .scroll-bar .track
+{
+  -fx-background-color: #00000020;
+  -fx-background-radius: 5px;
+}
+.block .scroll-bar .thumb
+{
+  -fx-background-color: #00000040;
+  -fx-background-radius: 5px;
+}
+.block .scroll-bar .increment-button, .block .scroll-bar .decrement-button
+{
+  -fx-background-color: #FFFFFF40;
+  -fx-pref-width: 15px;
+  -fx-pref-height: 15px;
+  -fx-background-radius: 5px;
+}
+

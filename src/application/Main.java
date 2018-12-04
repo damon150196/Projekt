@@ -1,6 +1,6 @@
 package application;
 
-
+import java.io.File;
 
 import application.blocks.Block;
 import application.blocks.BorderedTitledPane;
@@ -28,6 +28,7 @@ public class Main extends Application
 	boolean rightShowed = true;
 	BorderedTitledPane content = new BorderedTitledPane("Obszar Roboczy");
 	
+	File file;
 	Console console = new Console();
 	
 	public static void main(String[] args) 
@@ -85,6 +86,7 @@ public class Main extends Application
 	            {
 	            	Stage consoleStage = new Stage(); 
 	            	console.start(consoleStage);
+	            	console.readFile(file);
 	            }
 	        });		
 

@@ -4,20 +4,28 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class ReadFile 
+import javafx.application.Application;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+
+public class ReadFile extends Application 
 {
 	private static String str;
 	private static StringBuffer strB = new StringBuffer();
+	private static File file;
 	
 	public static void main(String [] args)
 	{
-		readFile();
-		displayFile();
+		Application.launch(args);		
 	}
 	
-	public static void readFile()
-	{
-		File file = new File("DATA.txt");
+	public void start(Stage stage) 
+    {
+		stage.setTitle("Read File");
+		
+		FileChooser fileChooser = new FileChooser();   
+		fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Data ", "*.momg"));
+		file = fileChooser.showOpenDialog(stage);
 		
 		try 
 		{
@@ -29,15 +37,20 @@ public class ReadFile
 				str = in.nextLine();
 				strB.append(str + "\n");
 			}
+			
+			displayFile();
 		} 
 		catch (FileNotFoundException e) 
 		{
 			e.printStackTrace();
 			System.out.println("File not found!");
-		}
-		
-	}
+		}	
+    }
 	
+	public static File getFile() {
+		return file;
+	}
+
 	public static void displayFile()
 	{
 		System.out.println(getStrFromFile());

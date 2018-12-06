@@ -60,14 +60,18 @@
 .block-title
 {
   -fx-font-family: Consolas; 
+  -fx-font-weight: bold;
+  -fx-font-size: 15px;
 }
 .block-close-button
 {
   -fx-font-family: Consolas; 
   -fx-color: #FF0000;
-  -fx-font-size: 20px;
-  -fx-padding: 3px;
+  -fx-font-size: 13px;
+  -fx-padding: 2px;
   -fx-font-weight: bold;
+  -fx-pref-width: 15px;
+  -fx-pref-height: 15px;
 }
 
 .block .scroll-bar

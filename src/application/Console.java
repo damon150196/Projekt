@@ -38,7 +38,7 @@ public class Console extends Application
 		primaryStage.show();
 	}
 	
-	public static void readFile(File file)
+	public void readFile(File file)
 	{
 		//File file = new File(SaveFile.getNameFile());
 		

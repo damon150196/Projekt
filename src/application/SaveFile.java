@@ -4,49 +4,18 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Scanner;
 
 import javafx.application.Application;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
  
 public final class SaveFile extends Application 
 {
-	private static String str;
-	private static String nameFile = "DATA.txt";
-	private static File file;
- 	
-    public static void main(String[] args) 
-    {
-    	stringIn();
-        Application.launch(args);
-    }
-    
-    public static void stringIn()
-	{
-		@SuppressWarnings("resource")
-		Scanner in = new Scanner(System.in);
-		
-		System.out.println("Podaj ci¹g znaków, który chcesz zapisaæ: ");
-		
-		str = in.nextLine();
-	}
-	
-	public static File getSave() {
-		return file;
-	}
-
-	public static void setSave(File save) {
-		SaveFile.file = save;
-	}
-
-	public static String getStr(){
-		return str;
-	}
-	
-	public static String getNameFile(){
-		return nameFile;
-	}
+	private String str;
+	private File file;
     
     @Override
     public void start(Stage stage) 
@@ -67,14 +36,32 @@ public final class SaveFile extends Application
 				out.newLine();
 				out.write(str);
 				out.close();
-				
-				System.out.println("Zapis przebieg³ pomyœlnie.");
 			} 
 			catch (IOException e) 
 			{
-				e.printStackTrace();
-				System.out.println("Nie znaleziono pliku.");
+				//e.printStackTrace();
+				Alert alert = new Alert(AlertType.ERROR, "Zapis nie powiód³ siê", ButtonType.OK);
+				alert.setTitle("Error");
+				alert.showAndWait();
 			} 
         }
     }
+    
+	
+	
+	
+	public File getSave() {
+		return file;
+	}
+
+	public void setSave(File save) {
+		this.file = save;
+	}
+
+	public String getStr(){
+		return str;
+	}
+	public void setStr(String str) {
+		this.str = str;
+	}
 }

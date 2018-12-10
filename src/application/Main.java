@@ -10,7 +10,11 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -32,10 +36,25 @@ public class Main extends Application
 	Console console = new Console();
 	
 
+	//top
+	HBox top_r = new HBox(2);
+	HBox top_l = new HBox(2);
+	Button top_new = new Button("\uD83D\uDCC4");
+	Button top_open = new Button("\uD83D\uDCC2");
+	Button top_save = new Button("\uD83D\uDCBE");
+	Button refresh = new Button("\u21BB");
+	Button podglad = new Button("Podglad Kodu");
+	Button consolButton = new Button("Konsola");
+	
+	//left
+	ScrollPane leftSP = new ScrollPane();
+	VBox leftVB = new VBox();
+	
 	//Center
 	VBox content2 = new VBox();
-	MainBlock mainBlock = new MainBlock();
+	MainBlock mainBlock = new MainBlock(leftVB);
 	StackPane content22 = new StackPane();
+	
 	//Right
 	TextArea sourceCode = new TextArea();
 	
@@ -55,17 +74,45 @@ public class Main extends Application
 
 			//============================ TOP PANEL =====================================
 			
-			HBox top_r = new HBox(2);
-			HBox top_l = new HBox(2);
-			
-			Button top_new = new Button("\uD83D\uDCC4");
-			//Button top_open = new Button("\uD83D\uDCC2");
-			Button top_save = new Button("\uD83D\uDCBE");
-			Button podglad = new Button("Podglad Kodu");
-			
 			top_new.getStyleClass().add("btn");
-			//top_open.getStyleClass().add("btn");
+			top_new.setOnAction((EventHandler<ActionEvent>) new EventHandler<ActionEvent>() 
+			{
+	            @Override
+	            public void handle(ActionEvent event) 
+	            {
+	            	Alert alert = new Alert(AlertType.CONFIRMATION, "Czy zapisaæ projekt", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
+	                
+	            	alert.setTitle("Zapisywanie");
+	            	alert.showAndWait().ifPresent(type -> {
+	            	        if (type == ButtonType.YES) 
+	            	        {
+	            	        	System.out.println("Yes");
+	            	        	
+	            	        	SaveFile sf = new SaveFile();
+	            	        	sf.setStr(mainBlock.getFunctionString());
+	        	            	Stage stage = new Stage(); 
+	        	            	sf.start(stage);
+	        	            	
+	        	            	mainBlock = new MainBlock(leftVB);
+	            	        } 
+	            	        else if (type == ButtonType.NO) 
+	            	        {
+	            	        	System.out.println("No");
+	            	        	
+	        	            	mainBlock = new MainBlock(leftVB);
+	            	        } 
+	            	        else 
+	            	        {
+	            	        	System.out.println("Cancel");
+	            	        	
+	            	        }
+	            	});
+	            }
+	        });		
+			
+			top_open.getStyleClass().add("btn");
 			top_save.getStyleClass().add("btn");
+			refresh.getStyleClass().add("btn");
 			podglad.setPrefSize(100, 50);
 			podglad.setOnAction((EventHandler<ActionEvent>) new EventHandler<ActionEvent>() 
 			{
@@ -87,8 +134,6 @@ public class Main extends Application
 	            	
 	            }
 	        });		
-
-			Button consolButton = new Button("Konsola");
 			consolButton.setOnAction((EventHandler<ActionEvent>) new EventHandler<ActionEvent>() 
 			{
 	            @Override
@@ -103,8 +148,9 @@ public class Main extends Application
 	        });		
 
 			top_l.getChildren().add(top_new);
-			//top_l.getChildren().add(top_open);
+			top_l.getChildren().add(top_open);
 			top_l.getChildren().add(top_save);
+			top_r.getChildren().add(refresh);
 			top_r.getChildren().add(podglad);
 
 			top.setLeft(top_l);
@@ -117,7 +163,10 @@ public class Main extends Application
 
 			//============================ LEFT PANEL =====================================
 			left.setPrefSize(200, 600);
-
+			
+			leftSP.setContent(leftVB);
+			left.getChildren().add(leftSP);
+			
 			root.setLeft(left);
 			
 			//============================ CONTENT PANEL =====================================

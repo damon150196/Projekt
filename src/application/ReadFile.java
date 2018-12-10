@@ -5,19 +5,17 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 import javafx.application.Application;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 public class ReadFile extends Application 
 {
-	private static String str;
-	private static StringBuffer strB = new StringBuffer();
-	private static File file;
-	
-	public static void main(String [] args)
-	{
-		Application.launch(args);		
-	}
+	private String str;
+	private StringBuffer strB = new StringBuffer();
+	private File file;
 	
 	public void start(Stage stage) 
     {
@@ -42,21 +40,23 @@ public class ReadFile extends Application
 		} 
 		catch (FileNotFoundException e) 
 		{
-			e.printStackTrace();
-			System.out.println("File not found!");
+			//e.printStackTrace();
+			Alert alert = new Alert(AlertType.ERROR, "Nie znaleziono pliku", ButtonType.OK);
+			alert.setTitle("Error");
+			alert.showAndWait();
 		}	
     }
 	
-	public static File getFile() {
+	public File getFile() {
 		return file;
 	}
 
-	public static void displayFile()
+	public void displayFile()
 	{
 		System.out.println(getStrFromFile());
 	}
 	
-	public static String getStrFromFile()
+	public String getStrFromFile()
 	{
 		return strB.toString();
 	}

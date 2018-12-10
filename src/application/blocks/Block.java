@@ -16,9 +16,9 @@ public abstract class Block extends ScrollPane
 	protected Button close = new Button("X");
 	protected String color;
 	protected BorderPane content = new BorderPane();
+	protected VBox vb = new VBox();
 	
-	
-	public Block()
+	public Block(VBox languageBox)
 	{
 		Block tmp = this;
 		this.setHbarPolicy(ScrollBarPolicy.NEVER);
@@ -35,6 +35,7 @@ public abstract class Block extends ScrollPane
 		
 		content.setLeft(name);
 		content.setRight(close);
+		content.setBottom(vb);
 		this.setContent(content);
 		
 
@@ -46,15 +47,21 @@ public abstract class Block extends ScrollPane
             public void handle(ActionEvent event) 
             {
             	Node n = getParent();
-            	Block vb;
+            	Block b;
+            	
+            	languageBox.getChildren().clear();
             	
             	for(int i=0; i <  ((VBox) n).getChildren().size(); i++)
             	{
-            		vb = (Block) ((VBox) n).getChildren().get(i);
-            		
-            		if(tmp.equals(vb))
+            		if(((VBox) n).getChildren().get(i) instanceof Block)
             		{
-            			((VBox) n).getChildren().remove(vb);
+            			b = (Block) ((VBox) n).getChildren().get(i);
+                		
+                		if(tmp.equals(b))
+                		{
+                			((VBox) n).getChildren().remove(i);
+                			((VBox) n).getChildren().remove(i);
+                		}
             		}
             	}
             }
@@ -73,5 +80,10 @@ public abstract class Block extends ScrollPane
 	}
 	
 	public abstract String getFunctionString();
+	
+	public void addBlock()
+	{
+		
+	}
 	
 }

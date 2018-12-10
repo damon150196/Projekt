@@ -3,21 +3,23 @@ package application.blocks;
 
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 public class IntBlock extends Block
 {
 	private TextField tname = new TextField();
 	private TextField tvalue = new TextField();
 	
-	public IntBlock() 
+	public IntBlock(VBox languageBox) 
 	{
-		super();
+		super(languageBox);
 		this.setBackgroundColor("#FF8040");
 		this.setBlockName("Int");
 
 		
 		HBox hb= new HBox();
 		hb.setSpacing(10);
+		
 		tname.setPromptText("Nazwa: ");
 		tvalue.setPromptText("Wartoœæ: ");
 		
@@ -47,8 +49,8 @@ public class IntBlock extends Block
 
 		hb.getChildren().add(tname);
 		hb.getChildren().add(tvalue);
-		
-		content.setBottom(hb);
+
+		vb.getChildren().add(hb);
 	}
 
 	@Override

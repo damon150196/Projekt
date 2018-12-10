@@ -1,33 +1,21 @@
 package application.blocks;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.layout.VBox;
 
 public class MainBlock extends Block
 {
-
-	VBox vb = new VBox();
 	
-	public MainBlock() 
+	public MainBlock(VBox languageBox) 
 	{
-		super();
+		super(languageBox);
 		this.setBackgroundColor("#EAEAEA");
 		this.setBlockName("Main");
+		
+		close.setVisible(false);
+		
+		vb.getChildren().add(new ButtonBlock("+", vb, languageBox, 0));	
 
-		
 		content.setBottom(vb);
-		
-		close.setOnAction((EventHandler<ActionEvent>) new EventHandler<ActionEvent>() 
-		{
-            
-            @Override
-            public void handle(ActionEvent event) 
-            {
-            	vb.getChildren().add(new IntBlock());
-        		content.setBottom(vb);
-            }
-        });	
 	}
 
 
@@ -39,9 +27,11 @@ public class MainBlock extends Block
 		
     	for(int i=0; i <  vb.getChildren().size(); i++)
     	{
-    		Block b = (Block) vb.getChildren().get(i);
-    		
-    		sb.append(b.getFunctionString() + "\n");
+    		if( vb.getChildren().get(i) instanceof Block)
+    		{
+        		Block b = (Block) vb.getChildren().get(i);
+        		sb.append(b.getFunctionString() + "\n");
+    		}
     	}
     	sb.append("} koniec");
     	

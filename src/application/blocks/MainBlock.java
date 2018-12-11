@@ -43,7 +43,7 @@ public class MainBlock extends Block
         		sb.append(b.getFunctionString() + "\n");
     		}
     	}
-    	sb.append("} koniec");
+    	sb.append("}");
     	
 		return sb.toString();
 	}

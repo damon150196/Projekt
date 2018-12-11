@@ -323,6 +323,18 @@ public class Main extends Application
 				}
         		
         	}
+        	else if(! mainBlock.isEmpty())
+        	{
+				Alert alert = new Alert(AlertType.CONFIRMATION, "Czy zapisaæ projekt", ButtonType.YES, ButtonType.NO);
+		        alert.setTitle("Zapisywanie");
+		        alert.showAndWait().ifPresent(type -> {
+		        	        if (type == ButtonType.YES) 
+		        	        {
+		        	        	save();
+		        	        }
+		        	});
+        		
+        	}
         	
         }
     };

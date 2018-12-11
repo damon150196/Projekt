@@ -17,6 +17,7 @@ public abstract class Block extends ScrollPane
 	protected String color;
 	protected BorderPane content = new BorderPane();
 	protected VBox vb = new VBox();
+	protected VBox lb = new VBox();
 	
 	public Block(VBox languageBox)
 	{
@@ -25,6 +26,7 @@ public abstract class Block extends ScrollPane
 		this.setVbarPolicy(ScrollBarPolicy.AS_NEEDED);
 		this.getStyleClass().add("block");
 		this.setFitToWidth(true);
+		lb = languageBox;
 		
 		this.setBackgroundColor("#408000");
 		this.setBlockName("Block");
@@ -80,10 +82,5 @@ public abstract class Block extends ScrollPane
 	}
 	
 	public abstract String getFunctionString();
-	
-	public void addBlock()
-	{
-		
-	}
 	
 }

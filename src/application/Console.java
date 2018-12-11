@@ -1,64 +1,115 @@
 package application;
 
 
-
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Scanner;
+import java.io.IOException;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.BorderPane;
 
 
 public class Console extends Application 
-{
-	private static String str;
-	private static StringBuffer strB = new StringBuffer();
+{	
+	private BorderPane root = new BorderPane();
+	private Scene scene = new Scene(root,600,400);
+	private TextArea console = new TextArea();
+	private File file;
+	private StringBuilder textToConsole = new StringBuilder();
 	
-    BorderPane root = new BorderPane();
-	Scene scene = new Scene(root,600,400);
-	TextArea sourceCode = new TextArea();
+	public Console(File f)
+	{
+		file = f;
+	}
+	
 	
 	@Override
 	public void start(Stage primaryStage) 
 	{
+		primaryStage.setTitle("Projekt Kompetencyjny - Konsola");
+		
 	    root.getStyleClass().add("color-gray");
 	    root.setPadding(new Insets(10,5,5,5));
 		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-		sourceCode.getStyleClass().add("console");
-		sourceCode.setEditable(false);
-		root.setCenter(sourceCode);
 		
+		
+		console.getStyleClass().add("console");
+		console.setEditable(false);
+		root.setCenter(console);
+    	
 		
 		primaryStage.setScene(scene);
 		primaryStage.show();
-	}
-	
-	public void readFile(File file)
-	{
-		//File file = new File(SaveFile.getNameFile());
 		
-		try 
-		{
-			@SuppressWarnings("resource")
-			Scanner in = new Scanner(file);
-		
-			while(in.hasNextLine())
+
+    	try 
+    	{
+        	ReadFile rf = new ReadFile(file);
+        	
+			while(rf.hasNextLine())
 			{
-				str = in.nextLine();
-				strB.append(str + "\n");
+				String line = rf.nextLine();
+				
+				/*
+				 *   #####    ####   #####    ####   ######  #####
+				 *   #    #  #    #  #    #  #       #       #    #
+				 *   #    #  #    #  #    #   ####   ####    #    #
+				 *   #####   ######  #####        #  #       #####
+				 *   #       #    #  #  #    #    #  #       #  #
+				 *   #       #    #  #   #    ####   ######  #   #
+				 * 
+				 */
+				
+				//testowo wyœwietlenie tekstu w oknie konsoli
+				textToConsole.append(line);
 			}
+			
+			console.setText(textToConsole.toString());
 		} 
-		catch (FileNotFoundException e) 
-		{
-			e.printStackTrace();
-			System.out.println("File not found!");
+    	catch (FileNotFoundException e) 
+    	{
+			Alert alert2 = new Alert(AlertType.ERROR, "Odczyt nie powiód³ siê", ButtonType.OK);
+			alert2.setTitle("Error");
+			alert2.showAndWait();
+		} 
+    	catch (IOException e) 
+    	{
+			Alert alert2 = new Alert(AlertType.ERROR, "Odczyt nie powiód³ siê", ButtonType.OK);
+			alert2.setTitle("Error");
+			alert2.showAndWait();
 		}
-		
 	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public File getFile() {
+		return file;
+	}
+
+	public void setFile(File file) {
+		this.file = file;
+	}
+
+	
+	
 	
 }

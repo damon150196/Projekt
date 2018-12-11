@@ -4,64 +4,50 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-
-import javafx.application.Application;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ButtonType;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
  
-public final class SaveFile extends Application 
+public final class SaveFile
 {
-	private String str;
 	private File file;
+
+	public SaveFile(File f)
+	{
+		file = f;
+        if (file == null) chose();
+	}
+	
+	public File getFile() 
+	{
+		return file;
+	}
+	public void setFile(File save) 
+	{
+		this.file = save;
+	}
     
-    @Override
-    public void start(Stage stage) 
+	
+	
+    private void chose() 
     {
+    	Stage stage =new Stage();
         stage.setTitle("Save File");
  
         FileChooser fileChooser = new FileChooser();    
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Data ", "*.momg"));
         file = fileChooser.showSaveDialog(stage);
-        
-        if (file != null) 
-        {
-        	try 
-			{
-				FileWriter saveFW = new FileWriter(file.getPath(), true);		
-				BufferedWriter out = new BufferedWriter(saveFW);
-				
-				out.newLine();
-				out.write(str);
-				out.close();
-			} 
-			catch (IOException e) 
-			{
-				//e.printStackTrace();
-				Alert alert = new Alert(AlertType.ERROR, "Zapis nie powiód³ siê", ButtonType.OK);
-				alert.setTitle("Error");
-				alert.showAndWait();
-			} 
-        }
     }
+
     
+    
+	public void write(String str) throws IOException
+	{
+		FileWriter saveFW = new FileWriter(file.getPath(), false);		
+		BufferedWriter out = new BufferedWriter(saveFW);
+		
+		out.flush();
+		out.write(str);
+		out.close();
+	}
 	
-	
-	
-	public File getSave() {
-		return file;
-	}
-
-	public void setSave(File save) {
-		this.file = save;
-	}
-
-	public String getStr(){
-		return str;
-	}
-	public void setStr(String str) {
-		this.str = str;
-	}
 }

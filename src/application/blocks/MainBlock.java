@@ -13,12 +13,22 @@ public class MainBlock extends Block
 		
 		close.setVisible(false);
 		
-		vb.getChildren().add(new ButtonBlock("+", vb, languageBox, 0));	
+		vb.getChildren().add(new ButtonBlock("+", vb, lb, 0));	
 
 		content.setBottom(vb);
 	}
 
-
+	public void clear()
+	{
+		vb.getChildren().clear();
+		vb.getChildren().add(new ButtonBlock("+", vb, lb, 0));	
+	}
+	public boolean isEmpty()
+	{
+		if(vb.getChildren().size() == 1) return true;
+		
+		return false;
+	}
 	
 	@Override
 	public String getFunctionString() 

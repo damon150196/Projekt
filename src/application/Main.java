@@ -1,6 +1,8 @@
 package application;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import application.blocks.BorderedTitledPane;
 import application.blocks.*;
@@ -9,6 +11,7 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -31,11 +34,9 @@ public class Main extends Application
 	BorderedTitledPane right = new BorderedTitledPane("Podgl¹d Kodu");
 	boolean rightShowed = true;
 	BorderedTitledPane content = new BorderedTitledPane("Obszar Roboczy");
-	
 	File file;
-	Console console = new Console();
 	
-
+	
 	//top
 	HBox top_r = new HBox(2);
 	HBox top_l = new HBox(2);
@@ -44,7 +45,7 @@ public class Main extends Application
 	Button top_save = new Button("\uD83D\uDCBE");
 	Button refresh = new Button("\u21BB");
 	Button podglad = new Button("Podglad Kodu");
-	Button consolButton = new Button("Konsola");
+	Button consolButton = new Button("Uruchom \u25B6");
 	
 	//left
 	ScrollPane leftSP = new ScrollPane();
@@ -58,6 +59,11 @@ public class Main extends Application
 	//Right
 	TextArea sourceCode = new TextArea();
 	
+	
+	
+	
+	
+	
 	public static void main(String[] args) 
 	{
 		launch(args);
@@ -69,84 +75,16 @@ public class Main extends Application
 	{
 		try 
 		{
+			primaryStage.setTitle("Projekt Kompetencyjny");
 		    root.getStyleClass().add("color-gray");
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 
 			//============================ TOP PANEL =====================================
-			
-			top_new.getStyleClass().add("btn");
-			top_new.setOnAction((EventHandler<ActionEvent>) new EventHandler<ActionEvent>() 
-			{
-	            @Override
-	            public void handle(ActionEvent event) 
-	            {
-	            	Alert alert = new Alert(AlertType.CONFIRMATION, "Czy zapisaæ projekt", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
-	                
-	            	alert.setTitle("Zapisywanie");
-	            	alert.showAndWait().ifPresent(type -> {
-	            	        if (type == ButtonType.YES) 
-	            	        {
-	            	        	System.out.println("Yes");
-	            	        	
-	            	        	SaveFile sf = new SaveFile();
-	            	        	sf.setStr(mainBlock.getFunctionString());
-	        	            	Stage stage = new Stage(); 
-	        	            	sf.start(stage);
-	        	            	
-	        	            	mainBlock = new MainBlock(leftVB);
-	            	        } 
-	            	        else if (type == ButtonType.NO) 
-	            	        {
-	            	        	System.out.println("No");
-	            	        	
-	        	            	mainBlock = new MainBlock(leftVB);
-	            	        } 
-	            	        else 
-	            	        {
-	            	        	System.out.println("Cancel");
-	            	        	
-	            	        }
-	            	});
-	            }
-	        });		
-			
-			top_open.getStyleClass().add("btn");
-			top_save.getStyleClass().add("btn");
-			refresh.getStyleClass().add("btn");
-			podglad.setPrefSize(100, 50);
-			podglad.setOnAction((EventHandler<ActionEvent>) new EventHandler<ActionEvent>() 
-			{
-	            
-	            @Override
-	            public void handle(ActionEvent event) 
-	            {
-	            	if(rightShowed==false)
-	            	{
-	            		root.setRight(right);
-	            		rightShowed=true;
-	            	}
-	            	else
-	            	{
-	            		root.setRight(null);
-	            		rightShowed=false;
-	            	}
-	            	
-	            	
-	            }
-	        });		
-			consolButton.setOnAction((EventHandler<ActionEvent>) new EventHandler<ActionEvent>() 
-			{
-	            @Override
-	            public void handle(ActionEvent event) 
-	            {
-	            	sourceCode.setText(mainBlock.getFunctionString());
-	            	
-	            	Stage consoleStage = new Stage(); 
-	            	console.start(consoleStage);
-	            	console.readFile(file);
-	            }
-	        });		
 
+			
+			this.init_fileButtons();
+			this.init_functionalButtons();
+			
 			top_l.getChildren().add(top_new);
 			top_l.getChildren().add(top_open);
 			top_l.getChildren().add(top_save);
@@ -193,11 +131,248 @@ public class Main extends Application
 			//=============================================================================
 			primaryStage.setScene(scene);
 			primaryStage.show();
+			
+			
+			primaryStage.setOnCloseRequest(closeEvent);		
 		} 
 		catch(Exception e) 
 		{
 			e.printStackTrace();
 		}
 	}
+	
+	
+	
+	
+	
+	public void init_fileButtons()
+	{
+		// -------------------------------- NEW --------------------------------------------------
+		top_new.getStyleClass().add("btn");
+		top_new.setOnAction((EventHandler<ActionEvent>) new EventHandler<ActionEvent>() 
+		{
+            @Override
+            public void handle(ActionEvent event) 
+            {
+            	if(! mainBlock.isEmpty())
+            	{
+            		Alert alert = new Alert(AlertType.CONFIRMATION, "Czy zapisaæ projekt", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
+                
+	            	alert.setTitle("Zapisywanie");
+	            	alert.showAndWait().ifPresent(type -> {
+	            	        if (type == ButtonType.YES) 
+	            	        {
+	            	        	save();
+	        	            	mainBlock.clear();
+	            	        } 
+	            	        else if (type == ButtonType.NO) 
+	            	        {
+	        	            	mainBlock.clear();
+	            	        }
+	            	});
+            	}
+            }
+        });		
+		
+
+		// -------------------------------- Open --------------------------------------------------
+		
+		top_open.getStyleClass().add("btn");
+		top_open.setOnAction((EventHandler<ActionEvent>) new EventHandler<ActionEvent>() 
+		{
+            @Override
+            public void handle(ActionEvent event) 
+            {
+            	if(! mainBlock.isEmpty())
+            	{
+            		Alert alert = new Alert(AlertType.CONFIRMATION, "Czy zapisaæ projekt", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
+                    
+                	alert.setTitle("Zapisywanie");
+                	alert.showAndWait().ifPresent(type -> {
+                	        if (type == ButtonType.YES) 
+                	        {
+                	        	save();
+                            	open();
+                	        } 
+                	        else if (type == ButtonType.NO) 
+                	        {
+                            	open();
+                	        }
+                	        
+                	});
+            	}
+            	open();
+            	
+            }
+        });	
+		
+		
+
+		// -------------------------------- NEW --------------------------------------------------
+		top_save.getStyleClass().add("btn");
+		top_save.setOnAction((EventHandler<ActionEvent>) new EventHandler<ActionEvent>() 
+		{
+            @Override
+            public void handle(ActionEvent event) 
+            {
+            	if(mainBlock.isEmpty())
+            	{
+            		Alert alert = new Alert(AlertType.CONFIRMATION, "Projekt jset pusty, zapis nie udany", ButtonType.OK);
+                    alert.setTitle("Zapisywanie");
+            	}
+            	else
+            	{
+            		save();
+            	}
+            }
+        });	
+	}
+	
+	
+	
+	
+	
+	public void init_functionalButtons()
+	{
+
+		refresh.getStyleClass().add("btn");
+		refresh.setOnAction((EventHandler<ActionEvent>) new EventHandler<ActionEvent>() 
+		{
+            @Override
+            public void handle(ActionEvent event) 
+            {
+            	sourceCode.setText(mainBlock.getFunctionString());
+            }
+        });	
+		
+		
+		podglad.getStyleClass().add("btn2");
+		podglad.setOnAction((EventHandler<ActionEvent>) new EventHandler<ActionEvent>() 
+		{
+            @Override
+            public void handle(ActionEvent event) 
+            {
+            	if(rightShowed==false)
+            	{
+            		root.setRight(right);
+            		rightShowed=true;
+            	}
+            	else
+            	{
+            		root.setRight(null);
+            		rightShowed=false;
+            	}
+            }
+        });			
+		
+		
+		consolButton.getStyleClass().add("btn2");
+		consolButton.setOnAction((EventHandler<ActionEvent>) new EventHandler<ActionEvent>() 
+		{
+            @Override
+            public void handle(ActionEvent event) 
+            {
+            	if(! mainBlock.isEmpty())
+            	{
+                	sourceCode.setText(mainBlock.getFunctionString());
+            		save();
+            	}
+            	
+            	Console console = new Console(file);
+            	Stage consoleStage = new Stage();
+            	console.start(consoleStage);
+            }
+        });		
+	}
+	
+	
+	EventHandler<WindowEvent> closeEvent = new EventHandler<WindowEvent>() 
+	{
+        @Override
+        public void handle(WindowEvent event) 
+        {
+        	if(file!=null)
+        	{
+        		try 
+        		{
+					ReadFile rf = new ReadFile(file);
+					
+					if(! mainBlock.isEmpty() && ! rf.read().equals(mainBlock.getFunctionString()))
+		        	{
+		        		Alert alert = new Alert(AlertType.CONFIRMATION, "Czy zapisaæ projekt", ButtonType.YES, ButtonType.NO);
+			        	alert.setTitle("Zapisywanie");
+			        	alert.showAndWait().ifPresent(type -> {
+			        	        if (type == ButtonType.YES) 
+			        	        {
+			        	        	save();
+			        	        }
+			        	});
+		        	}
+				} 
+        		catch (FileNotFoundException e) 
+        		{
+        			Alert alert2 = new Alert(AlertType.ERROR, "Problem z plikiem", ButtonType.OK);
+        			alert2.setTitle("Error");
+        			alert2.show();
+				} 
+        		catch (IOException e)
+        		{
+        			Alert alert2 = new Alert(AlertType.ERROR, "Problem z plikiem", ButtonType.OK);
+        			alert2.setTitle("Error");
+        			alert2.show();
+				}
+        		
+        	}
+        	
+        }
+    };
+    
+    
+    public void save()
+    {
+    	try 
+    	{
+        	SaveFile sf = new SaveFile(file);
+    		if(sf.getFile() == null) throw new NullPointerException();
+    		file = sf.getFile();
+			sf.write(mainBlock.getFunctionString());
+		} 
+    	catch (IOException e) 
+    	{
+			Alert alert2 = new Alert(AlertType.ERROR, "Zapis nie powiód³ siê", ButtonType.OK);
+			alert2.setTitle("Error");
+			alert2.showAndWait();
+		}
+    	catch (NullPointerException e) 
+    	{
+			Alert alert2 = new Alert(AlertType.ERROR, "Zapis nie powiód³ siê", ButtonType.OK);
+			alert2.setTitle("Error");
+			alert2.showAndWait();
+		}
+    }
+    
+    public void open()
+    {
+    	try 
+    	{
+        	ReadFile rf = new ReadFile(file);
+    		if(rf.getFile() == null) throw new NullPointerException();
+    		file = rf.getFile();
+        	sourceCode.setText(rf.read());
+		}
+    	catch (IOException e) 
+    	{
+			Alert alert2 = new Alert(AlertType.ERROR, "Odczyt nie powiód³ siê", ButtonType.OK);
+			alert2.setTitle("Error");
+			alert2.showAndWait();
+		}
+    	catch (NullPointerException e) 
+    	{
+			Alert alert2 = new Alert(AlertType.ERROR, "Odczyt nie powiód³ siê", ButtonType.OK);
+			alert2.setTitle("Error");
+			alert2.showAndWait();
+		} 
+    	
+    }
 	
 }

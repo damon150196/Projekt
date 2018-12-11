@@ -2,62 +2,69 @@ package application;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
-
-import javafx.application.Application;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Alert.AlertType;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-public class ReadFile extends Application 
+public class ReadFile
 {
-	private String str;
-	private StringBuffer strB = new StringBuffer();
 	private File file;
+	private Scanner in;
+
+	public ReadFile(File f) throws FileNotFoundException
+	{
+		file = f;
+        if (file == null) chose();
+        
+		in = new Scanner(file);
+	}
 	
-	public void start(Stage stage) 
+	public File getFile() 
+	{
+		return file;
+	}
+	public void setFile(File read) 
+	{
+		this.file = read;
+	}
+	
+    private void chose() 
     {
-		stage.setTitle("Read File");
+    	Stage stage =new Stage();
+    	stage.setTitle("Read File");
 		
 		FileChooser fileChooser = new FileChooser();   
 		fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Data ", "*.momg"));
 		file = fileChooser.showOpenDialog(stage);
-		
-		try 
-		{
-			@SuppressWarnings("resource")
-			Scanner in = new Scanner(file);
-		
-			while(in.hasNextLine())
-			{
-				str = in.nextLine();
-				strB.append(str + "\n");
-			}
-			
-			displayFile();
-		} 
-		catch (FileNotFoundException e) 
-		{
-			//e.printStackTrace();
-			Alert alert = new Alert(AlertType.ERROR, "Nie znaleziono pliku", ButtonType.OK);
-			alert.setTitle("Error");
-			alert.showAndWait();
-		}	
     }
-	
-	public File getFile() {
-		return file;
+
+
+	public String read() throws IOException
+	{
+		StringBuilder str = new StringBuilder();
+		while(in.hasNextLine())
+		{
+			str.append(in.nextLine() + "\n");
+		}
+		
+		return str.toString();
 	}
 
-	public void displayFile()
+	public String nextLine() throws IOException
 	{
-		System.out.println(getStrFromFile());
-	}
+		StringBuilder str = new StringBuilder();
 	
-	public String getStrFromFile()
+		if(in.hasNextLine())
+		{
+			str.append(in.nextLine() + "\n");
+		}
+		
+		return str.toString();
+	}
+
+	public boolean hasNextLine() throws FileNotFoundException
 	{
-		return strB.toString();
+		return in.hasNextLine();
 	}
 }

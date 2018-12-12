@@ -56,7 +56,7 @@ public class DoubleBlock extends Block
 	@Override
 	public String getFunctionString() 
 	{
-		if(tvalue.getText() == "")
+		if(tvalue.getText().isEmpty())
 		{
 			return "double " + tname.getText() + ";";
 		}

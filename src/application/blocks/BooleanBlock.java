@@ -56,7 +56,7 @@ public class BooleanBlock extends Block
 	@Override
 	public String getFunctionString() 
 	{
-		if(tvalue.getText() == "")
+		if(tvalue.getText().isEmpty())
 		{
 			return "boolean " + tname.getText() + ";";
 		}

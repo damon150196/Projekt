@@ -87,20 +87,6 @@ public class Console extends Application
 		}
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	public File getFile() {
 		return file;
 	}

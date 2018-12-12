@@ -34,6 +34,9 @@ public class ButtonBlock extends Button
 			case "Boolean": 
 				this.setStyle("-fx-background-color: #2e8b57;");
 				break;
+			case "Print": 
+				this.setStyle("-fx-background-color: #BFA76F;");
+				break;
 		}
 		
 		if(arg0 == "+")
@@ -61,6 +64,7 @@ public class ButtonBlock extends Button
 	        	            	o.getChildren().add(new ButtonBlock("String", t, o, i));
 	        	            	o.getChildren().add(new ButtonBlock("Double", t, o, i));
 	        	            	o.getChildren().add(new ButtonBlock("Boolean", t, o, i));
+	        	            	o.getChildren().add(new ButtonBlock("Print", t, o, i));
 	                		}
 	            		}
 	            	}
@@ -81,6 +85,7 @@ public class ButtonBlock extends Button
 	        			case "String": t.getChildren().add(pos+1, new StringBlock(o)); break;
 	        			case "Double": t.getChildren().add(pos+1, new DoubleBlock(o)); break;
 	        			case "Boolean": t.getChildren().add(pos+1, new BooleanBlock(o)); break;
+	        			case "Print": t.getChildren().add(pos+1, new PrintBlock(o)); break;
 	        		}
 	            	
 	            	t.getChildren().add(pos+2, new ButtonBlock("+", t, o, pos+2));

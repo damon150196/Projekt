@@ -241,7 +241,7 @@ public class Main extends Application
             @Override
             public void handle(ActionEvent event) 
             {
-            	sourceCode.setText(mainBlock.getFunctionString());
+            	sourceCode.setText(mainBlock.getFunctionString(0));
             }
         });	
 		
@@ -274,7 +274,7 @@ public class Main extends Application
             {
             	if(! mainBlock.isEmpty())
             	{
-                	sourceCode.setText(mainBlock.getFunctionString());
+                	sourceCode.setText(mainBlock.getFunctionString(0));
             		save();
             	}
             	
@@ -297,7 +297,7 @@ public class Main extends Application
         		{
 					ReadFile rf = new ReadFile(file);
 					
-					if(! mainBlock.isEmpty() && ! rf.read().equals(mainBlock.getFunctionString()))
+					if(! mainBlock.isEmpty() && ! rf.read().equals(mainBlock.getFunctionString(0)))
 		        	{
 		        		Alert alert = new Alert(AlertType.CONFIRMATION, "Czy zapisaæ projekt", ButtonType.YES, ButtonType.NO);
 			        	alert.setTitle("Zapisywanie");
@@ -347,7 +347,7 @@ public class Main extends Application
         	SaveFile sf = new SaveFile(file);
     		if(sf.getFile() == null) throw new NullPointerException();
     		file = sf.getFile();
-			sf.write(mainBlock.getFunctionString());
+			sf.write(mainBlock.getFunctionString(0));
 		} 
     	catch (IOException e) 
     	{

@@ -37,12 +37,13 @@ public class StringBlock extends Block
 	}
 
 	@Override
-	public String getFunctionString() 
+	public String getFunctionString(int tabCount) 
 	{
-		if(tvalue.getText() == "")
+    	if(tvalue.getText() == "")
 			return "String " + tname.getText() + ";";
 		else
 			return "String " + tname.getText() + " = " + tvalue.getText() + ";";
+		
 	}
 
 }

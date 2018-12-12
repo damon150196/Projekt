@@ -54,16 +54,13 @@ public class BooleanBlock extends Block
 	}
 
 	@Override
-	public String getFunctionString() 
+	public String getFunctionString(int tabCount) 
 	{
 		if(tvalue.getText() == "")
-		{
 			return "boolean " + tname.getText() + ";";
-		}
 		else
-		{
 			return "boolean " + tname.getText() + " = " + tvalue.getText() + ";";
-		}
+		
 	}
 
 }

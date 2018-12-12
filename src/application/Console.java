@@ -53,11 +53,14 @@ public class Console extends Application
     	{
         	ReadFile rf = new ReadFile(file);
         	
+        	textToConsole.append(rf.read());
+        	
+        	/*
 			while(rf.hasNextLine())
 			{
 				String line = rf.nextLine();
 				
-				/*
+				
 				 *   #####    ####   #####    ####   ######  #####
 				 *   #    #  #    #  #    #  #       #       #    #
 				 *   #    #  #    #  #    #   ####   ####    #    #
@@ -65,12 +68,12 @@ public class Console extends Application
 				 *   #       #    #  #  #    #    #  #       #  #
 				 *   #       #    #  #   #    ####   ######  #   #
 				 * 
-				 */
+				 
 				
 				//testowo wyœwietlenie tekstu w oknie konsoli
 				textToConsole.append(line);
 			}
-			
+			*/
 			console.setText(textToConsole.toString());
 		} 
     	catch (FileNotFoundException e) 

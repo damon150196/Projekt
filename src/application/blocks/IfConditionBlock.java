@@ -15,7 +15,7 @@ public class IfConditionBlock extends Block
 	}
 
 	@Override
-	public String getFunctionString() 
+	public String getFunctionString(int tabCount) 
 	{
 		// TODO Auto-generated method stub
 		return null;

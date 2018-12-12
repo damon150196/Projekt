@@ -81,6 +81,16 @@ public abstract class Block extends ScrollPane
 		name.getStyleClass().add("block-title");
 	}
 	
-	public abstract String getFunctionString();
+	public abstract String getFunctionString(int tabCount);
+	
+	public String tabs(int tabs)
+	{
+    	StringBuilder sb = new StringBuilder("");
+		for(int j=0; j<tabs; j++)
+		{
+			sb.append("\t");
+		}
+		return sb.toString();
+	}
 	
 }

@@ -23,9 +23,56 @@ public class IfBlock extends Block
 	}
 
 	@Override
-	public String getFunctionString() 
+	public String getFunctionString(int tabCount) 
 	{
-		return null;
+    	StringBuilder sb = new StringBuilder("if(");
+		if( vb.getChildren().get(0) instanceof Block)
+		{
+    		Block b = (Block) vb.getChildren().get(0);
+    		sb.append(b.getFunctionString(0));
+		}
+		sb.append(")\n");
+		sb.append(tabs(tabCount));
+		sb.append("{\n");
+		
+		if( vb.getChildren().get(1) instanceof Block)
+		{
+    		Block b = (Block) vb.getChildren().get(1);
+    		sb.append(b.getFunctionString(tabCount+1));
+		}
+		sb.append(tabs(tabCount));
+		sb.append("}\n");
+		
+		
+		
+		if( vb.getChildren().get(2) instanceof Block)
+		{
+
+    		sb.append(tabs(tabCount));
+			sb.append("else\n");
+
+    		sb.append(tabs(tabCount));
+			sb.append("{\n");
+    		Block b = (Block) vb.getChildren().get(2);
+    		sb.append(b.getFunctionString(tabCount+1));
+    		sb.append(tabs(tabCount));
+        	sb.append("}");
+		}
+		else
+		{
+
+    		sb.append(tabs(tabCount));
+			sb.append("else\n");
+    		sb.append(tabs(tabCount));
+			sb.append("{\n");
+    		sb.append(tabs(tabCount+1));
+			sb.append("skip;");
+    		sb.append(tabs(tabCount));
+	    	sb.append("}");
+		}
+
+    	
+		return sb.toString();
 	}
 
 }

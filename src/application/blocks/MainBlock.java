@@ -31,7 +31,7 @@ public class MainBlock extends Block
 	}
 	
 	@Override
-	public String getFunctionString() 
+	public String getFunctionString(int tabCount) 
 	{
     	StringBuilder sb = new StringBuilder("Main()\n{\n");
 		
@@ -39,8 +39,9 @@ public class MainBlock extends Block
     	{
     		if( vb.getChildren().get(i) instanceof Block)
     		{
+        		sb.append(tabs(tabCount+1));
         		Block b = (Block) vb.getChildren().get(i);
-        		sb.append(b.getFunctionString() + "\n");
+        		sb.append(b.getFunctionString(tabCount+1) + "\n");
     		}
     	}
     	sb.append("}");

@@ -23,16 +23,16 @@ public class ButtonBlock extends Button
 				break;
 				
 			case "Int": 
-				this.setStyle("-fx-background-color: #FF8040;");
+				this.setStyle("-fx-background-color: #FE5A1D;");
 				break;
 			case "String": 
-				this.setStyle("-fx-background-color: #DC219E;");
+				this.setStyle("-fx-background-color: #FC5D5D;");
 				break;
 			case "Double": 
-				this.setStyle("-fx-background-color: #6B54FF;");
+				this.setStyle("-fx-background-color: #71A6D2;");
 				break;
 			case "Boolean": 
-				this.setStyle("-fx-background-color: #21DC59;");
+				this.setStyle("-fx-background-color: #2e8b57;");
 				break;
 		}
 		

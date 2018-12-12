@@ -13,7 +13,7 @@ public class IntBlock extends Block
 	public IntBlock(VBox languageBox) 
 	{
 		super(languageBox);
-		this.setBackgroundColor("#FF8040");
+		this.setBackgroundColor("#FE5A1D");
 		this.setBlockName("Int");
 
 		

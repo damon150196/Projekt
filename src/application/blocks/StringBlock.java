@@ -13,7 +13,7 @@ public class StringBlock extends Block
 	public StringBlock(VBox languageBox) 
 	{
 		super(languageBox);
-		this.setBackgroundColor("#DC219E");
+		this.setBackgroundColor("#FC5D5D");
 		this.setBlockName("String");
 
 		

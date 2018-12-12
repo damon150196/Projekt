@@ -33,7 +33,8 @@ public final class SaveFile
     	Stage stage =new Stage();
         stage.setTitle("Save File");
  
-        FileChooser fileChooser = new FileChooser();    
+        FileChooser fileChooser = new FileChooser();  
+        fileChooser.setInitialDirectory(new File(System.getProperty("user.home") + "\\Desktop"));
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Data ", "*.momg"));
         file = fileChooser.showSaveDialog(stage);
     }

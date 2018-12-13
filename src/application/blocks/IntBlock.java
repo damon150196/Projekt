@@ -9,43 +9,43 @@ public class IntBlock extends Block
 {
 	private TextField tname = new TextField();
 	private TextField tvalue = new TextField();
-	
-	public IntBlock(VBox languageBox) 
+
+	public IntBlock(VBox languageBox)
 	{
 		super(languageBox);
-		this.setBackgroundColor("#FF8040");
+		this.setBackgroundColor("#FE5A1D");
 		this.setBlockName("Int");
 
-		
+
 		HBox hb= new HBox();
 		hb.setSpacing(10);
-		
+
 		tname.setPromptText("Nazwa: ");
-		tvalue.setPromptText("Wartoœæ: ");
-		
-		tname.focusedProperty().addListener((arg0, oldValue, newValue) -> 
+		tvalue.setPromptText("WartoÅ“Ã¦: ");
+
+		tname.focusedProperty().addListener((arg0, oldValue, newValue) ->
+		{
+			if (!newValue)
+			{
+				if(!tname.getText().matches("^[a-zA-Z][a-zA-Z0-9_]*$"))
 				{
-			        if (!newValue) 
-			        {
-			            if(!tname.getText().matches("^[a-zA-Z][a-zA-Z0-9_]*$"))
-			            {
-			            	tname.setText("");
-			            }
-			        }
-		
-			    });
-		
-		tvalue.focusedProperty().addListener((arg0, oldValue, newValue) -> 
+					tname.setText("");
+				}
+			}
+
+		});
+
+		tvalue.focusedProperty().addListener((arg0, oldValue, newValue) ->
+		{
+			if (!newValue)
+			{
+				if(!(tvalue.getText().matches("^[a-zA-Z]*$")))
 				{
-			        if (!newValue) 
-			        {
-			            if(tvalue.getText().matches("^[a-zA-Z]*$"))
-			            {
-			            	tvalue.setText("0");
-			            }
-			        }
-		
-			    });
+					tvalue.setText("0");
+				}
+			}
+
+		});
 
 		hb.getChildren().add(tname);
 		hb.getChildren().add(tvalue);
@@ -54,16 +54,12 @@ public class IntBlock extends Block
 	}
 
 	@Override
-	public String getFunctionString() 
+	public String getFunctionString(int tabCount)
 	{
-		if(tvalue.getText() == "")
-		{
+		if(tvalue.getText().isEmpty())
 			return "int " + tname.getText() + ";";
-		}
 		else
-		{
 			return "int " + tname.getText() + " = " + tvalue.getText() + ";";
-		}
 	}
 
 }

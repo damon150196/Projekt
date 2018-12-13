@@ -9,43 +9,43 @@ public class BooleanBlock extends Block
 {
 	private TextField tname = new TextField();
 	private TextField tvalue = new TextField();
-	
-	public BooleanBlock(VBox languageBox) 
+
+	public BooleanBlock(VBox languageBox)
 	{
 		super(languageBox);
-		this.setBackgroundColor("#21DC59");
+		this.setBackgroundColor("#2e8b57");
 		this.setBlockName("Boolean");
 
-		
+
 		HBox hb= new HBox();
 		hb.setSpacing(10);
-		
+
 		tname.setPromptText("Nazwa: ");
-		tvalue.setPromptText("Wartoœæ: ");
-		
-		tname.focusedProperty().addListener((arg0, oldValue, newValue) -> 
+		tvalue.setPromptText("Warto??: ");
+
+		tname.focusedProperty().addListener((arg0, oldValue, newValue) ->
+		{
+			if (!newValue)
+			{
+				if(!tname.getText().matches("^[a-zA-Z][a-zA-Z0-9_]*$"))
 				{
-			        if (!newValue) 
-			        {
-			            if(!tname.getText().matches("^[a-zA-Z][a-zA-Z0-9_]*$"))
-			            {
-			            	tname.setText("");
-			            }
-			        }
-		
-			    });
-		
-		tvalue.focusedProperty().addListener((arg0, oldValue, newValue) -> 
+					tname.setText("");
+				}
+			}
+
+		});
+
+		tvalue.focusedProperty().addListener((arg0, oldValue, newValue) ->
+		{
+			if (!newValue)
+			{
+				if(!(tvalue.getText().matches("true") || tvalue.getText().matches("false")))
 				{
-			        if (!newValue) 
-			        {
-			            if(!(tvalue.getText().matches("true") || tvalue.getText().matches("false")))
-			            {
-			            	tvalue.setText("");
-			            }
-			        }
-		
-			    });
+					tvalue.setText("");
+				}
+			}
+
+		});
 
 		hb.getChildren().add(tname);
 		hb.getChildren().add(tvalue);
@@ -54,16 +54,13 @@ public class BooleanBlock extends Block
 	}
 
 	@Override
-	public String getFunctionString() 
+	public String getFunctionString(int tabCount)
 	{
-		if(tvalue.getText() == "")
-		{
+		if(tvalue.getText().isEmpty())
 			return "boolean " + tname.getText() + ";";
-		}
 		else
-		{
 			return "boolean " + tname.getText() + " = " + tvalue.getText() + ";";
-		}
+
 	}
 
 }

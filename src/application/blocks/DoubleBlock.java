@@ -41,7 +41,7 @@ public class DoubleBlock extends Block
 			        {
 			            if(tvalue.getText().matches("^[a-zA-Z]*$"))
 			            {
-			            	tvalue.setText("");
+			            	tvalue.setText("0.0");
 			            }
 			        }
 		

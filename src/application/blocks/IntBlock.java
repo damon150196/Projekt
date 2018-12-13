@@ -39,9 +39,9 @@ public class IntBlock extends Block
 				{
 			        if (!newValue) 
 			        {
-			            if(!tvalue.getText().matches("^[0-9]*$"))
+			            if(!(tvalue.getText().matches("^[a-zA-Z]*$")))
 			            {
-			            	tvalue.setText("");
+			            	tvalue.setText("0");
 			            }
 			        }
 		

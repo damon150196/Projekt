@@ -39,18 +39,10 @@ public class StringBlock extends Block
 	@Override
 	public String getFunctionString(int tabCount) 
 	{
-<<<<<<< HEAD
 		if(tvalue.getText().isEmpty())
 			return "String " + tname.getText() + ";";
 		else
 			return "String " + tname.getText() + " = \"" + tvalue.getText() + "\";";
-=======
-    	if(tvalue.getText() == "")
-			return "String " + tname.getText() + ";";
-		else
-			return "String " + tname.getText() + " = " + tvalue.getText() + ";";
-		
->>>>>>> Damian
 	}
 
 }

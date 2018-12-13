@@ -26,7 +26,7 @@ public class PrintBlock extends Block
 	}
 
 	@Override
-	public String getFunctionString() 
+	public String getFunctionString(int tabCount) 
 	{
 			return "System.out.println(\"" + tvalue.getText() + "\");";
 	}

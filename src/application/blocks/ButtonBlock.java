@@ -102,13 +102,10 @@ public class ButtonBlock extends Button
 	        	            	o.getChildren().add(new ButtonBlock("String", t, o, i));
 	        	            	o.getChildren().add(new ButtonBlock("Double", t, o, i));
 	        	            	o.getChildren().add(new ButtonBlock("Boolean", t, o, i));
-<<<<<<< HEAD
 	        	            	o.getChildren().add(new ButtonBlock("Print", t, o, i));
-=======
 	        	            	o.getChildren().add(new ButtonBlock("Wykonaj", t, o, i));
 	        	            	o.getChildren().add(new ButtonBlock("If", t, o, i));
 	        	            	o.getChildren().add(new ButtonBlock("While", t, o, i));
->>>>>>> Damian
 	                		}
 	            		}
 	            	}
@@ -202,11 +199,10 @@ public class ButtonBlock extends Button
 	        		{
 	        			case "==": t.getChildren().add(pos+1, new EqualsBlock(o));  break;
 	        			case "!=": t.getChildren().add(pos+1, new NotEqualsBlock(o)); break;
-	        			// pozmieniaæ Equalsblock na konkretne klasy 
-	        			case "<": t.getChildren().add(pos+1, new EqualsBlock(o)); break;
-	        			case ">": t.getChildren().add(pos+1, new EqualsBlock(o)); break;
-	        			case "<=": t.getChildren().add(pos+1, new EqualsBlock(o)); break;
-	        			case ">=": t.getChildren().add(pos+1, new EqualsBlock(o)); break;
+	        			case "<": t.getChildren().add(pos+1, new LessBlock(o)); break;
+	        			case ">": t.getChildren().add(pos+1, new GreaterBlock(o)); break;
+	        			case "<=": t.getChildren().add(pos+1, new LessEqualsBlock(o)); break;
+	        			case ">=": t.getChildren().add(pos+1, new GreaterEqualsBlock(o)); break;
 	        		}
 
             		t.getChildren().remove(pos);
@@ -228,14 +224,11 @@ public class ButtonBlock extends Button
 	        			case "String": t.getChildren().add(pos+1, new StringBlock(o)); break;
 	        			case "Double": t.getChildren().add(pos+1, new DoubleBlock(o)); break;
 	        			case "Boolean": t.getChildren().add(pos+1, new BooleanBlock(o)); break;
-<<<<<<< HEAD
 	        			case "Print": t.getChildren().add(pos+1, new PrintBlock(o)); break;
-=======
 	        			case "If": t.getChildren().add(pos+1, new IfBlock(o)); break;
 	        			case "Else": t.getChildren().add(pos+1, new ElseBlock(o)); break;
 	        			case "Wykonaj": t.getChildren().add(pos+1, new OperationBlock(o)); break;
 	        			case "While": t.getChildren().add(pos+1, new WhileBlock(o)); break;
->>>>>>> Damian
 	        		}
 	            	
 	            	t.getChildren().add(pos+2, new ButtonBlock("+", t, o, pos+2));

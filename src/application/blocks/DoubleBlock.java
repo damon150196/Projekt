@@ -56,12 +56,7 @@ public class DoubleBlock extends Block
 	@Override
 	public String getFunctionString(int tabCount) 
 	{
-<<<<<<< HEAD
 		if(tvalue.getText().isEmpty())
-		{
-=======
-		if(tvalue.getText() == "")
->>>>>>> Damian
 			return "double " + tname.getText() + ";";
 		else
 			return  "double " + tname.getText() + " = " + tvalue.getText() + ";";

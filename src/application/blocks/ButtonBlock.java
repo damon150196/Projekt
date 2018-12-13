@@ -1,5 +1,6 @@
 package application.blocks;
 
+import application.blocks.condition.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
@@ -19,10 +20,13 @@ public class ButtonBlock extends Button
 		switch(arg0)
 		{
 			case "+": 
-				this.setStyle("-fx-background-color: #DDDDDD;");
+				this.setStyle("-fx-background-color: #DDDDDD;");// zwyk³y
 				break;
 			case "+ ": 
-				this.setStyle("-fx-background-color: #DDDDDD;");
+				this.setStyle("-fx-background-color: #DDDDDD;"); // od ELSE
+				break;
+			case " + ": 
+				this.setStyle("-fx-background-color: #DDDDDD;"); // od warunków
 				break;
 			case "Int": 
 				this.setStyle("-fx-background-color: #FF8040;");
@@ -36,11 +40,37 @@ public class ButtonBlock extends Button
 			case "Boolean": 
 				this.setStyle("-fx-background-color: #21DC59;");
 				break;
+			case "Wykonaj": 
+				this.setStyle("-fx-background-color: #EEEEEE;");
+				break;
 			case "If": 
 				this.setStyle("-fx-background-color: #80FF40;");
 				break;
 			case "Else": 
 				this.setStyle("-fx-background-color: #80FF40;");
+				break;
+			case "While": 
+				this.setStyle("-fx-background-color: #4080FF;");
+				break;
+				
+
+			case "==": 
+				this.setStyle("-fx-background-color: #808080;");
+				break;
+			case "!=": 
+				this.setStyle("-fx-background-color: #808080;");
+				break;
+			case "<": 
+				this.setStyle("-fx-background-color: #808080;");
+				break;
+			case ">": 
+				this.setStyle("-fx-background-color: #808080;");
+				break;
+			case "<=": 
+				this.setStyle("-fx-background-color: #808080;");
+				break;
+			case ">=": 
+				this.setStyle("-fx-background-color: #808080;");
 				break;
 		}
 		
@@ -69,7 +99,9 @@ public class ButtonBlock extends Button
 	        	            	o.getChildren().add(new ButtonBlock("String", t, o, i));
 	        	            	o.getChildren().add(new ButtonBlock("Double", t, o, i));
 	        	            	o.getChildren().add(new ButtonBlock("Boolean", t, o, i));
+	        	            	o.getChildren().add(new ButtonBlock("Wykonaj", t, o, i));
 	        	            	o.getChildren().add(new ButtonBlock("If", t, o, i));
+	        	            	o.getChildren().add(new ButtonBlock("While", t, o, i));
 	                		}
 	            		}
 	            	}
@@ -104,6 +136,39 @@ public class ButtonBlock extends Button
 	            }
 	        });
 		}
+		else if(arg0 == " + ")
+		{
+			setOnAction((EventHandler<ActionEvent>) new EventHandler<ActionEvent>() 
+			{
+	            
+	            @Override
+	            public void handle(ActionEvent event) 
+	            {
+	            	Node n = getParent();
+	            	ButtonBlock b;
+	            	
+	            	for(int i=0; i <  ((VBox) n).getChildren().size(); i++)
+	            	{
+	            		if(((VBox) n).getChildren().get(i) instanceof ButtonBlock)
+	            		{
+	            			b = (ButtonBlock) ((VBox) n).getChildren().get(i);
+	                		
+	                		if(tmp.equals(b))
+	                		{
+	        	            	
+	        	            	o.getChildren().clear();
+	        	            	o.getChildren().add(new ButtonBlock("==", t, o, i));
+	        	            	o.getChildren().add(new ButtonBlock("!=", t, o, i));
+	        	            	o.getChildren().add(new ButtonBlock("<", t, o, i));
+	        	            	o.getChildren().add(new ButtonBlock(">", t, o, i));
+	        	            	o.getChildren().add(new ButtonBlock("<=", t, o, i));
+	        	            	o.getChildren().add(new ButtonBlock(">=", t, o, i));
+	                		}
+	            		}
+	            	}
+	            }
+	        });
+		}
 		else if(arg0 == "Else")
 		{
 			setOnAction((EventHandler<ActionEvent>) new EventHandler<ActionEvent>() 
@@ -113,6 +178,30 @@ public class ButtonBlock extends Button
 	            public void handle(ActionEvent event) 
 	            {
 	            	t.getChildren().add(pos+1, new ElseBlock(o)); 
+            		t.getChildren().remove(pos);
+	            	o.getChildren().clear();
+	            }
+	        });
+		}
+		else if(arg0 == "==" || arg0 == "!=" || arg0 == "<" || arg0 == ">" || arg0 == "<=" || arg0 == ">=")
+		{
+			setOnAction((EventHandler<ActionEvent>) new EventHandler<ActionEvent>() 
+			{
+	            
+	            @Override
+	            public void handle(ActionEvent event) 
+	            {
+	        		switch(arg0)
+	        		{
+	        			case "==": t.getChildren().add(pos+1, new EqualsBlock(o));  break;
+	        			case "!=": t.getChildren().add(pos+1, new NotEqualsBlock(o)); break;
+	        			// pozmieniaæ Equalsblock na konkretne klasy 
+	        			case "<": t.getChildren().add(pos+1, new EqualsBlock(o)); break;
+	        			case ">": t.getChildren().add(pos+1, new EqualsBlock(o)); break;
+	        			case "<=": t.getChildren().add(pos+1, new EqualsBlock(o)); break;
+	        			case ">=": t.getChildren().add(pos+1, new EqualsBlock(o)); break;
+	        		}
+
             		t.getChildren().remove(pos);
 	            	o.getChildren().clear();
 	            }
@@ -134,6 +223,8 @@ public class ButtonBlock extends Button
 	        			case "Boolean": t.getChildren().add(pos+1, new BooleanBlock(o)); break;
 	        			case "If": t.getChildren().add(pos+1, new IfBlock(o)); break;
 	        			case "Else": t.getChildren().add(pos+1, new ElseBlock(o)); break;
+	        			case "Wykonaj": t.getChildren().add(pos+1, new OperationBlock(o)); break;
+	        			case "While": t.getChildren().add(pos+1, new WhileBlock(o)); break;
 	        		}
 	            	
 	            	t.getChildren().add(pos+2, new ButtonBlock("+", t, o, pos+2));

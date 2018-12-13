@@ -26,11 +26,13 @@ public class IfBlock extends Block
 	public String getFunctionString(int tabCount) 
 	{
     	StringBuilder sb = new StringBuilder("if(");
+    	
 		if( vb.getChildren().get(0) instanceof Block)
 		{
     		Block b = (Block) vb.getChildren().get(0);
     		sb.append(b.getFunctionString(0));
 		}
+		
 		sb.append(")\n");
 		sb.append(tabs(tabCount));
 		sb.append("{\n");
@@ -66,7 +68,7 @@ public class IfBlock extends Block
     		sb.append(tabs(tabCount));
 			sb.append("{\n");
     		sb.append(tabs(tabCount+1));
-			sb.append("skip;");
+			sb.append("skip;\n");
     		sb.append(tabs(tabCount));
 	    	sb.append("}");
 		}

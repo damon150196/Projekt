@@ -2,13 +2,13 @@ package application.blocks;
 
 import javafx.scene.layout.VBox;
 
-public class IfConditionBlock extends Block 
+public class WhileConditionBlock extends Block 
 {
 
-	public IfConditionBlock(VBox languageBox) 
+	public WhileConditionBlock(VBox languageBox) 
 	{
 		super(languageBox);
-		this.setBackgroundColor("#90FF40");
+		this.setBackgroundColor("#3090FF");
 		this.setBlockName("Warunek");
 		
 		close.setVisible(false);

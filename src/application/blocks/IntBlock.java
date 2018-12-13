@@ -13,7 +13,7 @@ public class IntBlock extends Block
 	public IntBlock(VBox languageBox) 
 	{
 		super(languageBox);
-		this.setBackgroundColor("#FF8040");
+		this.setBackgroundColor("#FE5A1D");
 		this.setBlockName("Int");
 
 		
@@ -56,7 +56,7 @@ public class IntBlock extends Block
 	@Override
 	public String getFunctionString() 
 	{
-		if(tvalue.getText() == "")
+		if(tvalue.getText().isEmpty())
 		{
 			return "int " + tname.getText() + ";";
 		}

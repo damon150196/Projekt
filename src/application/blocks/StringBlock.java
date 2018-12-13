@@ -13,7 +13,7 @@ public class StringBlock extends Block
 	public StringBlock(VBox languageBox) 
 	{
 		super(languageBox);
-		this.setBackgroundColor("#DC219E");
+		this.setBackgroundColor("#FC5D5D");
 		this.setBlockName("String");
 
 		
@@ -39,10 +39,10 @@ public class StringBlock extends Block
 	@Override
 	public String getFunctionString() 
 	{
-		if(tvalue.getText() == "")
+		if(tvalue.getText().isEmpty())
 			return "String " + tname.getText() + ";";
 		else
-			return "String " + tname.getText() + " = " + tvalue.getText() + ";";
+			return "String " + tname.getText() + " = \"" + tvalue.getText() + "\";";
 	}
 
 }

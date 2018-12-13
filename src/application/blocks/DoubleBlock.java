@@ -13,7 +13,7 @@ public class DoubleBlock extends Block
 	public DoubleBlock(VBox languageBox) 
 	{
 		super(languageBox);
-		this.setBackgroundColor("#6B54FF");
+		this.setBackgroundColor("#71A6D2");
 		this.setBlockName("Double");
 
 		
@@ -56,7 +56,7 @@ public class DoubleBlock extends Block
 	@Override
 	public String getFunctionString() 
 	{
-		if(tvalue.getText() == "")
+		if(tvalue.getText().isEmpty())
 		{
 			return "double " + tname.getText() + ";";
 		}

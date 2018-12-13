@@ -13,7 +13,7 @@ public class BooleanBlock extends Block
 	public BooleanBlock(VBox languageBox) 
 	{
 		super(languageBox);
-		this.setBackgroundColor("#21DC59");
+		this.setBackgroundColor("#2e8b57");
 		this.setBlockName("Boolean");
 
 		
@@ -56,7 +56,7 @@ public class BooleanBlock extends Block
 	@Override
 	public String getFunctionString() 
 	{
-		if(tvalue.getText() == "")
+		if(tvalue.getText().isEmpty())
 		{
 			return "boolean " + tname.getText() + ";";
 		}

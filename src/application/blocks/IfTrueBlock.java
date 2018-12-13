@@ -2,14 +2,14 @@ package application.blocks;
 
 import javafx.scene.layout.VBox;
 
-public class MainBlock extends Block
+public class IfTrueBlock extends Block 
 {
-	
-	public MainBlock(VBox languageBox) 
+
+	public IfTrueBlock(VBox languageBox) 
 	{
 		super(languageBox);
-		this.setBackgroundColor("#EAEAEA");
-		this.setBlockName("Main");
+		this.setBackgroundColor("#70FF50");
+		this.setBlockName("If (True)");
 		
 		close.setVisible(false);
 		
@@ -18,33 +18,20 @@ public class MainBlock extends Block
 		content.setBottom(vb);
 	}
 
-	public void clear()
-	{
-		vb.getChildren().clear();
-		vb.getChildren().add(new ButtonBlock("+", vb, lb, 0));	
-	}
-	public boolean isEmpty()
-	{
-		if(vb.getChildren().size() == 1) return true;
-		
-		return false;
-	}
-	
 	@Override
 	public String getFunctionString(int tabCount) 
 	{
-    	StringBuilder sb = new StringBuilder("Main()\n{\n");
+    	StringBuilder sb = new StringBuilder();
 		
     	for(int i=0; i <  vb.getChildren().size(); i++)
     	{
     		if( vb.getChildren().get(i) instanceof Block)
     		{
-        		sb.append(tabs(tabCount+1));
+        		sb.append(tabs(tabCount));
         		Block b = (Block) vb.getChildren().get(i);
         		sb.append(b.getFunctionString(tabCount+1) + "\n");
     		}
     	}
-    	sb.append("}");
     	
 		return sb.toString();
 	}

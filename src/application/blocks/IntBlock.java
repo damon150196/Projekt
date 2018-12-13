@@ -54,16 +54,17 @@ public class IntBlock extends Block
 	}
 
 	@Override
-	public String getFunctionString() 
+	public String getFunctionString(int tabCount) 
 	{
+<<<<<<< HEAD
 		if(tvalue.getText().isEmpty())
 		{
+=======
+		if(tvalue.getText() == "")
+>>>>>>> Damian
 			return "int " + tname.getText() + ";";
-		}
 		else
-		{
 			return "int " + tname.getText() + " = " + tvalue.getText() + ";";
-		}
 	}
 
 }

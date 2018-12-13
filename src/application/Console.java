@@ -58,11 +58,11 @@ public class Console extends Application {
 
         try {
             HashMap<String, Value> map = new HashMap<>();
+            Program p = null;
             String linia = "";
-            String lastLine = "";
+            String ostatniaLinia = "";
 
-            File file =
-                    new File("C:\\Users\\Karol Oleksy\\Desktop\\karol.txt");
+            //File file = new File(file);
             Scanner sc = new Scanner(file);
 
             sc.nextLine();
@@ -70,14 +70,14 @@ public class Console extends Application {
 
             while (sc.hasNext()) {
 
-                lastLine = sc.nextLine();
-                linia = linia + lastLine;
+                ostatniaLinia = sc.nextLine();
+                linia = linia + ostatniaLinia;
 
                 System.out.println(linia);
             }
 
             linia = linia.replace(";", "");
-            linia = linia.replace(lastLine, "");
+            linia = linia.replace(ostatniaLinia, "");
             linia = linia.replace("int", "");
             linia = linia.replace("String", "");
 
@@ -90,7 +90,7 @@ public class Console extends Application {
 
 
             Parser parser = new Parser(linia);
-            Program p = null;
+
             try {
                 p = parser.parseProgram();
             } catch (NotParsed notParsed) {
@@ -110,8 +110,6 @@ public class Console extends Application {
             } catch (UnknownType unknownType) {
                 unknownType.printStackTrace();
             }
-
-            console.appendText(" Oleksy");
 
         } catch (FileNotFoundException e) {
             Alert alert2 = new Alert(AlertType.ERROR, "Odczyt nie powiód? si?", ButtonType.OK);

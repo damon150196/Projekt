@@ -23,10 +23,9 @@ public class Write  extends Program {
     public void eval(HashMap<String, Value> map, TextArea console) throws UnknownOperator, VariableNotFound, IncompatibilityTypes, UnknownType {
         if(!map.containsKey(var))
             throw new VariableNotFound();
-        //System.out.println(map.get(var).getNumber());
-        String x = String.valueOf(map.get(var).getNumber());
-        System.out.println(x);
-        console.setText("Karolek jest wkurwiony");
+
+        console.appendText("Rezultat wykonanego programu to: \n");
+        console.appendText(String.valueOf(map.get(var).getNumber()));
     }
 
 

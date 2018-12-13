@@ -42,7 +42,7 @@ public class StringBlock extends Block
 		if(tvalue.getText() == "")
 			return "String " + tname.getText() + ";";
 		else
-			return "String " + tname.getText() + " = " + tvalue.getText() + ";";
+			return "String " + tname.getText() + " = \"" + tvalue.getText() + "\";";
 	}
 
 }

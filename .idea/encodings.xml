@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding" addBOMForNewFiles="with NO BOM">
-    <file url="file://$PROJECT_DIR$/src/application/blocks/BooleanBlock.java" charset="UTF-16" />
+    <file url="file://$PROJECT_DIR$/src/application/Console.java" charset="windows-1250" />
+    <file url="file://$PROJECT_DIR$/src/application/Main.java" charset="windows-1250" />
+    <file url="file://$PROJECT_DIR$/src/application/blocks/DoubleBlock.java" charset="windows-1250" />
+    <file url="file://$PROJECT_DIR$/src/application/blocks/IntBlock.java" charset="windows-1250" />
+    <file url="file://$PROJECT_DIR$/src/application/blocks/StringBlock.java" charset="windows-1250" />
   </component>
 </project>

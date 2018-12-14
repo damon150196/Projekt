@@ -2,10 +2,12 @@ package application.blocks;
 
 import javafx.scene.layout.VBox;
 
+import java.util.List;
+
 public class WhileConditionBlock extends Block
 {
 
-    public WhileConditionBlock(VBox languageBox)
+    public WhileConditionBlock(VBox languageBox, List<String> listButtonsNames, int defaultVariableNumber)
     {
         super(languageBox);
         this.setBackgroundColor("#3090FF");
@@ -13,7 +15,7 @@ public class WhileConditionBlock extends Block
 
         close.setVisible(false);
 
-        vb.getChildren().add(new ButtonBlock(" + ", vb, lb, 0));
+        vb.getChildren().add(new ButtonBlock(" + ", vb, lb, 0, listButtonsNames, defaultVariableNumber));
         content.setBottom(vb);
     }
 
@@ -29,6 +31,11 @@ public class WhileConditionBlock extends Block
         }
 
         return sb.toString();
+    }
+
+    @Override
+    public void checkVariableName(String variableName, List<String> listButtonsNames, int defaultVariableNumber) {
+
     }
 
 }

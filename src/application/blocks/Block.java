@@ -9,6 +9,9 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 
+import java.util.List;
+
+
 public abstract class Block extends ScrollPane
 {
 
@@ -27,6 +30,8 @@ public abstract class Block extends ScrollPane
 		this.getStyleClass().add("block");
 		this.setFitToWidth(true);
 		lb = languageBox;
+
+
 
 		this.setBackgroundColor("#408000");
 		this.setBlockName("Block");
@@ -92,5 +97,7 @@ public abstract class Block extends ScrollPane
 		}
 		return sb.toString();
 	}
+
+	public abstract void checkVariableName(String variableName, List<String> listButtonsNames, int defaultVariableNumber);
 
 }

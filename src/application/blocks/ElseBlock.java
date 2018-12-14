@@ -5,10 +5,12 @@ import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.layout.VBox;
 
+import java.util.List;
+
 public class ElseBlock extends Block
 {
 
-    public ElseBlock(VBox languageBox)
+    public ElseBlock(VBox languageBox, List<String> listButtonsNames, int defaultVariableNumber)
     {
         super(languageBox);
         ElseBlock tmp = this;
@@ -16,7 +18,7 @@ public class ElseBlock extends Block
         this.setBlockName("Else");
 
 
-        vb.getChildren().add(new ButtonBlock("+", vb, lb, 0));
+        vb.getChildren().add(new ButtonBlock("+", vb, lb, 0, listButtonsNames, defaultVariableNumber));
 
         content.setBottom(vb);
 
@@ -41,7 +43,7 @@ public class ElseBlock extends Block
                         if(tmp.equals(b))
                         {
                             ((VBox) n).getChildren().remove(i);
-                            ((VBox) n).getChildren().add(new ButtonBlock("+ ", ((VBox) n), lb, 0));
+                            ((VBox) n).getChildren().add(new ButtonBlock("+ ", ((VBox) n), lb, 0, listButtonsNames, defaultVariableNumber));
                         }
                     }
                 }
@@ -65,6 +67,11 @@ public class ElseBlock extends Block
         }
 
         return sb.toString();
+    }
+
+    @Override
+    public void checkVariableName(String variableName, List<String> listButtonsNames, int defaultVariableNumber) {
+
     }
 
 }

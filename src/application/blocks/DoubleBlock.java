@@ -5,12 +5,14 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
+import java.util.List;
+
 public class DoubleBlock extends Block
 {
 	private TextField tname = new TextField();
 	private TextField tvalue = new TextField();
 
-	public DoubleBlock(VBox languageBox)
+	public DoubleBlock(VBox languageBox, List<String> listButtonsNames, int defaultVariableNumber)
 	{
 		super(languageBox);
 		this.setBackgroundColor("#71A6D2");
@@ -21,7 +23,7 @@ public class DoubleBlock extends Block
 		hb.setSpacing(10);
 
 		tname.setPromptText("Nazwa: ");
-		tvalue.setPromptText("Wartoœæ: ");
+		tvalue.setPromptText("Wartość: ");
 
 		tname.focusedProperty().addListener((arg0, oldValue, newValue) ->
 		{
@@ -31,6 +33,7 @@ public class DoubleBlock extends Block
 				{
 					tname.setText("");
 				}
+				checkVariableName(tname.getText(), listButtonsNames, defaultVariableNumber);
 			}
 
 		});
@@ -60,6 +63,20 @@ public class DoubleBlock extends Block
 			return "double " + tname.getText() + ";";
 		else
 			return  "double " + tname.getText() + " = " + tvalue.getText() + ";";
+	}
+
+	@Override
+	public void checkVariableName(String variableName, List<String> listButtonsNames, int defaultVariableNumber) {
+
+		for (int i = 0; i < listButtonsNames.size(); i++) {
+			if (listButtonsNames.get(i).equals(tname.getText())) {
+				tname.setText("default" + defaultVariableNumber);
+				defaultVariableNumber++;
+			}
+
+		}
+		listButtonsNames.add(tname.getText());
+
 	}
 
 }

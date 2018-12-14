@@ -5,12 +5,14 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
+import java.util.List;
+
 public class StringBlock extends Block
 {
 	private TextField tname = new TextField();
 	private TextField tvalue = new TextField();
 
-	public StringBlock(VBox languageBox)
+	public StringBlock(VBox languageBox, List<String> listButtonsNames, int defaultVariableNumber)
 	{
 		super(languageBox);
 		this.setBackgroundColor("#FC5D5D");
@@ -28,6 +30,9 @@ public class StringBlock extends Block
 			if (!newValue)
 				if(!tname.getText().matches("^[a-zA-Z][a-zA-Z0-9_]*$"))
 					tname.setText("");
+
+			checkVariableName(tname.getText(), listButtonsNames, defaultVariableNumber);
+
 		});
 
 		hb.getChildren().add(tname);
@@ -43,6 +48,19 @@ public class StringBlock extends Block
 			return "String " + tname.getText() + ";";
 		else
 			return "String " + tname.getText() + " = \"" + tvalue.getText() + "\";";
+	}
+
+	@Override
+	public void checkVariableName(String variableName, List<String> listButtonsNames, int defaultVariableNumber) {
+
+		for (int i = 0; i < listButtonsNames.size(); i++) {
+			if (listButtonsNames.get(i).equals(tname.getText())) {
+				tname.setText("default" + defaultVariableNumber);
+				defaultVariableNumber++;
+			}
+
+		}
+		listButtonsNames.add(tname.getText());
 	}
 
 }

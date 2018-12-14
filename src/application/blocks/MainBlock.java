@@ -2,18 +2,25 @@ package application.blocks;
 
 import javafx.scene.layout.VBox;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainBlock extends Block
 {
+	List<String> listButtonsNames;
+	int defaultVariableNumber;
 
 	public MainBlock(VBox languageBox)
 	{
 		super(languageBox);
+		listButtonsNames = new ArrayList<>();
+		defaultVariableNumber = 0;
 		this.setBackgroundColor("#EAEAEA");
 		this.setBlockName("Main");
 
 		close.setVisible(false);
 
-		vb.getChildren().add(new ButtonBlock("+", vb, lb, 0));
+		vb.getChildren().add(new ButtonBlock("+", vb, lb, 0, listButtonsNames, defaultVariableNumber));
 
 		content.setBottom(vb);
 	}
@@ -21,7 +28,7 @@ public class MainBlock extends Block
 	public void clear()
 	{
 		vb.getChildren().clear();
-		vb.getChildren().add(new ButtonBlock("+", vb, lb, 0));
+		vb.getChildren().add(new ButtonBlock("+", vb, lb, 0,listButtonsNames, defaultVariableNumber));
 	}
 	public boolean isEmpty()
 	{
@@ -47,6 +54,11 @@ public class MainBlock extends Block
 		sb.append("}");
 
 		return sb.toString();
+	}
+
+	@Override
+	public void checkVariableName(String variableName, List<String> listButtonsNames, int defaultVariableNumber) {
+
 	}
 
 }

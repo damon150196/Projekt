@@ -4,10 +4,12 @@ package application.blocks;
 import javafx.geometry.Insets;
 import javafx.scene.layout.VBox;
 
+import java.util.List;
+
 public class IfBlock extends Block
 {
 
-    public IfBlock(VBox languageBox)
+    public IfBlock(VBox languageBox, List<String> listButtonsNames, int defaultVariableNumber)
     {
         super(languageBox);
         this.setBackgroundColor("#80FF40");
@@ -15,9 +17,9 @@ public class IfBlock extends Block
         this.setPadding(new Insets(5,0,5,0));
 
 
-        vb.getChildren().add(new IfConditionBlock(lb));
-        vb.getChildren().add(new IfTrueBlock(lb));
-        vb.getChildren().add(new ButtonBlock("+ ", vb, lb, 0));
+        vb.getChildren().add(new IfConditionBlock(lb, listButtonsNames, defaultVariableNumber));
+        vb.getChildren().add(new IfTrueBlock(lb, listButtonsNames, defaultVariableNumber));
+        vb.getChildren().add(new ButtonBlock("+ ", vb, lb, 0, listButtonsNames, defaultVariableNumber));
 
         content.setBottom(vb);
     }
@@ -75,6 +77,11 @@ public class IfBlock extends Block
 
 
         return sb.toString();
+    }
+
+    @Override
+    public void checkVariableName(String variableName, List<String> listButtonsNames, int defaultVariableNumber) {
+
     }
 
 }

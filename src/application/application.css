@@ -12,8 +12,8 @@
 .btn2
 {
   -fx-pref-height: 40px;
-  -fx-padding: 5;
-  -fx-font-size: 30px;
+  -fx-padding: 13 5 12 5;
+  -fx-font-size: 20px;
   -fx-font-family: 'Consoloas';
 }
 .color-gray 

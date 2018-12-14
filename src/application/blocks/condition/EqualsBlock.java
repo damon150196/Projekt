@@ -10,13 +10,15 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
+import java.util.List;
+
 public class EqualsBlock extends Block
 
 {
     private TextField tleft = new TextField();
     private TextField tright = new TextField();
 
-    public EqualsBlock(VBox languageBox)
+    public EqualsBlock(VBox languageBox, List<String> listButtonsNames, int defaultVariableNumber)
     {
         super(languageBox);
         EqualsBlock tmp = this;
@@ -57,7 +59,7 @@ public class EqualsBlock extends Block
                         if(tmp.equals(b))
                         {
                             ((VBox) n).getChildren().remove(i);
-                            ((VBox) n).getChildren().add(new ButtonBlock(" + ", ((VBox) n), lb, 0));
+                            ((VBox) n).getChildren().add(new ButtonBlock(" + ", ((VBox) n), lb, 0, listButtonsNames, defaultVariableNumber));
                         }
                     }
                 }
@@ -69,6 +71,11 @@ public class EqualsBlock extends Block
     public String getFunctionString(int tabCount)
     {
         return tleft.getText() + "==" + tright.getText();
+    }
+
+    @Override
+    public void checkVariableName(String variableName, List<String> listButtonsNames, int defaultVariableNumber) {
+
     }
 
 }

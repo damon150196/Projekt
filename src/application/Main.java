@@ -34,7 +34,7 @@ public class Main extends Application
 	BorderedTitledPane right = new BorderedTitledPane("Podgl¹d Kodu");
 	boolean rightShowed = true;
 	BorderedTitledPane content = new BorderedTitledPane("Obszar Roboczy");
-	File file;
+	File file = null;
 
 
 	//top
@@ -134,6 +134,7 @@ public class Main extends Application
 
 
 			primaryStage.setOnCloseRequest(closeEvent);
+
 		}
 		catch(Exception e)
 		{
@@ -156,7 +157,7 @@ public class Main extends Application
 			{
 				if(! mainBlock.isEmpty())
 				{
-					Alert alert = new Alert(AlertType.CONFIRMATION, "Czy zapisa? projekt", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
+					Alert alert = new Alert(AlertType.CONFIRMATION, "Czy zapisac projekt", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
 
 					alert.setTitle("Zapisywanie");
 					alert.showAndWait().ifPresent(type -> {
@@ -286,12 +287,13 @@ public class Main extends Application
 	}
 
 
+	//naprawiæ metode zamykania aplikacji (problem z dodaniem opcji wyboru zapisu przed zamknieciem okna aplikacj)
 	EventHandler<WindowEvent> closeEvent = new EventHandler<WindowEvent>()
 	{
 		@Override
 		public void handle(WindowEvent event)
 		{
-			if(file!=null)
+			/*if(file!=null)
 			{
 				try
 				{
@@ -317,9 +319,9 @@ public class Main extends Application
 				}
 				catch (IOException e)
 				{
-					Alert alert2 = new Alert(AlertType.ERROR, "Problem z plikiem", ButtonType.OK);
-					alert2.setTitle("Error");
-					alert2.show();
+					//Alert alert2 = new Alert(AlertType.ERROR, "Problem z plikiem", ButtonType.OK);
+					//alert2.setTitle("Error");
+					//alert2.show();
 				}
 
 			}
@@ -334,7 +336,7 @@ public class Main extends Application
 					}
 				});
 
-			}
+			}*/
 
 		}
 	};
@@ -357,9 +359,9 @@ public class Main extends Application
 		}
 		catch (NullPointerException e)
 		{
-			Alert alert2 = new Alert(AlertType.ERROR, "Zapis nie powiód? si?", ButtonType.OK);
-			alert2.setTitle("Error");
-			alert2.showAndWait();
+			//Alert alert2 = new Alert(AlertType.ERROR, "Zapis nie powiód? si?", ButtonType.OK);
+			//alert2.setTitle("Error");
+			//alert2.showAndWait();
 		}
 	}
 

@@ -2,10 +2,12 @@ package application.blocks;
 
 import javafx.scene.layout.VBox;
 
+import java.util.List;
+
 public class IfTrueBlock extends Block
 {
 
-    public IfTrueBlock(VBox languageBox)
+    public IfTrueBlock(VBox languageBox, List<String> listButtonsNames, int defaultVariableNumber)
     {
         super(languageBox);
         this.setBackgroundColor("#70FF50");
@@ -13,7 +15,7 @@ public class IfTrueBlock extends Block
 
         close.setVisible(false);
 
-        vb.getChildren().add(new ButtonBlock("+", vb, lb, 0));
+        vb.getChildren().add(new ButtonBlock("+", vb, lb, 0, listButtonsNames, defaultVariableNumber));
 
         content.setBottom(vb);
     }
@@ -34,6 +36,11 @@ public class IfTrueBlock extends Block
         }
 
         return sb.toString();
+    }
+
+    @Override
+    public void checkVariableName(String variableName, List<String> listButtonsNames, int defaultVariableNumber) {
+
     }
 
 }

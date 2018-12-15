@@ -55,6 +55,9 @@ public class ButtonBlock extends Button
 			case "While":
 				this.setStyle("-fx-background-color: #4080FF;");
 				break;
+			case "For":
+				this.setStyle("-fx-background-color: #80ADCD;");
+				break;
 			case "Switch":
 				this.setStyle("-fx-background-color: #AE99DC;");
 				break;
@@ -103,6 +106,7 @@ public class ButtonBlock extends Button
 								o.getChildren().add(new ButtonBlock("Wykonaj", t, o, i, listButtonsNames, defaultVariableNumber));
 								o.getChildren().add(new ButtonBlock("If", t, o, i, listButtonsNames, defaultVariableNumber));
 								o.getChildren().add(new ButtonBlock("While", t, o, i, listButtonsNames, defaultVariableNumber));
+								o.getChildren().add(new ButtonBlock("For", t, o, i, listButtonsNames, defaultVariableNumber));
 								o.getChildren().add(new ButtonBlock("Switch", t, o, i, listButtonsNames, defaultVariableNumber));
 							}
 						}
@@ -299,6 +303,7 @@ public class ButtonBlock extends Button
 						case "Else": t.getChildren().add(pos+1, new ElseBlock(o, listButtonsNames, defaultVariableNumber)); break;
 						case "Wykonaj": t.getChildren().add(pos+1, new OperationBlock(o, listButtonsNames, defaultVariableNumber)); break;
 						case "While": t.getChildren().add(pos+1, new WhileBlock(o, listButtonsNames, defaultVariableNumber)); break;
+						case "For": t.getChildren().add(pos+1, new ForBlock(o, listButtonsNames, defaultVariableNumber)); break;
 						case "Switch": t.getChildren().add(pos+1, new SwitchBlock(o, listButtonsNames, defaultVariableNumber)); break;
 					}
 

@@ -1,5 +1,7 @@
 package application.blocks.condition;
 
+import java.util.List;
+
 import application.blocks.Block;
 import application.blocks.ButtonBlock;
 import javafx.event.ActionEvent;
@@ -16,7 +18,7 @@ public class GreaterEqualsBlock extends Block
 	private TextField tleft = new TextField();
 	private TextField tright = new TextField();
 
-	public GreaterEqualsBlock(VBox languageBox) 
+	public GreaterEqualsBlock(VBox languageBox, List<String> listButtonsNames, int defaultVariableNumber)
 	{
 		super(languageBox);
 		GreaterEqualsBlock tmp = this;
@@ -57,7 +59,7 @@ public class GreaterEqualsBlock extends Block
                 		if(tmp.equals(b))
                 		{
                 			((VBox) n).getChildren().remove(i);
-                			((VBox) n).getChildren().add(new ButtonBlock(" + ", ((VBox) n), lb, 0));	
+                            ((VBox) n).getChildren().add(new ButtonBlock(" + ", ((VBox) n), lb, 0, listButtonsNames, defaultVariableNumber));
                 		}
             		}
             	}
@@ -69,6 +71,12 @@ public class GreaterEqualsBlock extends Block
 	public String getFunctionString(int tabCount) 
 	{
 		return tleft.getText() + ">=" + tright.getText();
+	}
+
+	@Override
+	public void checkVariableName(String variableName, List<String> listButtonsNames, int defaultVariableNumber) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

@@ -1,6 +1,8 @@
 package application.blocks;
 
 
+import java.util.List;
+
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -29,6 +31,12 @@ public class PrintBlock extends Block
 	public String getFunctionString(int tabCount) 
 	{
 			return "System.out.println(\"" + tvalue.getText() + "\");";
+	}
+
+	@Override
+	public void checkVariableName(String variableName, List<String> listButtonsNames, int defaultVariableNumber) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

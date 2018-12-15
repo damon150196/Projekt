@@ -9,6 +9,9 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 
+import java.util.List;
+
+
 public abstract class Block extends ScrollPane
 {
 
@@ -18,7 +21,7 @@ public abstract class Block extends ScrollPane
 	protected BorderPane content = new BorderPane();
 	protected VBox vb = new VBox();
 	protected VBox lb = new VBox();
-	
+
 	public Block(VBox languageBox)
 	{
 		Block tmp = this;
@@ -27,47 +30,49 @@ public abstract class Block extends ScrollPane
 		this.getStyleClass().add("block");
 		this.setFitToWidth(true);
 		lb = languageBox;
-		
+
+
+
 		this.setBackgroundColor("#408000");
 		this.setBlockName("Block");
-		
+
 		content.getStyleClass().add("block-content");
-		
+
 		close.getStyleClass().add("block-close-button");
-		
+
 		content.setLeft(name);
 		content.setRight(close);
 		content.setBottom(vb);
 		this.setContent(content);
-		
 
-		
-		close.setOnAction((EventHandler<ActionEvent>) new EventHandler<ActionEvent>() 
+
+
+		close.setOnAction((EventHandler<ActionEvent>) new EventHandler<ActionEvent>()
 		{
-            
-            @Override
-            public void handle(ActionEvent event) 
-            {
-            	Node n = getParent();
-            	Block b;
-            	
-            	languageBox.getChildren().clear();
-            	
-            	for(int i=0; i <  ((VBox) n).getChildren().size(); i++)
-            	{
-            		if(((VBox) n).getChildren().get(i) instanceof Block)
-            		{
-            			b = (Block) ((VBox) n).getChildren().get(i);
-                		
-                		if(tmp.equals(b))
-                		{
-                			((VBox) n).getChildren().remove(i);
-                			((VBox) n).getChildren().remove(i);
-                		}
-            		}
-            	}
-            }
-        });	
+
+			@Override
+			public void handle(ActionEvent event)
+			{
+				Node n = getParent();
+				Block b;
+
+				languageBox.getChildren().clear();
+
+				for(int i=0; i <  ((VBox) n).getChildren().size(); i++)
+				{
+					if(((VBox) n).getChildren().get(i) instanceof Block)
+					{
+						b = (Block) ((VBox) n).getChildren().get(i);
+
+						if(tmp.equals(b))
+						{
+							((VBox) n).getChildren().remove(i);
+							((VBox) n).getChildren().remove(i);
+						}
+					}
+				}
+			}
+		});
 	}
 
 	public void setBackgroundColor(String c)
@@ -80,12 +85,14 @@ public abstract class Block extends ScrollPane
 		name.setText(" " + n + " ");
 		name.getStyleClass().add("block-title");
 	}
-	
+
+
 	public abstract String getFunctionString(int tabCount);
-	
+
 	public String tabs(int tabs)
 	{
-    	StringBuilder sb = new StringBuilder("");
+		StringBuilder sb = new StringBuilder("");
+		
 		for(int j=0; j<tabs; j++)
 		{
 			sb.append("\t");
@@ -93,4 +100,7 @@ public abstract class Block extends ScrollPane
 		return sb.toString();
 	}
 	
+
+	public abstract void checkVariableName(String variableName, List<String> listButtonsNames, int defaultVariableNumber);
+
 }

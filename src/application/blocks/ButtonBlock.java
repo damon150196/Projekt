@@ -55,6 +55,9 @@ public class ButtonBlock extends Button
 			case "While":
 				this.setStyle("-fx-background-color: #4080FF;");
 				break;
+			case "Switch":
+				this.setStyle("-fx-background-color: #AE99DC;");
+				break;
 
 
 			case "==":
@@ -66,6 +69,8 @@ public class ButtonBlock extends Button
 			case "!":
 			case "||":
 			case "&&":
+			case "Case":
+			case "Default":
 				this.setStyle("-fx-background-color: #808080;");
 				break;
 		}
@@ -98,6 +103,7 @@ public class ButtonBlock extends Button
 								o.getChildren().add(new ButtonBlock("Wykonaj", t, o, i, listButtonsNames, defaultVariableNumber));
 								o.getChildren().add(new ButtonBlock("If", t, o, i, listButtonsNames, defaultVariableNumber));
 								o.getChildren().add(new ButtonBlock("While", t, o, i, listButtonsNames, defaultVariableNumber));
+								o.getChildren().add(new ButtonBlock("Switch", t, o, i, listButtonsNames, defaultVariableNumber));
 							}
 						}
 					}
@@ -128,6 +134,46 @@ public class ButtonBlock extends Button
 								o.getChildren().add(new ButtonBlock("Else", t, o, i, listButtonsNames, defaultVariableNumber));
 							}
 						}
+					}
+				}
+			});
+		}
+		else if(arg0 == " +  ")
+		{
+			setOnAction((EventHandler<ActionEvent>) new EventHandler<ActionEvent>()
+			{
+
+				@Override
+				public void handle(ActionEvent event)
+				{
+					Node n = getParent();
+					ButtonBlock b;
+					int i=0;
+					for(; i <  ((VBox) n).getChildren().size(); i++)
+					{
+						if(((VBox) n).getChildren().get(i) instanceof ButtonBlock)
+						{
+							b = (ButtonBlock) ((VBox) n).getChildren().get(i);
+
+							if(tmp.equals(b))
+							{
+
+								o.getChildren().clear();
+								o.getChildren().add(new ButtonBlock("Case", t, o, i, listButtonsNames, defaultVariableNumber));
+							}
+						}
+					}
+					boolean addDefault = true;
+					for(int j=0; j<t.getChildren().size(); j++)
+					{
+						if(t.getChildren().get(j) instanceof DefaultBlock)
+						{
+							addDefault = false;
+						}
+					}
+					if(addDefault==true)
+					{
+						o.getChildren().add(new ButtonBlock("Default", t, o, i+1, listButtonsNames, defaultVariableNumber));
 					}
 				}
 			});
@@ -182,6 +228,33 @@ public class ButtonBlock extends Button
 				}
 			});
 		}
+		else if(arg0 == "Case")
+		{
+			setOnAction((EventHandler<ActionEvent>) new EventHandler<ActionEvent>()
+			{
+
+				@Override
+				public void handle(ActionEvent event)
+				{
+					t.getChildren().add(pos+1, new CaseBlock(o, listButtonsNames, defaultVariableNumber));
+					t.getChildren().add(pos+2, new ButtonBlock(" +  ", t, o, pos+2, listButtonsNames, defaultVariableNumber));
+					o.getChildren().clear();
+				}
+			});
+		}
+		else if(arg0 == "Default")
+		{
+			setOnAction((EventHandler<ActionEvent>) new EventHandler<ActionEvent>()
+			{
+
+				@Override
+				public void handle(ActionEvent event)
+				{
+					t.getChildren().add(t.getChildren().size(), new DefaultBlock(o, listButtonsNames, defaultVariableNumber));
+					o.getChildren().clear();
+				}
+			});
+		}
 		else if(arg0 == "==" || arg0 == "!=" || arg0 == "<" || arg0 == ">" || arg0 == "<=" || arg0 == ">=" || arg0 == "!" || arg0 == "&&" || arg0 == "||")
 		{
 			setOnAction((EventHandler<ActionEvent>) new EventHandler<ActionEvent>()
@@ -226,6 +299,7 @@ public class ButtonBlock extends Button
 						case "Else": t.getChildren().add(pos+1, new ElseBlock(o, listButtonsNames, defaultVariableNumber)); break;
 						case "Wykonaj": t.getChildren().add(pos+1, new OperationBlock(o, listButtonsNames, defaultVariableNumber)); break;
 						case "While": t.getChildren().add(pos+1, new WhileBlock(o, listButtonsNames, defaultVariableNumber)); break;
+						case "Switch": t.getChildren().add(pos+1, new SwitchBlock(o, listButtonsNames, defaultVariableNumber)); break;
 					}
 
 					t.getChildren().add(pos+2, new ButtonBlock("+", t, o, pos+2, listButtonsNames, defaultVariableNumber));

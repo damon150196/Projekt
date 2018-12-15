@@ -14,8 +14,10 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
@@ -26,13 +28,14 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 
-public class Console extends Application {
+public class Console extends Application 
+{
     private BorderPane root = new BorderPane();
     private Scene scene = new Scene(root, 600, 400);
     private TextArea console = new TextArea();
     private File file;
     private StringBuilder textToConsole = new StringBuilder();
-
+    
     public Console(File f) {
         file = f;
     }
@@ -133,5 +136,6 @@ public class Console extends Application {
         this.file = file;
     }
 
+    
 
 }

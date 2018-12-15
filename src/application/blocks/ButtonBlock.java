@@ -8,16 +8,17 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class ButtonBlock extends Button
 {
 
-	public ButtonBlock(String arg0, VBox t, VBox o, int pos, List<String> listButtonsNames, int defaultVariableNumber)
+	public ButtonBlock(String arg0, VBox t, VBox o, int pos, ArrayList<String> var)
 	{
 		super(arg0);
 		this.getStyleClass().add("buttonBlock");
 
+		ArrayList<String> variables = var;
 		ButtonBlock tmp = this;
 
 		switch(arg0)
@@ -58,8 +59,11 @@ public class ButtonBlock extends Button
 			case "For":
 				this.setStyle("-fx-background-color: #80ADCD;");
 				break;
-			case "Switch":
-				this.setStyle("-fx-background-color: #AE99DC;");
+			case "Read":
+				this.setStyle("-fx-background-color: #BFA76F;");
+				break;
+			case "Write":
+				this.setStyle("-fx-background-color: #BFA76F;");
 				break;
 
 
@@ -99,15 +103,18 @@ public class ButtonBlock extends Button
 							{
 
 								o.getChildren().clear();
-								o.getChildren().add(new ButtonBlock("Int", t, o, i, listButtonsNames, defaultVariableNumber));
-								o.getChildren().add(new ButtonBlock("String", t, o, i, listButtonsNames, defaultVariableNumber));
-								o.getChildren().add(new ButtonBlock("Double", t, o, i, listButtonsNames, defaultVariableNumber));
-								o.getChildren().add(new ButtonBlock("Boolean", t, o, i, listButtonsNames, defaultVariableNumber));
-								o.getChildren().add(new ButtonBlock("Wykonaj", t, o, i, listButtonsNames, defaultVariableNumber));
-								o.getChildren().add(new ButtonBlock("If", t, o, i, listButtonsNames, defaultVariableNumber));
-								o.getChildren().add(new ButtonBlock("While", t, o, i, listButtonsNames, defaultVariableNumber));
-								o.getChildren().add(new ButtonBlock("For", t, o, i, listButtonsNames, defaultVariableNumber));
-								o.getChildren().add(new ButtonBlock("Switch", t, o, i, listButtonsNames, defaultVariableNumber));
+								o.getChildren().add(new ButtonBlock("Int", t, o, i, variables));
+								o.getChildren().add(new ButtonBlock("String", t, o, i, variables));
+								o.getChildren().add(new ButtonBlock("Double", t, o, i, variables));
+								o.getChildren().add(new ButtonBlock("Boolean", t, o, i, variables));
+								o.getChildren().add(new ButtonBlock("Wykonaj", t, o, i, variables));
+								o.getChildren().add(new ButtonBlock("If", t, o, i, variables));
+								o.getChildren().add(new ButtonBlock("While", t, o, i, variables));
+								o.getChildren().add(new ButtonBlock("For", t, o, i, variables));
+								o.getChildren().add(new ButtonBlock("Switch", t, o, i, variables));
+								//Wrazie co to zakomentowaæ te 2 poni¿ej 
+								o.getChildren().add(new ButtonBlock("Read", t, o, i, variables));
+								o.getChildren().add(new ButtonBlock("Write", t, o, i, variables));
 							}
 						}
 					}
@@ -135,7 +142,7 @@ public class ButtonBlock extends Button
 							{
 
 								o.getChildren().clear();
-								o.getChildren().add(new ButtonBlock("Else", t, o, i, listButtonsNames, defaultVariableNumber));
+								o.getChildren().add(new ButtonBlock("Else", t, o, i, variables));
 							}
 						}
 					}
@@ -163,7 +170,7 @@ public class ButtonBlock extends Button
 							{
 
 								o.getChildren().clear();
-								o.getChildren().add(new ButtonBlock("Case", t, o, i, listButtonsNames, defaultVariableNumber));
+								o.getChildren().add(new ButtonBlock("Case", t, o, i, variables));
 							}
 						}
 					}
@@ -177,7 +184,7 @@ public class ButtonBlock extends Button
 					}
 					if(addDefault==true)
 					{
-						o.getChildren().add(new ButtonBlock("Default", t, o, i+1, listButtonsNames, defaultVariableNumber));
+						o.getChildren().add(new ButtonBlock("Default", t, o, i+1, variables));
 					}
 				}
 			});
@@ -203,15 +210,15 @@ public class ButtonBlock extends Button
 							{
 
 								o.getChildren().clear();
-								o.getChildren().add(new ButtonBlock("==", t, o, i, listButtonsNames, defaultVariableNumber));
-								o.getChildren().add(new ButtonBlock("!=", t, o, i, listButtonsNames, defaultVariableNumber));
-								o.getChildren().add(new ButtonBlock("<", t, o, i, listButtonsNames, defaultVariableNumber));
-								o.getChildren().add(new ButtonBlock(">", t, o, i, listButtonsNames, defaultVariableNumber));
-								o.getChildren().add(new ButtonBlock("<=", t, o, i, listButtonsNames, defaultVariableNumber));
-								o.getChildren().add(new ButtonBlock(">=", t, o, i, listButtonsNames, defaultVariableNumber));
-								o.getChildren().add(new ButtonBlock("!", t, o, i, listButtonsNames, defaultVariableNumber));
-								o.getChildren().add(new ButtonBlock("&&", t, o, i, listButtonsNames, defaultVariableNumber));
-								o.getChildren().add(new ButtonBlock("||", t, o, i, listButtonsNames, defaultVariableNumber));
+								o.getChildren().add(new ButtonBlock("==", t, o, i, variables));
+								o.getChildren().add(new ButtonBlock("!=", t, o, i, variables));
+								o.getChildren().add(new ButtonBlock("<", t, o, i, variables));
+								o.getChildren().add(new ButtonBlock(">", t, o, i, variables));
+								o.getChildren().add(new ButtonBlock("<=", t, o, i, variables));
+								o.getChildren().add(new ButtonBlock(">=", t, o, i, variables));
+								o.getChildren().add(new ButtonBlock("!", t, o, i, variables));
+								o.getChildren().add(new ButtonBlock("&&", t, o, i, variables));
+								o.getChildren().add(new ButtonBlock("||", t, o, i, variables));
 							}
 						}
 					}
@@ -226,7 +233,7 @@ public class ButtonBlock extends Button
 				@Override
 				public void handle(ActionEvent event)
 				{
-					t.getChildren().add(pos+1, new ElseBlock(o, listButtonsNames, defaultVariableNumber));
+					t.getChildren().add(pos+1, new ElseBlock(o, variables));
 					t.getChildren().remove(pos);
 					o.getChildren().clear();
 				}
@@ -240,8 +247,8 @@ public class ButtonBlock extends Button
 				@Override
 				public void handle(ActionEvent event)
 				{
-					t.getChildren().add(pos+1, new CaseBlock(o, listButtonsNames, defaultVariableNumber));
-					t.getChildren().add(pos+2, new ButtonBlock(" +  ", t, o, pos+2, listButtonsNames, defaultVariableNumber));
+					t.getChildren().add(pos+1, new CaseBlock(o, variables));
+					t.getChildren().add(pos+2, new ButtonBlock(" +  ", t, o, pos+2, variables));
 					o.getChildren().clear();
 				}
 			});
@@ -254,7 +261,7 @@ public class ButtonBlock extends Button
 				@Override
 				public void handle(ActionEvent event)
 				{
-					t.getChildren().add(t.getChildren().size(), new DefaultBlock(o, listButtonsNames, defaultVariableNumber));
+					t.getChildren().add(t.getChildren().size(), new DefaultBlock(o, variables));
 					o.getChildren().clear();
 				}
 			});
@@ -269,15 +276,15 @@ public class ButtonBlock extends Button
 				{
 					switch(arg0)
 					{
-						case "==": t.getChildren().add(pos+1, new EqualsBlock(o, listButtonsNames, defaultVariableNumber));  break;
-						case "!=": t.getChildren().add(pos+1, new NotEqualsBlock(o, listButtonsNames, defaultVariableNumber)); break;
-						case "<": t.getChildren().add(pos+1, new LessBlock(o, listButtonsNames, defaultVariableNumber)); break;
-						case ">": t.getChildren().add(pos+1, new GreaterBlock(o, listButtonsNames, defaultVariableNumber)); break;
-						case "<=": t.getChildren().add(pos+1, new LessEqualsBlock(o, listButtonsNames, defaultVariableNumber)); break;
-						case ">=": t.getChildren().add(pos+1, new GreaterEqualsBlock(o, listButtonsNames, defaultVariableNumber)); break;
-						case "!": t.getChildren().add(pos+1, new NotBlock(o, listButtonsNames, defaultVariableNumber)); break;
-						case "&&": t.getChildren().add(pos+1, new AndBlock(o, listButtonsNames, defaultVariableNumber)); break;
-						case "||": t.getChildren().add(pos+1, new OrBlock(o, listButtonsNames, defaultVariableNumber)); break;
+						case "==": t.getChildren().add(pos+1, new EqualsBlock(o, variables));  break;
+						case "!=": t.getChildren().add(pos+1, new NotEqualsBlock(o, variables)); break;
+						case "<": t.getChildren().add(pos+1, new LessBlock(o, variables)); break;
+						case ">": t.getChildren().add(pos+1, new GreaterBlock(o, variables)); break;
+						case "<=": t.getChildren().add(pos+1, new LessEqualsBlock(o, variables)); break;
+						case ">=": t.getChildren().add(pos+1, new GreaterEqualsBlock(o, variables)); break;
+						case "!": t.getChildren().add(pos+1, new NotBlock(o, variables)); break;
+						case "&&": t.getChildren().add(pos+1, new AndBlock(o, variables)); break;
+						case "||": t.getChildren().add(pos+1, new OrBlock(o, variables)); break;
 					}
 
 					t.getChildren().remove(pos);
@@ -295,19 +302,21 @@ public class ButtonBlock extends Button
 				{
 					switch(arg0)
 					{
-						case "Int": t.getChildren().add(pos+1, new IntBlock(o, listButtonsNames, defaultVariableNumber)); break;
-						case "String": t.getChildren().add(pos+1, new StringBlock(o, listButtonsNames, defaultVariableNumber)); break;
-						case "Double": t.getChildren().add(pos+1, new DoubleBlock(o, listButtonsNames, defaultVariableNumber)); break;
-						case "Boolean": t.getChildren().add(pos+1, new BooleanBlock(o, listButtonsNames, defaultVariableNumber)); break;
-						case "If": t.getChildren().add(pos+1, new IfBlock(o, listButtonsNames, defaultVariableNumber)); break;
-						case "Else": t.getChildren().add(pos+1, new ElseBlock(o, listButtonsNames, defaultVariableNumber)); break;
-						case "Wykonaj": t.getChildren().add(pos+1, new OperationBlock(o, listButtonsNames, defaultVariableNumber)); break;
-						case "While": t.getChildren().add(pos+1, new WhileBlock(o, listButtonsNames, defaultVariableNumber)); break;
-						case "For": t.getChildren().add(pos+1, new ForBlock(o, listButtonsNames, defaultVariableNumber)); break;
-						case "Switch": t.getChildren().add(pos+1, new SwitchBlock(o, listButtonsNames, defaultVariableNumber)); break;
+						case "Int": t.getChildren().add(pos+1, new IntBlock(o, variables)); break;
+						case "String": t.getChildren().add(pos+1, new StringBlock(o, variables)); break;
+						case "Double": t.getChildren().add(pos+1, new DoubleBlock(o, variables)); break;
+						case "Boolean": t.getChildren().add(pos+1, new BooleanBlock(o, variables)); break;
+						case "If": t.getChildren().add(pos+1, new IfBlock(o, variables)); break;
+						case "Else": t.getChildren().add(pos+1, new ElseBlock(o, variables)); break;
+						case "Wykonaj": t.getChildren().add(pos+1, new OperationBlock(o, variables)); break;
+						case "While": t.getChildren().add(pos+1, new WhileBlock(o, variables)); break;
+						case "For": t.getChildren().add(pos+1, new ForBlock(o, variables)); break;
+						case "Switch": t.getChildren().add(pos+1, new SwitchBlock(o, variables)); break;
+						case "Read": t.getChildren().add(pos+1, new ReadBlock(o, variables)); break;
+						case "Write": t.getChildren().add(pos+1, new WriteBlock(o, variables)); break;
 					}
 
-					t.getChildren().add(pos+2, new ButtonBlock("+", t, o, pos+2, listButtonsNames, defaultVariableNumber));
+					t.getChildren().add(pos+2, new ButtonBlock("+", t, o, pos+2, variables));
 					o.getChildren().clear();
 				}
 			});

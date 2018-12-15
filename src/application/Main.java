@@ -1,8 +1,8 @@
 package application;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import application.blocks.BorderedTitledPane;
 import application.blocks.*;
@@ -36,6 +36,7 @@ public class Main extends Application
 	BorderedTitledPane content = new BorderedTitledPane("Obszar Roboczy");
 	File file = null;
 
+	ArrayList<String> variables = new ArrayList<String>();
 
 	//top
 	HBox top_r = new HBox(2);
@@ -53,7 +54,7 @@ public class Main extends Application
 
 	//Center
 	VBox content2 = new VBox();
-	MainBlock mainBlock = new MainBlock(leftVB);
+	MainBlock mainBlock = new MainBlock(leftVB, variables);
 	StackPane content22 = new StackPane();
 
 	//Right
@@ -75,6 +76,11 @@ public class Main extends Application
 	{
 		try
 		{
+			variables.add("int");
+			variables.add("double");
+			variables.add("boolean");
+			variables.add("String");
+			
 			primaryStage.setTitle("Projekt Kompetencyjny");
 			root.getStyleClass().add("color-gray");
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());

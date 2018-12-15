@@ -1,27 +1,27 @@
 package application.blocks;
 
 
-import java.util.List;
+import java.util.ArrayList;
 
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class PrintBlock extends Block
+public class ReadBlock extends Block
 {
 	private TextField tvalue = new TextField();
 	
-	public PrintBlock(VBox languageBox) 
-	{
-		super(languageBox);
+	public ReadBlock(VBox languageBox, ArrayList<String> var) 
+    {
+        super(languageBox, var);
 		tvalue.setPrefWidth(400);
 		this.setBackgroundColor("#BFA76F");
-		this.setBlockName("Print");
+		this.setBlockName("Read");
 		
 		HBox hb= new HBox();
 		hb.setSpacing(10);
 		
-		tvalue.setPromptText("Wyœwietl: ");
+		tvalue.setPromptText("Typ zmiennej: ");
 
 		hb.getChildren().add(tvalue);
 		vb.getChildren().add(hb);
@@ -30,13 +30,8 @@ public class PrintBlock extends Block
 	@Override
 	public String getFunctionString(int tabCount) 
 	{
-			return "System.out.println(\"" + tvalue.getText() + "\");";
+			return "read (" + tvalue.getText() + ");";
 	}
 
-	@Override
-	public void checkVariableName(String variableName, List<String> listButtonsNames, int defaultVariableNumber) {
-		// TODO Auto-generated method stub
-		
-	}
 
 }

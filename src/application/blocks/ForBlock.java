@@ -3,22 +3,22 @@ package application.blocks;
 import javafx.geometry.Insets;
 import javafx.scene.layout.VBox;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class ForBlock extends Block {
 
-    public ForBlock(VBox languageBox, List<String> listButtonsNames, int defaultVariableNumber)
+    public ForBlock(VBox languageBox, ArrayList<String> var) 
     {
-        super(languageBox);
+        super(languageBox, var);
         this.setBackgroundColor("#80ADCD");
         this.setBlockName("For");
         this.setPadding(new Insets(5,0,5,0));
 
 
-        vb.getChildren().add(new IntBlock(lb, listButtonsNames, defaultVariableNumber));
-        vb.getChildren().add(new ForConditionBlock(lb, listButtonsNames, defaultVariableNumber));
-        vb.getChildren().add(new OperationBlock(lb, listButtonsNames, defaultVariableNumber));
-        vb.getChildren().add(new ForTrueBlock(lb, listButtonsNames, defaultVariableNumber));
+        vb.getChildren().add(new IntBlock(lb, variables));
+        vb.getChildren().add(new ForConditionBlock(lb, variables));
+        vb.getChildren().add(new OperationBlock(lb, variables));
+        vb.getChildren().add(new ForTrueBlock(lb, variables));
 
         content.setBottom(vb);
     }
@@ -62,8 +62,5 @@ public class ForBlock extends Block {
         return sb.toString();
     }
 
-    @Override
-    public void checkVariableName(String variableName, List<String> listButtonsNames, int defaultVariableNumber) {
 
-    }
 }

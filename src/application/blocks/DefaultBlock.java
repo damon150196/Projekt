@@ -6,18 +6,18 @@ import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.layout.VBox;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class DefaultBlock extends Block
 {
-    public DefaultBlock(VBox languageBox, List<String> listButtonsNames, int defaultVariableNumber)
+    public DefaultBlock(VBox languageBox, ArrayList<String> var) 
     {
-        super(languageBox);
+        super(languageBox, var);
         DefaultBlock tmp = this;
         this.setBackgroundColor("#AEDC99");
         this.setBlockName("Default");
 
-        vb.getChildren().add(new ButtonBlock("+", vb, lb, 0, listButtonsNames, defaultVariableNumber));
+        vb.getChildren().add(new ButtonBlock("+", vb, lb, 0, variables));
 
         content.setBottom(vb);
 
@@ -66,11 +66,6 @@ public class DefaultBlock extends Block
         sb.append(tabs(tabCount));
         sb.append("break;\n");
         return sb.toString();
-    }
-
-    @Override
-    public void checkVariableName(String variableName, List<String> listButtonsNames, int defaultVariableNumber) {
-
     }
 
 }

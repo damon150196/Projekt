@@ -5,15 +5,16 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-
-import java.util.List;
+import java.util.ArrayList;
 
 public class IntBlock extends Block {
     private TextField tname = new TextField();
     private TextField tvalue = new TextField();
+    String oldName = null;
 
-    public IntBlock(VBox languageBox, List<String> listButtonsNames, int defaultVariableNumber) {
-        super(languageBox);
+    public IntBlock(VBox languageBox, ArrayList<String> var) 
+    {
+        super(languageBox, var);
         this.setBackgroundColor("#FE5A1D");
         this.setBlockName("Int");
 
@@ -26,26 +27,27 @@ public class IntBlock extends Block {
 
         tname.focusedProperty().addListener((arg0, oldValue, newValue) ->
         {
-
-            if (!newValue) {
+			if(oldName != null) variables.remove(oldName);
+            if (!newValue) 
+            {
                 if (!tname.getText().matches("^[a-zA-Z][a-zA-Z0-9_]*$")) {
 
                     tname.setText("");
                 }
-                    checkVariableName(tname.getText(), listButtonsNames, defaultVariableNumber);
-
+                tname.setText(checkVariableName(tname.getText()));
+                oldName=tname.getText();
             }
 
         });
 
         tvalue.focusedProperty().addListener((arg0, oldValue, newValue) ->
         {
-            if (!newValue) {
-                if (tvalue.getText().matches("^[a-zA-Z]*$")) {
+            if (!newValue) 
+            {
+                if (tvalue.getText().matches("^[a-zA-Z]*$")) 
+                {
                     tvalue.setText("0");
                 }
-
-
             }
         });
 
@@ -62,19 +64,6 @@ public class IntBlock extends Block {
             return "int " + tname.getText() + ";";
         else
             return "int " + tname.getText() + " = " + tvalue.getText() + ";";
-    }
-
-    @Override
-    public void checkVariableName(String variableName, List<String> listButtonsNames, int defaultVariableNumber) {
-
-        for (int i = 0; i < listButtonsNames.size(); i++) {
-            if (listButtonsNames.get(i).equals(tname.getText())) {
-                tname.setText("default" + defaultVariableNumber);
-                defaultVariableNumber++;
-            }
-
-        }
-        listButtonsNames.add(tname.getText());
     }
 
 }

@@ -1,6 +1,6 @@
 package application.blocks.logic;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import application.blocks.Block;
 import application.blocks.ButtonBlock;
@@ -12,17 +12,17 @@ import javafx.scene.layout.VBox;
 
 public class AndBlock extends Block {
 
-	public AndBlock(VBox languageBox, List<String> listButtonsNames, int defaultVariableNumber)
-	{
-		super(languageBox);
+	public AndBlock(VBox languageBox, ArrayList<String> var) 
+    {
+        super(languageBox, var);
 		AndBlock tmp = this;
         this.setBackgroundColor("#808080");
         this.setBlockName("&&");
 
 
-        vb.getChildren().add(new ButtonBlock(" + ", vb, lb, 0, listButtonsNames, defaultVariableNumber));
+        vb.getChildren().add(new ButtonBlock(" + ", vb, lb, 0, variables));
         vb.getChildren().add(new Label(name.getText()));
-        vb.getChildren().add(new ButtonBlock(" + ", vb, lb, 0, listButtonsNames, defaultVariableNumber));
+        vb.getChildren().add(new ButtonBlock(" + ", vb, lb, 0, variables));
 
 
 
@@ -46,7 +46,7 @@ public class AndBlock extends Block {
                         if(tmp.equals(b))
                         {
                             ((VBox) n).getChildren().remove(i);
-                            ((VBox) n).getChildren().add(new ButtonBlock(" + ", ((VBox) n), lb, 0, listButtonsNames, defaultVariableNumber));
+                            ((VBox) n).getChildren().add(new ButtonBlock(" + ", ((VBox) n), lb, 0, variables));
                         }
                     }
                 }
@@ -79,10 +79,5 @@ public class AndBlock extends Block {
         return sb.toString();
 	}
 
-	@Override
-	public void checkVariableName(String variableName, List<String> listButtonsNames, int defaultVariableNumber) {
-		// TODO Auto-generated method stub
-
-	}
 
 }

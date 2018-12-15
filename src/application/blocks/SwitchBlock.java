@@ -1,6 +1,6 @@
 package application.blocks;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import javafx.geometry.Insets;
 import javafx.scene.control.TextField;
@@ -9,9 +9,9 @@ import javafx.scene.layout.VBox;
 public class SwitchBlock extends Block {
 
     TextField tname = new TextField();
-	public SwitchBlock(VBox languageBox, List<String> listButtonsNames, int defaultVariableNumber)
+	public SwitchBlock(VBox languageBox, ArrayList<String> var) 
     {
-        super(languageBox);
+        super(languageBox, var);
         this.setBackgroundColor("#AE99DC");
         this.setBlockName("Switch");
         this.setPadding(new Insets(5,0,5,0));
@@ -25,14 +25,13 @@ public class SwitchBlock extends Block {
 
                     tname.setText("");
                 }
-                    checkVariableName(tname.getText(), listButtonsNames, defaultVariableNumber);
 
             }
 
         });
 
         vb.getChildren().add(tname);
-        vb.getChildren().add(new ButtonBlock(" +  ", vb, lb, 0, listButtonsNames, defaultVariableNumber));
+        vb.getChildren().add(new ButtonBlock(" +  ", vb, lb, 0, variables));
 
         content.setBottom(vb);
     }
@@ -54,12 +53,6 @@ public class SwitchBlock extends Block {
 		sb.append("}");
 
 		return sb.toString();
-	}
-
-	@Override
-	public void checkVariableName(String variableName, List<String> listButtonsNames, int defaultVariableNumber) {
-		// TODO Auto-generated method stub
-
 	}
 
 }

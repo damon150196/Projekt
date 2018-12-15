@@ -2,20 +2,20 @@ package application.blocks;
 
 import javafx.scene.layout.VBox;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class ForTrueBlock extends Block
 {
 
-    public ForTrueBlock(VBox languageBox, List<String> listButtonsNames, int defaultVariableNumber)
+    public ForTrueBlock(VBox languageBox, ArrayList<String> var) 
     {
-        super(languageBox);
+        super(languageBox, var);
         this.setBackgroundColor("#80ADDC");
         this.setBlockName("For (True)");
 
         close.setVisible(false);
 
-        vb.getChildren().add(new ButtonBlock("+", vb, lb, 0, listButtonsNames, defaultVariableNumber));
+        vb.getChildren().add(new ButtonBlock("+", vb, lb, 0, variables));
 
         content.setBottom(vb);
     }
@@ -38,9 +38,5 @@ public class ForTrueBlock extends Block
         return sb.toString();
     }
 
-    @Override
-    public void checkVariableName(String variableName, List<String> listButtonsNames, int defaultVariableNumber) {
-
-    }
 
 }

@@ -1,6 +1,6 @@
 package application.blocks.condition;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import application.blocks.Block;
 import application.blocks.ButtonBlock;
@@ -18,9 +18,9 @@ public class LessBlock extends Block
 	private TextField tleft = new TextField();
 	private TextField tright = new TextField();
 
-	public LessBlock(VBox languageBox, List<String> listButtonsNames, int defaultVariableNumber) 
-	{
-		super(languageBox);
+	public LessBlock(VBox languageBox, ArrayList<String> var) 
+    {
+        super(languageBox, var);
 		LessBlock tmp = this;
 		this.setBackgroundColor("#808080");
 		this.setBlockName("<");
@@ -59,7 +59,7 @@ public class LessBlock extends Block
                 		if(tmp.equals(b))
                 		{
                 			((VBox) n).getChildren().remove(i);
-                            ((VBox) n).getChildren().add(new ButtonBlock(" + ", ((VBox) n), lb, 0, listButtonsNames, defaultVariableNumber));
+                            ((VBox) n).getChildren().add(new ButtonBlock(" + ", ((VBox) n), lb, 0, variables));
                 		}
             		}
             	}
@@ -73,10 +73,5 @@ public class LessBlock extends Block
 		return tleft.getText() + "<" + tright.getText();
 	}
 
-	@Override
-	public void checkVariableName(String variableName, List<String> listButtonsNames, int defaultVariableNumber) {
-		// TODO Auto-generated method stub
-		
-	}
 
 }

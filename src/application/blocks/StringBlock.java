@@ -5,16 +5,17 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class StringBlock extends Block
 {
 	private TextField tname = new TextField();
 	private TextField tvalue = new TextField();
+    String oldName = null;
 
-	public StringBlock(VBox languageBox, List<String> listButtonsNames, int defaultVariableNumber)
-	{
-		super(languageBox);
+	public StringBlock(VBox languageBox, ArrayList<String> var) 
+    {
+        super(languageBox, var);
 		this.setBackgroundColor("#FC5D5D");
 		this.setBlockName("String");
 
@@ -28,10 +29,15 @@ public class StringBlock extends Block
 		tname.focusedProperty().addListener((arg0, oldValue, newValue) ->
 		{
 			if (!newValue)
+			{
+				if(oldName != null) variables.remove(oldName);
 				if(!tname.getText().matches("^[a-zA-Z][a-zA-Z0-9_]*$"))
+				{
 					tname.setText("");
-
-			checkVariableName(tname.getText(), listButtonsNames, defaultVariableNumber);
+				}
+	            tname.setText(checkVariableName(tname.getText()));
+                oldName=tname.getText();
+			}
 
 		});
 
@@ -48,19 +54,6 @@ public class StringBlock extends Block
 			return "String " + tname.getText() + ";";
 		else
 			return "String " + tname.getText() + " = \"" + tvalue.getText() + "\";";
-	}
-
-	@Override
-	public void checkVariableName(String variableName, List<String> listButtonsNames, int defaultVariableNumber) {
-
-		for (int i = 0; i < listButtonsNames.size(); i++) {
-			if (listButtonsNames.get(i).equals(tname.getText())) {
-				tname.setText("default" + defaultVariableNumber);
-				defaultVariableNumber++;
-			}
-
-		}
-		listButtonsNames.add(tname.getText());
 	}
 
 }

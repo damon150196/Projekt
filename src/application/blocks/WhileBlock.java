@@ -3,20 +3,20 @@ package application.blocks;
 import javafx.geometry.Insets;
 import javafx.scene.layout.VBox;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class WhileBlock extends Block {
 
-    public WhileBlock(VBox languageBox, List<String> listButtonsNames, int defaultVariableNumber)
+    public WhileBlock(VBox languageBox, ArrayList<String> var) 
     {
-        super(languageBox);
+        super(languageBox, var);
         this.setBackgroundColor("#4080FF");
         this.setBlockName("While");
         this.setPadding(new Insets(5,0,5,0));
 
 
-        vb.getChildren().add(new WhileConditionBlock(lb, listButtonsNames, defaultVariableNumber));
-        vb.getChildren().add(new WhileTrueBlock(lb, listButtonsNames, defaultVariableNumber));
+        vb.getChildren().add(new WhileConditionBlock(lb, variables));
+        vb.getChildren().add(new WhileTrueBlock(lb, variables));
 
         content.setBottom(vb);
     }
@@ -47,10 +47,5 @@ public class WhileBlock extends Block {
 
 
         return sb.toString();
-    }
-
-    @Override
-    public void checkVariableName(String variableName, List<String> listButtonsNames, int defaultVariableNumber) {
-
     }
 }

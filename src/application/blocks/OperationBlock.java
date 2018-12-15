@@ -4,16 +4,16 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class OperationBlock extends Block
 
 {
     private TextField tvalue = new TextField();
 
-    public OperationBlock(VBox languageBox, List<String> listButtonsNames, int defaultVariableNumber)
+    public OperationBlock(VBox languageBox, ArrayList<String> var) 
     {
-        super(languageBox);
+        super(languageBox, var);
         this.setBackgroundColor("#EEEEEE");
         this.setBlockName("Wykonaj");
 
@@ -34,9 +34,5 @@ public class OperationBlock extends Block
         return tvalue.getText() + ";";
     }
 
-    @Override
-    public void checkVariableName(String variableName, List<String> listButtonsNames, int defaultVariableNumber) {
-
-    }
 
 }

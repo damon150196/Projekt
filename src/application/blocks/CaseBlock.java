@@ -4,15 +4,15 @@ package application.blocks;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class CaseBlock extends Block
 {
 
     private TextField tvalue = new TextField();
-    public CaseBlock(VBox languageBox, List<String> listButtonsNames, int defaultVariableNumber)
+    public CaseBlock(VBox languageBox, ArrayList<String> var) 
     {
-        super(languageBox);
+        super(languageBox, var);
         this.setBackgroundColor("#AE9990");
         this.setBlockName("Case");
         
@@ -31,7 +31,7 @@ public class CaseBlock extends Block
 
 
         vb.getChildren().add(tvalue);
-        vb.getChildren().add(new ButtonBlock("+", vb, lb, 0, listButtonsNames, defaultVariableNumber));
+        vb.getChildren().add(new ButtonBlock("+", vb, lb, 0, variables));
 
         content.setBottom(vb);
 
@@ -55,11 +55,6 @@ public class CaseBlock extends Block
         sb.append(tabs(tabCount));
         sb.append("break;\n");
         return sb.toString();
-    }
-
-    @Override
-    public void checkVariableName(String variableName, List<String> listButtonsNames, int defaultVariableNumber) {
-
     }
 
 }

@@ -1,6 +1,7 @@
 package application;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -19,6 +20,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
@@ -75,8 +77,12 @@ public class Main extends Application
 	{
 		try 
 		{
-			primaryStage.setTitle("Projekt Kompetencyjny");
+			primaryStage.setTitle("MOMG");
 		    root.getStyleClass().add("color-gray");
+		    
+		    FileInputStream input = new FileInputStream("H:\\\\Informatyka\\\\SEM_5\\\\PK\\\\Projekt\\\\src\\\\application\\\\nosacz.png");
+		    Image img = new Image(input);
+		    primaryStage.getIcons().add(img);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 
 			//============================ TOP PANEL =====================================

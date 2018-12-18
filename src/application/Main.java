@@ -76,10 +76,7 @@ public class Main extends Application
 	{
 		try
 		{
-			variables.add("int");
-			variables.add("double");
-			variables.add("boolean");
-			variables.add("String");
+			resetVariables();
 			
 			primaryStage.setTitle("Projekt Kompetencyjny");
 			root.getStyleClass().add("color-gray");
@@ -101,8 +98,6 @@ public class Main extends Application
 			top.setRight(top_r);
 			top.setCenter(consolButton);
 			root.setTop(top);
-
-
 
 
 			//============================ LEFT PANEL =====================================
@@ -135,6 +130,8 @@ public class Main extends Application
 
 
 			//=============================================================================
+			
+			
 			primaryStage.setScene(scene);
 			primaryStage.show();
 
@@ -171,10 +168,12 @@ public class Main extends Application
 						{
 							save();
 							mainBlock.clear();
+							resetVariables();
 						}
 						else if (type == ButtonType.NO)
 						{
 							mainBlock.clear();
+							resetVariables();
 						}
 					});
 				}
@@ -199,17 +198,20 @@ public class Main extends Application
 						if (type == ButtonType.YES)
 						{
 							save();
+							mainBlock.clear();
+							resetVariables();
 							open();
 						}
 						else if (type == ButtonType.NO)
 						{
+							mainBlock.clear();
+							resetVariables();
 							open();
 						}
 
 					});
 				}
 				open();
-
 			}
 		});
 
@@ -379,6 +381,10 @@ public class Main extends Application
 			if(rf.getFile() == null) throw new NullPointerException();
 			file = rf.getFile();
 			sourceCode.setText(rf.read());
+			
+			FileToBlocks ftb = new FileToBlocks(file, mainBlock, variables);
+			ftb.start();
+
 		}
 		catch (IOException e)
 		{
@@ -391,8 +397,31 @@ public class Main extends Application
 			Alert alert2 = new Alert(AlertType.ERROR, "Odczyt nie powiód? si?", ButtonType.OK);
 			alert2.setTitle("Error");
 			alert2.showAndWait();
+		} catch (FileToBlocksException e) 
+		{
+			e.printStackTrace();
+			System.err.println(e.getMessage());
 		}
 
+	}
+
+
+	public void resetVariables() 
+	{
+		variables = new ArrayList<String>();
+
+		variables.add("int");
+		variables.add("double");
+		variables.add("boolean");
+		variables.add("string");
+		variables.add("if");
+		variables.add("else");
+		variables.add("while");
+		variables.add("switch");
+		variables.add("case");
+		variables.add("write");
+		variables.add("read");
+		variables.add("default");
 	}
 
 }

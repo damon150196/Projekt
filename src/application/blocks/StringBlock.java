@@ -1,7 +1,6 @@
 package application.blocks;
 
 
-import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -9,10 +8,6 @@ import java.util.ArrayList;
 
 public class StringBlock extends Block
 {
-	private TextField tname = new TextField();
-	private TextField tvalue = new TextField();
-    String oldName = null;
-
 	public StringBlock(VBox languageBox, ArrayList<String> var) 
     {
         super(languageBox, var);

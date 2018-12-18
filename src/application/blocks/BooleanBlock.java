@@ -1,7 +1,5 @@
 package application.blocks;
 
-
-import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -9,10 +7,6 @@ import java.util.ArrayList;
 
 public class BooleanBlock extends Block 
 {
-    private TextField tname = new TextField();
-    private TextField tvalue = new TextField();
-    String oldName = null;
-
     public BooleanBlock(VBox languageBox, ArrayList<String> var) 
     {
         super(languageBox, var);
@@ -43,13 +37,10 @@ public class BooleanBlock extends Block
         {
             if (!newValue) 
             {
-            	if(oldName != null) variables.remove(oldName);
                 if (!(tvalue.getText().matches("1") || tvalue.getText().matches("0"))) 
                 {
                     tvalue.setText("0");
                 }
-                tname.setText(checkVariableName(tname.getText()));
-                oldName=tname.getText();
             }
         });
 

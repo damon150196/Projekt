@@ -6,6 +6,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 
@@ -22,6 +23,13 @@ public abstract class Block extends ScrollPane
 	protected VBox vb = new VBox();
 	protected VBox lb = new VBox();
 	protected ArrayList<String> variables;
+	
+
+	protected TextField tname = new TextField();
+	protected TextField tvalue = new TextField();
+	protected TextField tleft = new TextField();
+	protected TextField tright = new TextField();
+	protected String oldName = null;
 
 	public Block(VBox languageBox, ArrayList<String> var)
 	{
@@ -107,16 +115,133 @@ public abstract class Block extends ScrollPane
 		if(variables.contains(variableName))
 		{
 			int i=0;
-			variableName = "default"+Integer.toString(i);
-			while(variables.contains(variableName))
+			variableName = "var"+Integer.toString(i);
+			while(variables.contains(variableName.toLowerCase()))
 			{
 				i++;
-				variableName = "default"+Integer.toString(i);
+				variableName = "var"+Integer.toString(i);
 			}
-			variableName = "default"+Integer.toString(i);
+			variableName = "var"+Integer.toString(i);
 		}
-		variables.add(variableName);
+		variables.add(variableName);		
 		return variableName;
+	}
+
+	public VBox getVb() 
+	{
+		return vb;
+	}
+
+	public VBox getLb() 
+	{
+		return lb;
+	}
+	
+	public Block addBlock(String button)
+	{
+		int pos = vb.getChildren().size()-1;
+		
+		ButtonBlock bb = (ButtonBlock) vb.getChildren().get(pos);
+		bb.fire();
+		
+		for(int i=0; i<lb.getChildren().size(); i++)
+		{
+			Node n = lb.getChildren().get(i);
+			if(n instanceof ButtonBlock)
+			{
+				ButtonBlock nbb = (ButtonBlock) n;
+				if(nbb.getName().equals(button))
+				{
+					nbb.fire();
+				}
+			}
+		}
+	
+		
+		return (Block) vb.getChildren().get(pos+1);
+	}
+
+	public Block addConditionBlock(String button, int pos)
+	{
+		ButtonBlock bb = (ButtonBlock) vb.getChildren().get(pos);
+		bb.fire();
+		
+		for(int i=0; i<lb.getChildren().size(); i++)
+		{
+			Node n = lb.getChildren().get(i);
+			if(n instanceof ButtonBlock)
+			{
+				ButtonBlock nbb = (ButtonBlock) n;
+				if(nbb.getName().equals(button))
+				{
+					nbb.fire();
+				}
+			}
+		}
+
+		return (Block) vb.getChildren().get(pos);
+	}
+	public Block addLogicBlock(String button, int pos)
+	{		
+		ButtonBlock bb = (ButtonBlock) vb.getChildren().get(pos);
+		bb.fire();
+		
+		for(int i=0; i<lb.getChildren().size(); i++)
+		{
+			Node n = lb.getChildren().get(i);
+			if(n instanceof ButtonBlock)
+			{
+				ButtonBlock nbb = (ButtonBlock) n;
+				if(nbb.getName().equals(button))
+				{
+					nbb.fire();
+				}
+			}
+		}
+
+		return (Block) vb.getChildren().get(pos);
+	}
+	public Block addElseBlock(String button)
+	{
+		ButtonBlock bb = (ButtonBlock) vb.getChildren().get(2);
+		bb.fire();
+
+		ButtonBlock nbb = (ButtonBlock)  lb.getChildren().get(0);
+		nbb.fire();
+		
+
+		return (Block) vb.getChildren().get(2);
+	}
+	
+	
+
+	public void setTname(String name) 
+	{
+		tname.setText(checkVariableName(name));
+		oldName = tname.getText();
+	}
+
+	public void setTvalue(String value)
+	{
+		tvalue.setText(value);
+	}
+
+	public void setTleft(String left)
+	{
+		tleft.setText(left);
+	}
+
+	public void setTright(String right)
+	{
+		tright.setText(right);
+	}
+
+	public void setVariables(ArrayList<String> variables) {
+		this.variables = variables;
+	}
+
+	public String getName() {
+		return name.getText();
 	}
 
 }

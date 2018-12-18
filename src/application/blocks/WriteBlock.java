@@ -2,15 +2,11 @@ package application.blocks;
 
 
 import java.util.ArrayList;
-
-import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class WriteBlock extends Block
 {
-	private TextField tvalue = new TextField();
-	
 	public WriteBlock(VBox languageBox, ArrayList<String> var) 
     {
         super(languageBox, var);

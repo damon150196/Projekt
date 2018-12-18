@@ -8,16 +8,11 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class LessBlock extends Block 
-
 {
-	private TextField tleft = new TextField();
-	private TextField tright = new TextField();
-
 	public LessBlock(VBox languageBox, ArrayList<String> var) 
     {
         super(languageBox, var);
@@ -58,8 +53,8 @@ public class LessBlock extends Block
                 		
                 		if(tmp.equals(b))
                 		{
-                			((VBox) n).getChildren().remove(i);
-                            ((VBox) n).getChildren().add(new ButtonBlock(" + ", ((VBox) n), lb, 0, variables));
+                            ((VBox) n).getChildren().add(i, new ButtonBlock(" + ", ((VBox) n), lb, 0, variables));
+                            ((VBox) n).getChildren().remove(i+1);
                 		}
             		}
             	}

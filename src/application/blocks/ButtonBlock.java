@@ -12,11 +12,13 @@ import java.util.ArrayList;
 
 public class ButtonBlock extends Button
 {
-
+	private String name;
+	
 	public ButtonBlock(String arg0, VBox t, VBox o, int pos, ArrayList<String> var)
 	{
 		super(arg0);
 		this.getStyleClass().add("buttonBlock");
+		name = arg0;
 
 		ArrayList<String> variables = var;
 		ButtonBlock tmp = this;
@@ -321,6 +323,10 @@ public class ButtonBlock extends Button
 				}
 			});
 		}
+	}
+
+	public String getName() {
+		return name;
 	}
 
 }

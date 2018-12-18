@@ -2,15 +2,11 @@ package application.blocks;
 
 
 import java.util.ArrayList;
-
-import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class ReadBlock extends Block
 {
-	private TextField tvalue = new TextField();
-	
 	public ReadBlock(VBox languageBox, ArrayList<String> var) 
     {
         super(languageBox, var);
@@ -21,16 +17,16 @@ public class ReadBlock extends Block
 		HBox hb= new HBox();
 		hb.setSpacing(10);
 		
-		tvalue.setPromptText("Typ zmiennej: ");
+		tname.setPromptText("Zmienna: ");
 
-		hb.getChildren().add(tvalue);
+		hb.getChildren().add(tname);
 		vb.getChildren().add(hb);
 	}
 
 	@Override
 	public String getFunctionString(int tabCount) 
 	{
-			return "read (" + tvalue.getText() + ");";
+			return "read (" + tname.getText() + ");";
 	}
 
 

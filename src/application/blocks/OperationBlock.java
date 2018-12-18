@@ -1,15 +1,12 @@
 package application.blocks;
 
-import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
 
 public class OperationBlock extends Block
-
 {
-    private TextField tvalue = new TextField();
 
     public OperationBlock(VBox languageBox, ArrayList<String> var) 
     {

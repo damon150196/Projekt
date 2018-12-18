@@ -44,8 +44,9 @@ public class NotBlock extends Block {
 
                         if(tmp.equals(b))
                         {
-                            ((VBox) n).getChildren().remove(i);
-                            ((VBox) n).getChildren().add(new ButtonBlock(" + ", ((VBox) n), lb, 0, variables));
+                            ((VBox) n).getChildren().add(i, new ButtonBlock(" + ", ((VBox) n), lb, 0, variables));
+                            ((VBox) n).getChildren().remove(i+1);
+                            
                         }
                     }
                 }

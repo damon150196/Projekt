@@ -1,16 +1,12 @@
 package application.blocks;
 
-
-import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
 
-public class IntBlock extends Block {
-    private TextField tname = new TextField();
-    private TextField tvalue = new TextField();
-    String oldName = null;
+public class IntBlock extends Block 
+{
 
     public IntBlock(VBox languageBox, ArrayList<String> var) 
     {
@@ -23,7 +19,7 @@ public class IntBlock extends Block {
         hb.setSpacing(10);
 
         tname.setPromptText("Nazwa: ");
-        tvalue.setPromptText("WartoÅ›Ä‡: ");
+        tvalue.setPromptText("Wartoœæ: ");
 
         tname.focusedProperty().addListener((arg0, oldValue, newValue) ->
         {
@@ -65,5 +61,7 @@ public class IntBlock extends Block {
         else
             return "int " + tname.getText() + " = " + tvalue.getText() + ";";
     }
+
+
 
 }

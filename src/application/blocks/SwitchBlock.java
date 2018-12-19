@@ -3,12 +3,10 @@ package application.blocks;
 import java.util.ArrayList;
 
 import javafx.geometry.Insets;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
-public class SwitchBlock extends Block {
-
-    TextField tname = new TextField();
+public class SwitchBlock extends Block 
+{
 	public SwitchBlock(VBox languageBox, ArrayList<String> var) 
     {
         super(languageBox, var);
@@ -39,7 +37,10 @@ public class SwitchBlock extends Block {
 	@Override
 	public String getFunctionString(int tabCount) 
 	{
-		StringBuilder sb = new StringBuilder("switch(" + tname.getText() + ")\n{\n");
+		StringBuilder sb = new StringBuilder("switch(" + tname.getText() + ")\n");
+
+		sb.append(tabs(tabCount));
+		sb.append("{\n");
 
 		for(int i=1; i <  vb.getChildren().size(); i++)
 		{
@@ -50,6 +51,7 @@ public class SwitchBlock extends Block {
 				sb.append(b.getFunctionString(tabCount+1) + "\n");
 			}
 		}
+		sb.append(tabs(tabCount));
 		sb.append("}");
 
 		return sb.toString();

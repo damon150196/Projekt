@@ -32,12 +32,20 @@ public class FileToBlocks
 		while(in.hasNextLine())
 		{
 			old_s = s;
+			/*
+			System.out.println(s);
+			
+			for(Block tmp : ListBlocks)
+			{
+				System.out.print(tmp.getName() + " -> ");
+			}
+			*/
 			s = in.nextLine();
 			s = s.replaceAll("\t", "");
 			
-			if(s.matches("Main().+"));
-			else if(s.matches("\\{*")) ftb_openCurlyBracket(old_s);
-			else if(s.matches("\\}*")) ftb_closeCurlyBracket();
+			if(s.matches("Main().+") || s.matches("^[\n]$") );
+			else if(s.contains("{")) ftb_openCurlyBracket(old_s);
+			else if(s.contains("}")) ftb_closeCurlyBracket();
 			else if(s.matches("int.+") || s.matches("double.+") || s.matches("String.+") || s.matches("boolean.+")) ftb_variable(s);
 			
 			else if(s.matches("write.+")) ftb_write(s);
@@ -48,6 +56,13 @@ public class FileToBlocks
 			else if(s.matches("skip;.*")) ;
 
 			else if(s.matches("while.+")) ftb_while(s);
+
+			else if(s.matches("for.+")) ftb_for(s);
+
+			else if(s.matches("switch.+")) ftb_switch(s);
+			else if(s.matches("case.+")) ftb_case(s);
+			else if(s.matches("default.+")) ftb_default(s);
+			else if(s.matches("break.+")) ftb_break();
 			
 			else ftb_operation(s);
 		}
@@ -55,22 +70,16 @@ public class FileToBlocks
 		
 		if(! ListBlocks.isEmpty())
 		{
-			((MainBlock) ListBlocks.get(0)).clear();
-			throw new FileToBlocksException("Nieoczekiwany koniec pliku");
+			//((MainBlock) ListBlocks.get(0)).clear();
+			System.out.println(ListBlocks.get(0).getName());
+			throw new FileToBlocksException(ListBlocks.size() + " Nieoczekiwany koniec pliku");
 		}
 	}
 
 	
 	private void ftb_openCurlyBracket(String s) throws FileToBlocksException
 	{
-		if (ListBlocks.get(ListBlocks.size()-1) instanceof IfBlock)
-		{
-			ListBlocks.remove(ListBlocks.size()-1);
-		}
-		
-		if(s.matches("Main.+") || s.matches("if.+")  || s.matches("else*") || s.matches("while.+") || s.matches("for.+") || s.matches("switch.+"))
-		{
-		}
+		if(s.matches("Main.+") || s.matches("if.+")  || s.matches("else*") || s.matches("while.+") || s.matches("for.*") || s.matches("switch.*"));
 		else
 		{
 			throw new FileToBlocksException("Nieoczekiwany znak \"{\"");
@@ -79,10 +88,9 @@ public class FileToBlocks
 	}
 	private void ftb_closeCurlyBracket() throws FileToBlocksException
 	{
+
 		if (ListBlocks.get(ListBlocks.size()-1) instanceof IfBlock)
-		{
 			ListBlocks.remove(ListBlocks.size()-1);
-		}
 		
 		if(! ListBlocks.isEmpty())
 		{
@@ -97,9 +105,13 @@ public class FileToBlocks
 	private void ftb_variable(String s)
 	{
 		if (ListBlocks.get(ListBlocks.size()-1) instanceof IfBlock)
-		{
 			ListBlocks.remove(ListBlocks.size()-1);
-		}
+		if (ListBlocks.get(ListBlocks.size()-1) instanceof ForBlock)
+			ListBlocks.remove(ListBlocks.size()-1);
+		if (ListBlocks.get(ListBlocks.size()-1) instanceof SwitchBlock)
+			ListBlocks.remove(ListBlocks.size()-1);
+		
+		
 		String block = "";
 		if(s.matches("int.+")) block = "Int";
 		else if(s.matches("double.+")) block = "Double";
@@ -125,9 +137,13 @@ public class FileToBlocks
 	private void ftb_write(String s)
 	{
 		if (ListBlocks.get(ListBlocks.size()-1) instanceof IfBlock)
-		{
 			ListBlocks.remove(ListBlocks.size()-1);
-		}
+		if (ListBlocks.get(ListBlocks.size()-1) instanceof ForBlock)
+			ListBlocks.remove(ListBlocks.size()-1);
+		if (ListBlocks.get(ListBlocks.size()-1) instanceof SwitchBlock)
+			ListBlocks.remove(ListBlocks.size()-1);
+		
+		
 		s = s.replaceAll("write \\(", "");
 		s = s.replaceAll("\\)", "");
 		s = s.replaceAll(";", "");
@@ -139,9 +155,13 @@ public class FileToBlocks
 	private void ftb_read(String s)
 	{
 		if (ListBlocks.get(ListBlocks.size()-1) instanceof IfBlock)
-		{
 			ListBlocks.remove(ListBlocks.size()-1);
-		}
+		if (ListBlocks.get(ListBlocks.size()-1) instanceof ForBlock)
+			ListBlocks.remove(ListBlocks.size()-1);
+		if (ListBlocks.get(ListBlocks.size()-1) instanceof SwitchBlock)
+			ListBlocks.remove(ListBlocks.size()-1);
+		
+		
 		s = s.replaceAll("read \\(", "");
 		s = s.replaceAll("\\)", "");
 		s = s.replaceAll(";", "");
@@ -154,9 +174,11 @@ public class FileToBlocks
 	private void ftb_if(String s)
 	{
 		if (ListBlocks.get(ListBlocks.size()-1) instanceof IfBlock)
-		{
 			ListBlocks.remove(ListBlocks.size()-1);
-		}
+		if (ListBlocks.get(ListBlocks.size()-1) instanceof ForBlock)
+			ListBlocks.remove(ListBlocks.size()-1);
+		if (ListBlocks.get(ListBlocks.size()-1) instanceof SwitchBlock)
+			ListBlocks.remove(ListBlocks.size()-1);
 		
 		s = s.replace("if(", "");
 		s = s.substring(0, s.length()-1);
@@ -200,9 +222,11 @@ public class FileToBlocks
 	private void ftb_while(String s)
 	{
 		if (ListBlocks.get(ListBlocks.size()-1) instanceof IfBlock)
-		{
 			ListBlocks.remove(ListBlocks.size()-1);
-		}
+		if (ListBlocks.get(ListBlocks.size()-1) instanceof ForBlock)
+			ListBlocks.remove(ListBlocks.size()-1);
+		if (ListBlocks.get(ListBlocks.size()-1) instanceof SwitchBlock)
+			ListBlocks.remove(ListBlocks.size()-1);
 		
 		s = s.replace("while(", "");
 		s = s.substring(0, s.length()-1);
@@ -224,7 +248,47 @@ public class FileToBlocks
 		ListBlocks.add(b1);
 	}
 
-	
+	private void ftb_for(String s)
+	{
+		if (ListBlocks.get(ListBlocks.size()-1) instanceof IfBlock)
+			ListBlocks.remove(ListBlocks.size()-1);
+		if (ListBlocks.get(ListBlocks.size()-1) instanceof ForBlock)
+			ListBlocks.remove(ListBlocks.size()-1);
+		if (ListBlocks.get(ListBlocks.size()-1) instanceof SwitchBlock)
+			ListBlocks.remove(ListBlocks.size()-1);
+		
+		s = s.replace("for(", "");
+		s = s.substring(0, s.length()-1);
+		
+		b = ListBlocks.get(ListBlocks.size()-1).addBlock("For");
+		b.setVariables(variables);
+		
+		String[] s2 = s.split(";");
+		
+		Block b0 = (Block) b.getVb().getChildren().get(0);			
+		Block b1 = (Block) b.getVb().getChildren().get(1);			
+		Block b2 = (Block) b.getVb().getChildren().get(2);	
+		Block b3 = (Block) b.getVb().getChildren().get(3);		
+		
+		// init
+		s2[0] = s2[0].replaceAll("int ", "");
+		s2[0] = s2[0].replaceAll(";", "");
+		String [] s3 = s2[0].split(" = ");
+		if(! s3[0].equals("")) b0.setTname(s3[0]);
+		if(! s3[1].equals("")) b0.setTvalue(s3[1]);
+
+		//warunek
+		ListBlocks.add(b1);
+		if(s2[1].matches("[(].*[)]") || s2[1].charAt(0) == '!')  ftb_logic(s,0);
+		else ftb_condition(s2[1], 0);
+		ListBlocks.remove(b1);
+
+		//++
+		if(! s2[2].equals("")) b2.setTvalue(s2[2]);
+		
+		//wykonywanie pêtli
+		ListBlocks.add(b3);
+	}
 	
 	private void ftb_condition(String s, int pos)
 	{
@@ -287,7 +351,91 @@ public class FileToBlocks
 	}
 	
 	
+	
+	
 
+	private void ftb_switch(String s)
+	{
+		if (ListBlocks.get(ListBlocks.size()-1) instanceof IfBlock)
+			ListBlocks.remove(ListBlocks.size()-1);
+		if (ListBlocks.get(ListBlocks.size()-1) instanceof ForBlock)
+			ListBlocks.remove(ListBlocks.size()-1);
+		if (ListBlocks.get(ListBlocks.size()-1) instanceof SwitchBlock)
+			ListBlocks.remove(ListBlocks.size()-1);
+		
+		b = ListBlocks.get(ListBlocks.size()-1).addBlock("Switch");
+		b.setVariables(variables);
+
+		s = s.replace("switch(", "");
+		s = s.replace(")", "");
+		b.setTnameNoCheck(s);
+		
+		ListBlocks.add(b);
+
+		
+		
+	}
+	
+	
+
+	private void ftb_case(String s) throws FileToBlocksException
+	{
+		if (ListBlocks.get(ListBlocks.size()-1) instanceof SwitchBlock)
+		{
+			b = ListBlocks.get(ListBlocks.size()-1).addBlock("Case");
+			b.setVariables(variables);
+
+			s = s.replace("case ", "");
+			s = s.replace(":", "");
+			b.setTvalue(s);
+			
+			ListBlocks.add(b);
+		}
+		else
+		{
+			throw new FileToBlocksException("Nie by³o funkcji switch");
+		}
+	}
+	
+
+	private void ftb_default(String s) throws FileToBlocksException
+	{
+		if (ListBlocks.get(ListBlocks.size()-1) instanceof SwitchBlock)
+		{
+			b = ListBlocks.get(ListBlocks.size()-1).addBlock("Default");
+			b.setVariables(variables);
+
+			ListBlocks.add(b);
+		}
+		else
+		{
+			throw new FileToBlocksException("Nie by³o funkcji switch");
+		}
+	}
+	private void ftb_break() throws FileToBlocksException
+	{
+		if (ListBlocks.get(ListBlocks.size()-1) instanceof IfBlock)
+			ListBlocks.remove(ListBlocks.size()-1);
+		else if (ListBlocks.get(ListBlocks.size()-1) instanceof ForBlock)
+			ListBlocks.remove(ListBlocks.size()-1);
+		else if (ListBlocks.get(ListBlocks.size()-1) instanceof SwitchBlock)
+			ListBlocks.remove(ListBlocks.size()-1);
+		
+		if(! ListBlocks.isEmpty())
+		{
+			ListBlocks.remove(ListBlocks.size()-1);
+		}
+		else
+		{
+			throw new FileToBlocksException("Nieoczekiwany break;");
+		}
+	}
+	
+	
+	
+	
+	
+	
 	private void ftb_operation(String s)
 	{
 		if (ListBlocks.get(ListBlocks.size()-1) instanceof IfBlock)

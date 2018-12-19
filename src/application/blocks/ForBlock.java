@@ -15,11 +15,14 @@ public class ForBlock extends Block {
         this.setPadding(new Insets(5,0,5,0));
 
 
-        vb.getChildren().add(new IntBlock(lb, variables));
-        vb.getChildren().add(new ForConditionBlock(lb, variables));
-        vb.getChildren().add(new OperationBlock(lb, variables));
-        vb.getChildren().add(new ForTrueBlock(lb, variables));
+        vb.getChildren().add(0, new IntBlock(lb, variables));
+        vb.getChildren().add(1, new ForConditionBlock(lb, variables));
+        vb.getChildren().add(2, new OperationBlock(lb, variables));
+        vb.getChildren().add(3, new ForTrueBlock(lb, variables));
 
+        ((Block) vb.getChildren().get(0)).getClose().setVisible(false);
+        ((Block) vb.getChildren().get(2)).getClose().setVisible(false);
+        
         content.setBottom(vb);
     }
 
@@ -43,6 +46,7 @@ public class ForBlock extends Block {
         {
             Block b = (Block) vb.getChildren().get(2);
             sb.append(b.getFunctionString(2));
+            sb.setLength(sb.length() - 1);
         }
 
         sb.append(")\n");
@@ -55,7 +59,7 @@ public class ForBlock extends Block {
             sb.append(b.getFunctionString(tabCount+1));
         }
         sb.append(tabs(tabCount));
-        sb.append("}\n");
+        sb.append("}");
 
 
 

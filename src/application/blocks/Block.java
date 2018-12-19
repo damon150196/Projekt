@@ -220,6 +220,10 @@ public abstract class Block extends ScrollPane
 		tname.setText(checkVariableName(name));
 		oldName = tname.getText();
 	}
+	public void setTnameNoCheck(String name) 
+	{
+		tname.setText(name);
+	}
 
 	public void setTvalue(String value)
 	{
@@ -242,6 +246,10 @@ public abstract class Block extends ScrollPane
 
 	public String getName() {
 		return name.getText();
+	}
+
+	public Button getClose() {
+		return close;
 	}
 
 }

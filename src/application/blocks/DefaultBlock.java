@@ -51,13 +51,13 @@ public class DefaultBlock extends Block
     @Override
     public String getFunctionString(int tabCount)
     {
-        StringBuilder sb = new StringBuilder("Default: \n");
+        StringBuilder sb = new StringBuilder("default: \n");
 
         for(int i=0; i <  vb.getChildren().size(); i++)
         {
             if( vb.getChildren().get(i) instanceof Block)
             {
-                sb.append(tabs(tabCount));
+                sb.append(tabs(tabCount+1));
                 Block b = (Block) vb.getChildren().get(i);
                 sb.append(b.getFunctionString(tabCount+1) + "\n");
             }

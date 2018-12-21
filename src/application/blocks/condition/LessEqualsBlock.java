@@ -1,24 +1,21 @@
 package application.blocks.condition;
 
+import java.util.ArrayList;
+
 import application.blocks.Block;
 import application.blocks.ButtonBlock;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class LessEqualsBlock extends Block 
-
 {
-	private TextField tleft = new TextField();
-	private TextField tright = new TextField();
-
-	public LessEqualsBlock(VBox languageBox) 
-	{
-		super(languageBox);
+	public LessEqualsBlock(VBox languageBox, ArrayList<String> var) 
+    {
+        super(languageBox, var);
 		LessEqualsBlock tmp = this;
 		this.setBackgroundColor("#808080");
 		this.setBlockName("<=");
@@ -56,8 +53,8 @@ public class LessEqualsBlock extends Block
                 		
                 		if(tmp.equals(b))
                 		{
-                			((VBox) n).getChildren().remove(i);
-                			((VBox) n).getChildren().add(new ButtonBlock(" + ", ((VBox) n), lb, 0));	
+                            ((VBox) n).getChildren().add(i, new ButtonBlock(" + ", ((VBox) n), lb, 0, variables));
+                            ((VBox) n).getChildren().remove(i+1);
                 		}
             		}
             	}
@@ -70,5 +67,6 @@ public class LessEqualsBlock extends Block
 	{
 		return tleft.getText() + "<=" + tright.getText();
 	}
+
 
 }

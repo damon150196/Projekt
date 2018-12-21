@@ -14,8 +14,11 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
@@ -23,16 +26,18 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Optional;
 import java.util.Scanner;
 
 
-public class Console extends Application {
+public class Console extends Application 
+{
     private BorderPane root = new BorderPane();
     private Scene scene = new Scene(root, 600, 400);
     private TextArea console = new TextArea();
     private File file;
     private StringBuilder textToConsole = new StringBuilder();
-
+    
     public Console(File f) {
         file = f;
     }
@@ -55,7 +60,7 @@ public class Console extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
 
-
+        
         try {
             HashMap<String, Value> map = new HashMap<>();
             Program p = null;
@@ -78,8 +83,10 @@ public class Console extends Application {
 
             linia = linia.replace(";", "");
             linia = linia.replace(ostatniaLinia, "");
-            linia = linia.replace("int", "");
-            linia = linia.replace("String", "");
+            linia = linia.replace("int ", "");
+            linia = linia.replace("double ", "");
+            linia = linia.replace("boolean ", "");
+            linia = linia.replace("String ", "");
 
 
             linia = linia + ";";
@@ -90,6 +97,24 @@ public class Console extends Application {
 
 
             Parser parser = new Parser(linia);
+            
+            
+            /*
+             * Parser powinien zwracaæ wartoœci (tekst) które maj¹ byæ wyœwietlnone w konsoli
+             * 
+             * Czyli najlepiej jak bêdzie tekst do wyœwietlenia dopisywany do zmiennej 
+             * -> textToConsole
+             * 
+             * by mo¿na u¿yæ -> console.setText(textToConsole.toString());
+             * czyli wyœwietlenie efektu dzia³ania programu na konsoli 
+             * 
+             * 
+             * funkcja read(String type) ma wbudowan¹ opcjê do wyœwietlania na konsoli obecnego stanu programu, który jest zawarty w textToConsole
+             * 
+             * funkcja read() wyœwietla póki co okienko gdzie podaje siê wartoœæ, ale planowane jest zrobienie tego pod konsolk¹ programu
+             * gdzie bêdzie pojawia³o siê TextField i Button do pobierania od u¿ytkownika danych
+             * 
+             */
 
             try {
                 p = parser.parseProgram();
@@ -120,8 +145,7 @@ public class Console extends Application {
             alert2.setTitle("Error");
             alert2.showAndWait();
         }
-
-
+        
     }
 
 
@@ -133,5 +157,22 @@ public class Console extends Application {
         this.file = file;
     }
 
+    public String read(String type) 
+    {
+    	String value = new String();
+    	console.setText(textToConsole.toString());
+        TextInputDialog dialog = new TextInputDialog();
+ 
+        dialog.setTitle("Read");
+        dialog.setHeaderText("Read " + type +":");
+        dialog.setContentText("read:");
+ 
+        Optional<String> result = dialog.showAndWait();
+        value = result.get();
+        
+        // tu dodaæ warunki odnoœnie typów jakie wartoœci powinna ta funkcja zwracaæ 
+        
+        return value;
+    }
 
 }

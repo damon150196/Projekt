@@ -1,20 +1,18 @@
 package application.blocks;
 
 
-import javafx.scene.control.TextField;
+import java.util.ArrayList;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class PrintBlock extends Block
+public class WriteBlock extends Block
 {
-	private TextField tvalue = new TextField();
-	
-	public PrintBlock(VBox languageBox) 
-	{
-		super(languageBox);
+	public WriteBlock(VBox languageBox, ArrayList<String> var) 
+    {
+        super(languageBox, var);
 		tvalue.setPrefWidth(400);
 		this.setBackgroundColor("#BFA76F");
-		this.setBlockName("Print");
+		this.setBlockName("Write");
 		
 		HBox hb= new HBox();
 		hb.setSpacing(10);
@@ -28,7 +26,11 @@ public class PrintBlock extends Block
 	@Override
 	public String getFunctionString(int tabCount) 
 	{
-			return "System.out.println(\"" + tvalue.getText() + "\");";
+		if(variables.contains(tvalue.getText()))
+		{
+			return "write (" + tvalue.getText() + ");";
+		}
+		return "write (\"" + tvalue.getText() + "\");";
 	}
 
 }

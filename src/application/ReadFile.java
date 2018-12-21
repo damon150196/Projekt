@@ -15,7 +15,8 @@ public class ReadFile
 	public ReadFile(File f) throws FileNotFoundException
 	{
 		file = f;
-        if (file == null) chose();
+       //if (file == null)
+        	chose();
         
 		in = new Scanner(file);
 	}

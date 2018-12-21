@@ -1,35 +1,35 @@
 package application.blocks;
 
-import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class OperationBlock extends Block 
+import java.util.ArrayList;
 
+public class OperationBlock extends Block
 {
-	private TextField tvalue = new TextField();
 
-	public OperationBlock(VBox languageBox) 
-	{
-		super(languageBox);
-		this.setBackgroundColor("#EEEEEE");
-		this.setBlockName("Wykonaj");
+    public OperationBlock(VBox languageBox, ArrayList<String> var) 
+    {
+        super(languageBox, var);
+        this.setBackgroundColor("#EEEEEE");
+        this.setBlockName("Wykonaj");
 
-		
-		HBox hb= new HBox();
-		hb.setSpacing(10);
-		
-		tvalue.setPromptText("Wykonaj Operacje: ");
 
-		hb.getChildren().add(tvalue);
+        HBox hb= new HBox();
+        hb.setSpacing(10);
 
-		vb.getChildren().add(hb);
-	}
+        tvalue.setPromptText("Wykonaj Operacje: ");
 
-	@Override
-	public String getFunctionString(int tabCount) 
-	{
-		return tvalue.getText() + ";";
-	}
+        hb.getChildren().add(tvalue);
+
+        vb.getChildren().add(hb);
+    }
+
+    @Override
+    public String getFunctionString(int tabCount)
+    {
+        return tvalue.getText() + ";";
+    }
+
 
 }

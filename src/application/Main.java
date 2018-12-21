@@ -1,11 +1,8 @@
 package application;
 
 import java.io.File;
-<<<<<<< HEAD
-=======
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
->>>>>>> marczes
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -82,19 +79,14 @@ public class Main extends Application
 	{
 		try
 		{
-<<<<<<< HEAD
 			resetVariables();
 			
-			primaryStage.setTitle("Projekt Kompetencyjny");
-			root.getStyleClass().add("color-gray");
-=======
 			primaryStage.setTitle("MOMG");
 		    root.getStyleClass().add("color-gray");
 		    
-		    FileInputStream input = new FileInputStream("H:\\\\Informatyka\\\\SEM_5\\\\PK\\\\Projekt\\\\src\\\\application\\\\nosacz.png");
+		    FileInputStream input = new FileInputStream("src/application/nosacz.png");
 		    Image img = new Image(input);
 		    primaryStage.getIcons().add(img);
->>>>>>> marczes
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 
 			//============================ TOP PANEL =====================================

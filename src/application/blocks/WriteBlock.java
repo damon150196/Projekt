@@ -30,7 +30,7 @@ public class WriteBlock extends Block
 		{
 			return "write (" + tvalue.getText() + ");";
 		}
-		return "write (\"" + tvalue.getText() + "\");";
+		return "write (\'" + tvalue.getText() + "\');";
 	}
 
 }

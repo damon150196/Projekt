@@ -16,14 +16,12 @@ public class Parser {
     private ParserExpression parserExpression;
     private ParserProgram parserProgram;
 
-
-
     public Parser(String input) {
         this.input = input;
         this.position = new Integer[1];
-        this.position[0]=0;
-        this.parserExpression = new ParserExpression(this.input,this.position);
-        this.parserProgram = new ParserProgram(this.input,this.position);
+        this.position[0] = 0;
+        this.parserExpression = new ParserExpression(this.input, this.position);
+        this.parserProgram = new ParserProgram(this.input, this.position);
     }
 
     public Expression parseExpression() throws NotParsed, UnknownType {
@@ -33,6 +31,4 @@ public class Parser {
     public Program parseProgram() throws NotParsed, UnknownType {
         return parserProgram.parseProgram();
     }
-
-
 }

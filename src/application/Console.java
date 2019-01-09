@@ -1,23 +1,17 @@
 package application;
 
 
+import application.interpreter.exceptions.*;
 import application.interpreter.expression.Value;
 import application.interpreter.instruction.program.Program;
 import application.interpreter.parser.Parser;
-import application.interpreter.exceptions.NotParsed;
-import application.interpreter.exceptions.IncompatibilityTypes;
-import application.interpreter.exceptions.UnknownOperator;
-import application.interpreter.exceptions.UnknownType;
-import application.interpreter.exceptions.VariableNotFound;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -43,7 +37,8 @@ public class Console extends Application
     }
 
 
-    @Override
+    @SuppressWarnings({ "hiding", "resource" })
+	@Override
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Projekt Kompetencyjny - Konsola");
 
@@ -78,22 +73,30 @@ public class Console extends Application
                 ostatniaLinia = sc.nextLine();
                 linia = linia + ostatniaLinia;
 
-                System.out.println(linia);
+
             }
 
+            System.out.println(linia);
+
             linia = linia.replace(";", "");
-            linia = linia.replace(ostatniaLinia, "");
+            //linia = linia.replace(ostatniaLinia, "");
             linia = linia.replace("int ", "");
             linia = linia.replace("double ", "");
-            linia = linia.replace("boolean ", "");
             linia = linia.replace("String ", "");
+            linia = linia.replace("==", "=");
+            linia = linia.replace("(", "");
+            linia = linia.replace(")", "");
+
+            linia = linia.substring(0, linia.length()-1);
 
 
+
+            System.out.println("Efekt przed" + linia);
             linia = linia + ";";
-            String s = "p = 100 b = 100 write p;";
 
+            console.appendText("Rezultat wykonanego programu to: \n");
 
-            System.out.println(linia);
+            System.out.println("Efekt" + linia);
 
 
             Parser parser = new Parser(linia);
@@ -116,34 +119,41 @@ public class Console extends Application
              * 
              */
 
-            try {
-                p = parser.parseProgram();
-            } catch (NotParsed notParsed) {
-                notParsed.printStackTrace();
-            } catch (UnknownType unknownType) {
-                unknownType.printStackTrace();
-            }
+             p = parser.parseProgram();
+             p.eval(map, console);
 
-            try {
-                p.eval(map, console);
-            } catch (UnknownOperator unknownOperator) {
-                unknownOperator.printStackTrace();
-            } catch (VariableNotFound variableNotFound) {
-                variableNotFound.printStackTrace();
-            } catch (IncompatibilityTypes incompatibilityTypes) {
-                incompatibilityTypes.printStackTrace();
-            } catch (UnknownType unknownType) {
-                unknownType.printStackTrace();
-            }
-
-        } catch (FileNotFoundException e) {
-            Alert alert2 = new Alert(AlertType.ERROR, "Odczyt nie powiód? si?", ButtonType.OK);
-            alert2.setTitle("Error");
-            alert2.showAndWait();
-        } catch (IOException e) {
-            Alert alert2 = new Alert(AlertType.ERROR, "Odczyt nie powiód? si?", ButtonType.OK);
-            alert2.setTitle("Error");
-            alert2.showAndWait();
+        } 
+        catch (NotParsed notParsed) 
+        {
+            notParsed.printStackTrace();
+        } 
+        catch (UnknownType unknownType) 
+        {
+            unknownType.printStackTrace();
+        } 
+        catch (UnknownOperator unknownOperator) 
+        {
+            unknownOperator.printStackTrace();
+        } 
+        catch (UnauthorizedOperation unknownOperator) 
+        {
+            unknownOperator.printStackTrace();
+        } 
+        catch (VariableNotFound variableNotFound) 
+        {
+            variableNotFound.printStackTrace();
+        } 
+        catch (IncompatibilityTypes incompatibilityTypes) 
+        {
+            incompatibilityTypes.printStackTrace();
+        }
+        catch (FileNotFoundException e) 
+        {
+            e.printStackTrace();
+        } 
+        catch (IOException e) 
+        {
+            e.printStackTrace();
         }
         
     }

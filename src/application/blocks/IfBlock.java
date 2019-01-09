@@ -27,7 +27,7 @@ public class IfBlock extends Block
     @Override
     public String getFunctionString(int tabCount)
     {
-        StringBuilder sb = new StringBuilder("if(");
+        StringBuilder sb = new StringBuilder("if( ");
 
         if( vb.getChildren().get(0) instanceof Block)
         {
@@ -35,7 +35,7 @@ public class IfBlock extends Block
             sb.append(b.getFunctionString(0));
         }
 
-        sb.append(")\n");
+        sb.append(" )\n");
         sb.append(tabs(tabCount));
         sb.append("{\n");
 

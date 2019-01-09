@@ -56,14 +56,14 @@ public class FileToBlocks
 			else if(s.matches("skip;.*")) ;
 
 			else if(s.matches("while.+")) ftb_while(s);
-
+			/*
 			else if(s.matches("for.+")) ftb_for(s);
 
 			else if(s.matches("switch.+")) ftb_switch(s);
 			else if(s.matches("case.+")) ftb_case(s);
 			else if(s.matches("default.+")) ftb_default(s);
 			else if(s.matches("break.+")) ftb_break();
-			
+			*/
 			else ftb_operation(s);
 		}
 		
@@ -123,7 +123,7 @@ public class FileToBlocks
 		s = s.replaceAll("double ", "");
 		s = s.replaceAll("String ", "");
 		s = s.replaceAll("boolean ", "");
-		s = s.replaceAll("\"", "");
+		s = s.replaceAll("\'", "");
 		s = s.replaceAll(";", "");
 
 		String [] s2 = s.split(" = ");
@@ -180,8 +180,8 @@ public class FileToBlocks
 		if (ListBlocks.get(ListBlocks.size()-1) instanceof SwitchBlock)
 			ListBlocks.remove(ListBlocks.size()-1);
 		
-		s = s.replace("if(", "");
-		s = s.substring(0, s.length()-1);
+		s = s.replace("if( ", "");
+		s = s.substring(0, s.length()-2);
 
 		b = ListBlocks.get(ListBlocks.size()-1).addBlock("If");
 		b.setVariables(variables);
@@ -228,8 +228,8 @@ public class FileToBlocks
 		if (ListBlocks.get(ListBlocks.size()-1) instanceof SwitchBlock)
 			ListBlocks.remove(ListBlocks.size()-1);
 		
-		s = s.replace("while(", "");
-		s = s.substring(0, s.length()-1);
+		s = s.replace("while( ", "");
+		s = s.substring(0, s.length()-2);
 
 		b = ListBlocks.get(ListBlocks.size()-1).addBlock("While");
 		b.setVariables(variables);
@@ -293,10 +293,10 @@ public class FileToBlocks
 	private void ftb_condition(String s, int pos)
 	{
 		String block = "";
-		if(s.contains("==")) block = "==";
-		else if(s.contains("!=")) block = "!=";
-		else if(s.contains("<=")) block = "<=";
-		else if(s.contains(">=")) block = ">=";
+		if(s.contains("=")) block = "=";
+		//else if(s.contains("!=")) block = "!=";
+		//else if(s.contains("<=")) block = "<=";
+		//else if(s.contains(">=")) block = ">=";
 		else if(s.contains("<")) block = "<";
 		else if(s.contains(">")) block = ">";
 		
@@ -314,13 +314,13 @@ public class FileToBlocks
 	{
 		String block = "";
 		if(s.charAt(0) == '!') block = "! ";
-		else if(s.matches("^[(].*[)] [|][|] [(].*[)]$")) block = " [|][|] ";
-		else if(s.matches("^[(].*[)] && [(].*[)]$")) block = " && ";
+		else if(s.matches("^[(].*[)] [|] [(].*[)]$")) block = " [|] ";
+		else if(s.matches("^[(].*[)] & [(].*[)]$")) block = " & ";
 		
 
 		String [] s2 = s.split(block);
 
-		if(s2[0] != "" && block != "! ") s2[0] = s2[0].substring(1, s2[0].length()-1);
+		if(s2[0] != "" /*&& block != "! "*/) s2[0] = s2[0].substring(1, s2[0].length()-1);
 		if(s2[1] != "" ) s2[1] = s2[1].substring(1, s2[1].length()-1);
 
 		block = block.replaceAll(" ", "");
@@ -333,15 +333,17 @@ public class FileToBlocks
 		
 		if(block.equals("!"))
 		{
-			if(s2[1].matches("[(].*[)]") || s2[1].charAt(0) == '!')  ftb_logic(s2[1], 1);
+			if(s2[1].matches("[(].*[)]") /*|| s2[1].charAt(0) == '!'*/)  ftb_logic(s2[1], 1);
 			else ftb_condition(s2[1], 1);
 		}
 		else
 		{
-			if(s2[0].matches("[(].*[)]") || s2[0].charAt(0) == '!')  ftb_logic(s2[0],0);
+			System.out.println(s2[0] + "|" + s2[1]);
+			
+			if(s2[0].matches("[(].*[)]")/* || s2[0].charAt(0) == '!'*/)  ftb_logic(s2[0],0);
 			else ftb_condition(s2[0], 0);
 
-			if(s2[1].matches("[(].*[)]") || s2[1].charAt(0) == '!')  ftb_logic(s2[1],2);
+			if(s2[1].matches("[(].*[)]")/* || s2[1].charAt(0) == '!'*/)  ftb_logic(s2[1],2);
 			else ftb_condition(s2[1], 2);
 			
 		}

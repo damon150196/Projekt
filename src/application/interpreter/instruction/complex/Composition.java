@@ -1,16 +1,13 @@
 package application.interpreter.instruction.complex;
 
-import application.interpreter.exceptions.IncompatibilityTypes;
-import application.interpreter.exceptions.UnknownOperator;
-import application.interpreter.exceptions.UnknownType;
-import application.interpreter.exceptions.VariableNotFound;
+import application.interpreter.exceptions.*;
 import application.interpreter.expression.Value;
 import application.interpreter.instruction.program.Program;
-
 import javafx.scene.control.TextArea;
+
 import java.util.HashMap;
 
-public class Composition extends Program{
+public class Composition extends Program {
 
     private Program left, right;
 
@@ -20,7 +17,7 @@ public class Composition extends Program{
     }
 
     @Override
-    public void eval(HashMap<String, Value> map, TextArea console) throws UnknownOperator, VariableNotFound, IncompatibilityTypes, UnknownType {
+    public void eval(HashMap<String, Value> map, TextArea console) throws UnknownOperator, VariableNotFound, IncompatibilityTypes, UnknownType, UnauthorizedOperation {
         left.eval(map, console);
         right.eval(map, console);
     }

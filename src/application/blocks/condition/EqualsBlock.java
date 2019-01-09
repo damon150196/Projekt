@@ -18,7 +18,7 @@ public class EqualsBlock extends Block
         super(languageBox, var);
         EqualsBlock tmp = this;
         this.setBackgroundColor("#808080");
-        this.setBlockName("==");
+        this.setBlockName("=");
 
 
         HBox hb= new HBox();
@@ -65,7 +65,7 @@ public class EqualsBlock extends Block
     @Override
     public String getFunctionString(int tabCount)
     {
-        return tleft.getText() + "==" + tright.getText();
+        return tleft.getText() + "=" + tright.getText();
     }
 
 

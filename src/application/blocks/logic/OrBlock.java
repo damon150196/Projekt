@@ -17,7 +17,7 @@ public class OrBlock extends Block {
         super(languageBox, var);
 		OrBlock tmp = this;
         this.setBackgroundColor("#808080");
-        this.setBlockName("||");
+        this.setBlockName("|");
 
 
 
@@ -68,7 +68,7 @@ public class OrBlock extends Block {
             sb.append(b.getFunctionString(0));
         }
 
-        sb.append(") || (");
+        sb.append(") | (");
 
         if( vb.getChildren().get(2) instanceof Block)
         {

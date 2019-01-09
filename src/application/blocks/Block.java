@@ -30,10 +30,11 @@ public abstract class Block extends ScrollPane
 	protected TextField tleft = new TextField();
 	protected TextField tright = new TextField();
 	protected String oldName = null;
-
+	protected Block tmp;
+	
 	public Block(VBox languageBox, ArrayList<String> var)
 	{
-		Block tmp = this;
+		tmp = this;
 		this.setHbarPolicy(ScrollBarPolicy.NEVER);
 		this.setVbarPolicy(ScrollBarPolicy.AS_NEEDED);
 		this.getStyleClass().add("block");
@@ -75,8 +76,22 @@ public abstract class Block extends ScrollPane
 
 						if(tmp.equals(b))
 						{
+							//usuwanie wewn¹trz bloku -> wykonuje zamykanie dzieci, przez co nazwy zmiennych s¹ jako nie u¿yte
+							for(int j=b.getVb().getChildren().size()-1; j >=0  ; j--)
+							{
+								if(b.getVb().getChildren().get(j) instanceof Block)
+								{
+									Block bb = (Block) b.getVb().getChildren().get(j);
+									bb.getClose().fire();
+								}
+							}
+							
+							
 							((VBox) n).getChildren().remove(i);
-							((VBox) n).getChildren().remove(i);
+							if(i < ((VBox) n).getChildren().size())
+							{
+								((VBox) n).getChildren().remove(i);
+							}
 						}
 					}
 				}

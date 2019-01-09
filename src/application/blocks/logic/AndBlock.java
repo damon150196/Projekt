@@ -17,7 +17,7 @@ public class AndBlock extends Block {
         super(languageBox, var);
 		AndBlock tmp = this;
         this.setBackgroundColor("#808080");
-        this.setBlockName("&&");
+        this.setBlockName("&");
 
 
         vb.getChildren().add(new ButtonBlock(" + ", vb, lb, 0, variables));
@@ -67,7 +67,7 @@ public class AndBlock extends Block {
             sb.append(b.getFunctionString(0));
         }
 
-        sb.append(") && (");
+        sb.append(") & (");
 
         if( vb.getChildren().get(2) instanceof Block)
         {

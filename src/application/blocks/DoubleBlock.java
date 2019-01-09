@@ -1,6 +1,9 @@
 package application.blocks;
 
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.Node;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -46,6 +49,34 @@ public class DoubleBlock extends Block
 				}
 			}
 
+		});
+
+		close.setOnAction((EventHandler<ActionEvent>) new EventHandler<ActionEvent>()
+		{
+
+			@Override
+			public void handle(ActionEvent event)
+			{
+				variables.remove(oldName);
+				Node n = getParent();
+				Block b;
+
+				languageBox.getChildren().clear();
+
+				for(int i=0; i <  ((VBox) n).getChildren().size(); i++)
+				{
+					if(((VBox) n).getChildren().get(i) instanceof Block)
+					{
+						b = (Block) ((VBox) n).getChildren().get(i);
+
+						if(tmp.equals(b))
+						{
+							((VBox) n).getChildren().remove(i);
+							((VBox) n).getChildren().remove(i);
+						}
+					}
+				}
+			}
 		});
 
 		hb.getChildren().add(tname);

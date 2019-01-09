@@ -24,8 +24,18 @@ public class Write  extends Program {
         if(!map.containsKey(var))
             throw new VariableNotFound();
 
-        console.appendText("Rezultat wykonanego programu to: \n");
-        console.appendText(String.valueOf(map.get(var).getNumber()));
+        if(map.get(var).isString()){
+            console.appendText(String.valueOf(map.get(var).getString()));
+            console.appendText("\n");
+            System.out.println();        }
+        else {
+            console.appendText(String.valueOf(map.get(var).getNumber()));
+            console.appendText("\n");
+            System.out.println();        }
+
+        /*console.appendText(String.valueOf(map.get(var).getNumber()));
+        console.appendText("\n");
+        System.out.println();*/
     }
 
 

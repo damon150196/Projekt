@@ -1,8 +1,6 @@
 package application;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -30,6 +28,7 @@ import javafx.scene.layout.VBox;
 
 public class Main extends Application
 {
+	Stage ps;
 	BorderPane root = new BorderPane();
 	Scene scene = new Scene(root,1000,650);
 	BorderPane top = new BorderPane();
@@ -47,6 +46,7 @@ public class Main extends Application
 	Button top_new = new Button("\uD83D\uDCC4");
 	Button top_open = new Button("\uD83D\uDCC2");
 	Button top_save = new Button("\uD83D\uDCBE");
+	Button top_save_as = new Button("\uD83D\uDCBE Jako...");
 	Button refresh = new Button("\u21BB");
 	Button podglad = new Button("Podglad Kodu");
 	Button consolButton = new Button("Uruchom \u25B6");
@@ -77,6 +77,7 @@ public class Main extends Application
 	@Override
 	public void start(Stage primaryStage)
 	{
+		ps = primaryStage;
 		try
 		{
 			resetVariables();
@@ -84,9 +85,9 @@ public class Main extends Application
 			primaryStage.setTitle("MOMG");
 		    root.getStyleClass().add("color-gray");
 		    
-		    FileInputStream input = new FileInputStream("src/application/nosacz.png");
-		    Image img = new Image(input);
-		    primaryStage.getIcons().add(img);
+		    //FileInputStream input = new FileInputStream("src/application/nosacz.png");
+		    //Image img = new Image(input);
+		    //primaryStage.getIcons().add(img);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 
 			//============================ TOP PANEL =====================================
@@ -98,6 +99,7 @@ public class Main extends Application
 			top_l.getChildren().add(top_new);
 			top_l.getChildren().add(top_open);
 			top_l.getChildren().add(top_save);
+			top_l.getChildren().add(top_save_as);
 			top_r.getChildren().add(refresh);
 			top_r.getChildren().add(podglad);
 
@@ -184,6 +186,7 @@ public class Main extends Application
 						}
 					});
 				}
+				ps.setTitle("MOMG");
 			}
 		});
 
@@ -218,13 +221,16 @@ public class Main extends Application
 
 					});
 				}
-				open();
+				else
+				{
+					open();
+				}
 			}
 		});
 
 
 
-		// -------------------------------- NEW --------------------------------------------------
+		// -------------------------------- save --------------------------------------------------
 		top_save.getStyleClass().add("btn");
 		top_save.setOnAction((EventHandler<ActionEvent>) new EventHandler<ActionEvent>()
 		{
@@ -238,6 +244,26 @@ public class Main extends Application
 				}
 				else
 				{
+					save();
+				}
+			}
+		});
+
+		// -------------------------------- Save as --------------------------------------------------
+		top_save_as.getStyleClass().add("btn2");
+		top_save_as.setOnAction((EventHandler<ActionEvent>) new EventHandler<ActionEvent>()
+		{
+			@Override
+			public void handle(ActionEvent event)
+			{
+				if(mainBlock.isEmpty())
+				{
+					Alert alert = new Alert(AlertType.CONFIRMATION, "Projekt jset pusty, zapis nie udany", ButtonType.OK);
+					alert.setTitle("Zapisywanie");
+				}
+				else
+				{
+					file=null;
 					save();
 				}
 			}
@@ -368,15 +394,22 @@ public class Main extends Application
 		}
 		catch (IOException e)
 		{
-			Alert alert2 = new Alert(AlertType.ERROR, "Zapis nie powiód? si?", ButtonType.OK);
-			alert2.setTitle("Error");
-			alert2.showAndWait();
+			e.printStackTrace();
 		}
 		catch (NullPointerException e)
 		{
-			//Alert alert2 = new Alert(AlertType.ERROR, "Zapis nie powiód? si?", ButtonType.OK);
-			//alert2.setTitle("Error");
-			//alert2.showAndWait();
+			e.printStackTrace();
+		}
+		finally
+		{
+			if(file != null)
+			{
+				ps.setTitle(file.getName() + " - MOMG");
+			}
+			else
+			{
+				ps.setTitle("MOMG");
+			}
 		}
 	}
 
@@ -387,27 +420,35 @@ public class Main extends Application
 			ReadFile rf = new ReadFile(file);
 			if(rf.getFile() == null) throw new NullPointerException();
 			file = rf.getFile();
-			sourceCode.setText(rf.read());
 			
 			FileToBlocks ftb = new FileToBlocks(file, mainBlock, variables);
 			ftb.start();
+			sourceCode.setText(mainBlock.getFunctionString(0));
 
 		}
 		catch (IOException e)
 		{
-			Alert alert2 = new Alert(AlertType.ERROR, "Odczyt nie powiód? si?", ButtonType.OK);
-			alert2.setTitle("Error");
-			alert2.showAndWait();
+			e.printStackTrace();
 		}
 		catch (NullPointerException e)
 		{
-			Alert alert2 = new Alert(AlertType.ERROR, "Odczyt nie powiód? si?", ButtonType.OK);
-			alert2.setTitle("Error");
-			alert2.showAndWait();
-		} catch (FileToBlocksException e) 
+			e.printStackTrace();
+		} 
+		catch (FileToBlocksException e) 
 		{
 			e.printStackTrace();
 			System.err.println(e.getMessage());
+		}
+		finally
+		{
+			if(file != null)
+			{
+				ps.setTitle(file.getName() + " - MOMG");
+			}
+			else
+			{
+				ps.setTitle("MOMG");
+			}
 		}
 
 	}

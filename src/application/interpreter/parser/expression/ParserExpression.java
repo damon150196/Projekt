@@ -2,10 +2,7 @@ package application.interpreter.parser.expression;
 
 import application.interpreter.exceptions.NotParsed;
 import application.interpreter.exceptions.UnknownType;
-import application.interpreter.expression.Constant;
-import application.interpreter.expression.Expression;
-import application.interpreter.expression.Operator;
-import application.interpreter.expression.Variable;
+import application.interpreter.expression.*;
 
 public class ParserExpression {
 
@@ -30,10 +27,28 @@ public class ParserExpression {
 
     public Expression parseExpression() throws NotParsed, UnknownType {
         Expression expression = parseSum();
-        if (position[0] == input.length()-1)
+        if (position[0] == input.length() - 1)
             return expression;
         else
             throw new NotParsed();
+    }
+
+    public Expression parseString() throws UnknownType {
+        Expression expression = null;
+        StringBuilder stringBuilder = new StringBuilder();
+        char character;
+
+        position[0]++;
+        character = input.charAt(position[0]);
+
+        while(character != '\''){
+            stringBuilder.append(character);
+            position[0]++;
+            character = input.charAt(position[0]);
+        }
+        position[0]++;
+        expression = new NewString(stringBuilder.toString());
+        return expression;
     }
 
 
@@ -65,7 +80,7 @@ public class ParserExpression {
         Expression expression = parseTerm();
         char character = lookAhead();
 
-        while (character == '>' || character == '<' || character == '=') {
+        while (character == '>' || character == '<' || character == '=' || character == '&' || character == '|') {
             position[0]++;
             expression = new Operator(character, expression, parseTerm());
             character = lookAhead();
@@ -95,16 +110,15 @@ public class ParserExpression {
         }
         number = template.toString();
 
-        if(number.contains(".")){
+        if (number.contains(".")) {
             return new Constant(Double.parseDouble(number));
-        }
-        else
+        } else
             return new Constant(Integer.parseInt(number));
     }
 
-    private Expression parseVariable(){
+    private Expression parseVariable() {
         StringBuilder template = new StringBuilder();
-        while(Character.isDigit(input.charAt(position[0])) || Character.isAlphabetic(input.charAt(position[0]))){
+        while (Character.isDigit(input.charAt(position[0])) || Character.isAlphabetic(input.charAt(position[0]))) {
             template.append(input.charAt(position[0]));
             position[0]++;
         }
@@ -114,11 +128,10 @@ public class ParserExpression {
     private Expression parseParen() throws NotParsed, UnknownType {
         position[0]++;
         Expression expression = parseSum();
-        if(lookAhead() == ')'){
+        if (lookAhead() == ')') {
             position[0]++;
             return expression;
-        }
-        else
+        } else
             throw new NotParsed();
     }
 

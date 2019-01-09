@@ -10,31 +10,29 @@ import application.interpreter.parser.expression.ParserExpression;
 public class ParserProgram {
 
 
+    private static final char END_OF_LINE = ';';
     private String input;
     private Integer[] position;
-
     private ParserExpression parserExpression;
-
-    private static final char END_OF_LINE = ';';
 
     public ParserProgram(String input, Integer[] position) {
         this.input = input;
         this.position = position;
-        this.parserExpression = new ParserExpression(this.input,this.position);
+        this.parserExpression = new ParserExpression(this.input, this.position);
     }
 
 
     public Program parseProgram() throws NotParsed, UnknownType {
         Program program = parseBlock();
-        if(lookAhead() == END_OF_LINE)
+        if (lookAhead() == END_OF_LINE)
             return program;
         else
             throw new NotParsed();
     }
 
-    private String parseIdentifier(){
+    private String parseIdentifier() {
         StringBuilder template = new StringBuilder();
-        while(Character.isDigit(input.charAt(position[0])) || Character.isAlphabetic(input.charAt(position[0]))){
+        while (Character.isDigit(input.charAt(position[0])) || Character.isAlphabetic(input.charAt(position[0]))) {
             template.append(input.charAt(position[0]));
             position[0]++;
         }
@@ -45,9 +43,9 @@ public class ParserProgram {
         Program program = parseInstruction();
         char character = lookAhead();
 
-        while(character != '}' && character!=END_OF_LINE){
+        while (character != '}' && character != END_OF_LINE) {
             Program program1 = parseInstruction();
-            program = new Composition(program,program1);
+            program = new Composition(program, program1);
             character = lookAhead();
         }
         return program;
@@ -55,20 +53,18 @@ public class ParserProgram {
 
     private Program parseInstruction() throws NotParsed, UnknownType {
         char character = lookAhead();
-        if(character=='{'){
+        if (character == '{') {
             position[0]++;
             Program program = parseBlock();
-            if (lookAhead()=='}') {
+            if (lookAhead() == '}') {
                 position[0]++;
                 return program;
-            }
-            else {
+            } else {
                 throw new NotParsed();
             }
-        }
-        else if(Character.isAlphabetic(character)) {
+        } else if (Character.isAlphabetic(character)) {
             String parseIdentifier = parseIdentifier();
-            if (parseIdentifier == "read")
+            if (parseIdentifier.equals("read"))
                 return parseRead();
             else if (parseIdentifier.equals("write"))
                 return parseWrite();
@@ -80,47 +76,45 @@ public class ParserProgram {
                 return new Skip();
             else
                 return parseAssign(parseIdentifier);
-        }
-        else
+        } else
             throw new NotParsed();
     }
 
 
     private Program parseRead() throws NotParsed {
-        char character = lookAhead();
-        if (Character.isAlphabetic(character)) {
+        if (Character.isAlphabetic(lookAhead())) {
             String parseIdentifier = parseIdentifier();
             return new Read(parseIdentifier);
-        }
-        else
+        } else
             throw new NotParsed();
     }
 
     private Program parseWrite() throws NotParsed {
-        char character = lookAhead();
-        if (Character.isAlphabetic(character)) {
-            String parseIdentifier = parseIdentifier();
-            return new Write(parseIdentifier);
+        if (Character.isAlphabetic(lookAhead())) {
+            return new Write(parseIdentifier());
+        } else if(lookAhead()=='\''){
+            position[0]++;
+            String var = parseIdentifier();
+            position[0]++;
+            return new WriteFromCode(var);
         }
-        else
+        else {
             throw new NotParsed();
+        }
     }
 
     private Program parseIf() throws NotParsed, UnknownType {
         Expression expression = parserExpression.parseSum();
-        Program program = parseInstruction();
+        Program programThen = parseInstruction();
         if (Character.isAlphabetic(lookAhead())) {
-            if(parseIdentifier().equals("else")) {
-                Program program1 = parseInstruction();
-                return new If(expression, program, program1);
-            }
-            else
+            if (parseIdentifier().equals("else")) {
+                Program programElse = parseInstruction();
+                return new If(expression, programThen, programElse);
+            } else
                 throw new NotParsed();
-        }
-        else
+        } else
             throw new NotParsed();
     }
-
 
 
     private Program parseWhile() throws NotParsed, UnknownType {
@@ -130,16 +124,18 @@ public class ParserProgram {
     }
 
 
-
     private Program parseAssign(String input) throws NotParsed, UnknownType {
         char character = lookAhead();
-        if (character == '=')
-        {
+        Expression expression = null;
+        if (character == '=') {
             position[0]++;
-            Expression expression = parserExpression.parseSum();
+            if(lookAhead() == '\''){
+                expression = parserExpression.parseString();
+            }else {
+                expression = parserExpression.parseSum();
+            }
             return new Assing(input, expression);
-        }
-        else
+        } else
             throw new NotParsed();
     }
 

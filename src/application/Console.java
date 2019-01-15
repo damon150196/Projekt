@@ -84,8 +84,8 @@ public class Console extends Application
             linia = linia.replace("double ", "");
             linia = linia.replace("String ", "");
             linia = linia.replace("==", "=");
-            linia = linia.replace("(", "");
-            linia = linia.replace(")", "");
+//            linia = linia.replace("(", "");
+//            linia = linia.replace(")", "");
 
             linia = linia.substring(0, linia.length()-1);
 

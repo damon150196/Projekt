@@ -26,7 +26,7 @@ public class ReadBlock extends Block
 	@Override
 	public String getFunctionString(int tabCount) 
 	{
-			return "read (" + tname.getText() + ");";
+			return "read " + tname.getText() + ";";
 	}
 
 

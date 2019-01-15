@@ -17,7 +17,7 @@ public class WriteBlock extends Block
 		HBox hb= new HBox();
 		hb.setSpacing(10);
 		
-		tvalue.setPromptText("Wyœwietl: ");
+		tvalue.setPromptText("Wyï¿½wietl: ");
 
 		hb.getChildren().add(tvalue);
 		vb.getChildren().add(hb);
@@ -28,9 +28,9 @@ public class WriteBlock extends Block
 	{
 		if(variables.contains(tvalue.getText()))
 		{
-			return "write (" + tvalue.getText() + ");";
+			return "write " + tvalue.getText() + ";";
 		}
-		return "write (\'" + tvalue.getText() + "\');";
+		return "write \'" + tvalue.getText() + "\';";
 	}
 
 }

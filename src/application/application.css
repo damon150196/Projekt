@@ -28,6 +28,14 @@
   -fx-highlight-text-fill: #000000; 
   -fx-text-fill: #00ff00;
 }
+.console-error
+{
+  -fx-control-inner-background:#000000; 
+  -fx-font-family: Consolas; 
+  -fx-highlight-fill: #ff0000; 
+  -fx-highlight-text-fill: #000000; 
+  -fx-text-fill: #ff0000;
+}
 
 .label {
   -fx-font: 12px  sans-serif;

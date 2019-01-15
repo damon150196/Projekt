@@ -44,7 +44,7 @@ public class Operator extends Expression {
             case '|':
                 return leftBranch.eval(map).or(rightBranch.eval(map));
             default:
-                throw new UnknownOperator();
+                throw new UnknownOperator("Nieznany operator: " + operatorSymbol);
         }
     }
 }

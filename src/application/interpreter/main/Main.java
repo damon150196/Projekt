@@ -14,7 +14,8 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) throws UnknownType, VariableNotFound, IncompatibilityTypes, NotParsed, FileNotFoundException {
+    @SuppressWarnings({ "unused", "resource" })
+	public static void main(String[] args) throws UnknownType, VariableNotFound, IncompatibilityTypes, NotParsed, FileNotFoundException {
 
         HashMap<String, Value> map = new HashMap<>();
         String linia = "";

@@ -144,8 +144,7 @@ public class FileToBlocks
 			ListBlocks.remove(ListBlocks.size()-1);
 		
 		
-		s = s.replaceAll("write \\(", "");
-		s = s.replaceAll("\\)", "");
+		s = s.replaceAll("write ", "");
 		s = s.replaceAll(";", "");
 
 		b = ListBlocks.get(ListBlocks.size()-1).addBlock("Write");
@@ -162,8 +161,7 @@ public class FileToBlocks
 			ListBlocks.remove(ListBlocks.size()-1);
 		
 		
-		s = s.replaceAll("read \\(", "");
-		s = s.replaceAll("\\)", "");
+		s = s.replaceAll("read ", "");
 		s = s.replaceAll(";", "");
 
 		b = ListBlocks.get(ListBlocks.size()-1).addBlock("Read");
@@ -248,6 +246,7 @@ public class FileToBlocks
 		ListBlocks.add(b1);
 	}
 
+	@SuppressWarnings("unused")
 	private void ftb_for(String s)
 	{
 		if (ListBlocks.get(ListBlocks.size()-1) instanceof IfBlock)
@@ -356,6 +355,7 @@ public class FileToBlocks
 	
 	
 
+	@SuppressWarnings("unused")
 	private void ftb_switch(String s)
 	{
 		if (ListBlocks.get(ListBlocks.size()-1) instanceof IfBlock)
@@ -380,6 +380,7 @@ public class FileToBlocks
 	
 	
 
+	@SuppressWarnings("unused")
 	private void ftb_case(String s) throws FileToBlocksException
 	{
 		if (ListBlocks.get(ListBlocks.size()-1) instanceof SwitchBlock)
@@ -400,6 +401,7 @@ public class FileToBlocks
 	}
 	
 
+	@SuppressWarnings("unused")
 	private void ftb_default(String s) throws FileToBlocksException
 	{
 		if (ListBlocks.get(ListBlocks.size()-1) instanceof SwitchBlock)
@@ -414,6 +416,7 @@ public class FileToBlocks
 			throw new FileToBlocksException("Nie by³o funkcji switch");
 		}
 	}
+	@SuppressWarnings("unused")
 	private void ftb_break() throws FileToBlocksException
 	{
 		if (ListBlocks.get(ListBlocks.size()-1) instanceof IfBlock)

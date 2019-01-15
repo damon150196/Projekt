@@ -19,7 +19,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
-import javafx.scene.image.Image;
+//import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;

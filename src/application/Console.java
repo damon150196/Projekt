@@ -8,11 +8,7 @@ import application.interpreter.parser.Parser;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
@@ -20,7 +16,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Optional;
 import java.util.Scanner;
 
 
@@ -30,7 +25,6 @@ public class Console extends Application
     private Scene scene = new Scene(root, 600, 400);
     private TextArea console = new TextArea();
     private File file;
-    private StringBuilder textToConsole = new StringBuilder();
     
     public Console(File f) {
         file = f;
@@ -123,36 +117,52 @@ public class Console extends Application
              p.eval(map, console);
 
         } 
-        catch (NotParsed notParsed) 
+        catch (NotParsed e) 
         {
-            notParsed.printStackTrace();
+            console.getStyleClass().add("console-error");
+            console.setText(e.getMessage());
+            e.printStackTrace();
         } 
-        catch (UnknownType unknownType) 
+        catch (UnknownType e) 
         {
-            unknownType.printStackTrace();
+            console.getStyleClass().add("console-error");
+            console.setText(e.getMessage());
+            e.printStackTrace();
         } 
-        catch (UnknownOperator unknownOperator) 
+        catch (UnknownOperator e) 
         {
-            unknownOperator.printStackTrace();
+            console.getStyleClass().add("console-error");
+            console.setText(e.getMessage());
+            e.printStackTrace();
         } 
-        catch (UnauthorizedOperation unknownOperator) 
+        catch (UnauthorizedOperation e) 
         {
-            unknownOperator.printStackTrace();
+            console.getStyleClass().add("console-error");
+            console.setText(e.getMessage());
+            e.printStackTrace();
         } 
-        catch (VariableNotFound variableNotFound) 
+        catch (VariableNotFound e) 
         {
-            variableNotFound.printStackTrace();
+            console.getStyleClass().add("console-error");
+            console.setText(e.getMessage());
+            e.printStackTrace();
         } 
-        catch (IncompatibilityTypes incompatibilityTypes) 
+        catch (IncompatibilityTypes e) 
         {
-            incompatibilityTypes.printStackTrace();
+            console.getStyleClass().add("console-error");
+            console.setText(e.getMessage());
+            e.printStackTrace();
         }
         catch (FileNotFoundException e) 
         {
+            console.getStyleClass().add("console-error");
+            console.setText(e.getMessage());
             e.printStackTrace();
         } 
         catch (IOException e) 
         {
+            console.getStyleClass().add("console-error");
+            console.setText(e.getMessage());
             e.printStackTrace();
         }
         
@@ -165,24 +175,6 @@ public class Console extends Application
 
     public void setFile(File file) {
         this.file = file;
-    }
-
-    public String read(String type) 
-    {
-    	String value = new String();
-    	console.setText(textToConsole.toString());
-        TextInputDialog dialog = new TextInputDialog();
- 
-        dialog.setTitle("Read");
-        dialog.setHeaderText("Read " + type +":");
-        dialog.setContentText("read:");
- 
-        Optional<String> result = dialog.showAndWait();
-        value = result.get();
-        
-        // tu dodaæ warunki odnoœnie typów jakie wartoœci powinna ta funkcja zwracaæ 
-        
-        return value;
     }
 
 }

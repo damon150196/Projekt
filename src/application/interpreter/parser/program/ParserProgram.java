@@ -136,7 +136,7 @@ public class ParserProgram {
             }
             return new Assing(input, expression);
         } else
-            throw new NotParsed();
+            throw new NotParsed("Brak przypisania wartoœci do zmiennej: " + input);
     }
 
     private char lookAhead() {

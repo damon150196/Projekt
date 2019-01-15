@@ -8,8 +8,10 @@ import application.interpreter.expression.Value;
 import application.interpreter.instruction.program.Program;
 
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextInputDialog;
+
 import java.util.HashMap;
-import java.util.Scanner;
+import java.util.Optional;
 
 public class Read extends Program {
 
@@ -22,14 +24,27 @@ public class Read extends Program {
 
     @Override
     public void eval(HashMap<String, Value> map, TextArea console) throws UnknownOperator, VariableNotFound, IncompatibilityTypes, UnknownType {
-        Scanner scanner = new Scanner(System.in);
-        map.put(var, findType(scanner.nextLine()));
+    	String value = new String();
+        TextInputDialog dialog = new TextInputDialog();
+ 
+        dialog.setTitle("Read");
+        dialog.setHeaderText("Read:");
+        dialog.setContentText("read:");
+ 
+        Optional<String> result = dialog.showAndWait();
+        value = result.get();
+
+        console.appendText(">> " + value + "\n");
+        map.put(var, findType(value));
     }
 
-    private Value findType(String number) throws UnknownType {
-        if(number.contains("."))
+    private Value findType(String number) throws UnknownType 
+    {
+        if(number.matches("-?\\d+(\\.\\d+)?"))
             return new Value("Double", Double.parseDouble(number));
-        else
+        else if(number.matches("-?\\d+?"))
             return new Value("Integer", Integer.parseInt(number));
+        else
+            return new Value("String", number);
     }
 }

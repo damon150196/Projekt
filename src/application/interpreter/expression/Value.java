@@ -177,11 +177,11 @@ public class Value {
 
         switch (type) {
             case "Integer": {
-                newValue.setNumber(number.intValue() > value.number.intValue() ? 0 : 1);
+                newValue.setNumber(number.intValue() < value.number.intValue() ? 1 : 0);
                 break;
             }
             case "Double": {
-                newValue.setNumber(number.doubleValue() > value.number.doubleValue() ? 0.0 : 1.0);
+                newValue.setNumber(number.doubleValue() < value.number.doubleValue() ? 1.0 : 0.0);
                 break;
             }
             default: {

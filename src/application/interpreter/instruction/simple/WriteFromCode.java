@@ -21,6 +21,8 @@ public class WriteFromCode extends Program {
 
     @Override
     public void eval(HashMap<String, Value> map, TextArea console) throws UnknownOperator, VariableNotFound, IncompatibilityTypes, UnknownType {
+
+        console.appendText(var);
         System.out.println(var);
     }
 }

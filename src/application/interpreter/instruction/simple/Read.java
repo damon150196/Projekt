@@ -38,13 +38,15 @@ public class Read extends Program {
         map.put(var, findType(value));
     }
 
-    private Value findType(String number) throws UnknownType 
-    {
-        if(number.matches("-?\\d+(\\.\\d+)?"))
+    private Value findType(String number) throws UnknownType {
+        if(!number.matches(".*\\d+.*")) {
+            return new Value("String",number);
+        }
+        else if (number.contains(".")) {
             return new Value("Double", Double.parseDouble(number));
-        else if(number.matches("-?\\d+?"))
+        }
+        else {
             return new Value("Integer", Integer.parseInt(number));
-        else
-            return new Value("String", number);
+        }
     }
 }

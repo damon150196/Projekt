@@ -2,11 +2,30 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2cba05c5-18ee-4a86-abbb-5b4fcb0a2c99" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/application/Console.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/application/Console.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/application/Console.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/Console.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/application/blocks/ReadBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/blocks/ReadBlock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/application/blocks/WriteBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/blocks/WriteBlock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/application/FileToBlocks.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/application/FileToBlocks.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/application/Main$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/application/Main$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/application/Main$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/application/Main$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/application/Main$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/application/Main$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/application/Main$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/application/Main$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/application/Main$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/application/Main$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/application/Main$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/application/Main$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/application/Main$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/application/Main$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/application/Main$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/application/Main$8.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/application/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/application/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/application/interpreter/exceptions/IncompatibilityTypes.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/application/interpreter/exceptions/IncompatibilityTypes.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/application/interpreter/exceptions/NotParsed.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/application/interpreter/exceptions/NotParsed.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/application/interpreter/exceptions/UnauthorizedOperation.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/application/interpreter/exceptions/UnauthorizedOperation.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/application/interpreter/exceptions/UnknownOperator.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/application/interpreter/exceptions/UnknownOperator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/application/interpreter/exceptions/UnknownType.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/application/interpreter/exceptions/UnknownType.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/application/interpreter/exceptions/VariableNotFound.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/application/interpreter/exceptions/VariableNotFound.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/application/interpreter/expression/Operator.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/application/interpreter/expression/Operator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/application/interpreter/instruction/simple/Read.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/application/interpreter/instruction/simple/Read.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/application/interpreter/main/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/application/interpreter/main/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/application/interpreter/parser/program/ParserProgram.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/application/interpreter/parser/program/ParserProgram.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/application/interpreter/instruction/simple/Read.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/interpreter/instruction/simple/Read.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -26,13 +45,13 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Image" value="1" />
-          <entry key="JAVA" value="6" />
+          <entry key="JAVA" value="7" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="78" />
-          <entry key="PLAIN_TEXT" value="33" />
+          <entry key="JAVA" value="106" />
+          <entry key="PLAIN_TEXT" value="100" />
         </counts>
       </usages-collector>
     </session>
@@ -52,15 +71,6 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/application/blocks/DoubleBlock.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="493">
-              <caret line="35" column="39" selection-start-line="35" selection-end-line="36" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/application/blocks/StringBlock.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="85">
@@ -72,8 +82,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/application/Console.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="302">
-              <caret line="89" column="57" lean-forward="true" selection-start-line="89" selection-start-column="57" selection-end-line="89" selection-end-column="57" />
+            <state relative-caret-position="455">
+              <caret line="83" column="57" lean-forward="true" selection-start-line="83" selection-start-column="57" selection-end-line="83" selection-end-column="57" />
             </state>
           </provider>
         </entry>
@@ -99,17 +109,26 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/application/interpreter/expression/Value.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="167" column="13" lean-forward="true" selection-start-line="167" selection-start-column="13" selection-end-line="167" selection-end-column="13" />
+            <state relative-caret-position="-1432">
+              <caret line="148" selection-start-line="148" selection-end-line="148" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/application/interpreter/instruction/simple/Read.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="455">
+              <caret line="50" column="5" selection-start-line="50" selection-start-column="5" selection-end-line="50" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/application/interpreter/parser/program/ParserProgram.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-452">
-              <caret line="79" selection-start-line="79" selection-end-line="79" />
+            <state relative-caret-position="1027">
+              <caret line="124" lean-forward="true" selection-start-line="124" selection-end-line="124" />
             </state>
           </provider>
         </entry>
@@ -152,7 +171,6 @@
     </findStrings>
   </component>
   <component name="Git.Settings">
-    <option name="UPDATE_TYPE" value="REBASE" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
@@ -187,6 +205,7 @@
         <option value="$PROJECT_DIR$/src/application/Console.java" />
         <option value="$PROJECT_DIR$/src/application/blocks/WriteBlock.java" />
         <option value="$PROJECT_DIR$/src/application/blocks/ReadBlock.java" />
+        <option value="$PROJECT_DIR$/src/application/interpreter/instruction/simple/Read.java" />
       </list>
     </option>
   </component>
@@ -197,7 +216,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-7" />
+    <option name="x" value="922" />
+    <option name="y" value="36" />
     <option name="width" value="974" />
     <option name="height" value="1047" />
   </component>
@@ -263,6 +283,23 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="application" type="462c0819:PsiDirectoryNode" />
               <item name="interpreter" type="462c0819:PsiDirectoryNode" />
+              <item name="instruction" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Kompetencyjny" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Kompetencyjny" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="application" type="462c0819:PsiDirectoryNode" />
+              <item name="interpreter" type="462c0819:PsiDirectoryNode" />
+              <item name="instruction" type="462c0819:PsiDirectoryNode" />
+              <item name="simple" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Kompetencyjny" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Kompetencyjny" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="application" type="462c0819:PsiDirectoryNode" />
+              <item name="interpreter" type="462c0819:PsiDirectoryNode" />
               <item name="parser" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -294,12 +331,231 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544823611925" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1547624619581" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../java-interpreter" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.general" />
+  </component>
+  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
+    <UpdatedFiles>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Updated from server" />
+        <option name="myStatusName" value="Changed on server" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="CHANGED_ON_SERVER" />
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Updated" />
+          <option name="myStatusName" value="Changed" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="UPDATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/Console.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/FileToBlocks.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/FileToBlocksException.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/Main$1.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/Main$2.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/Main$3.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/Main$4.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/Main$5.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/Main$6.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/Main$7.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/Main$8.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/Main.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/ReadFile.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/SaveFile.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/application.css</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/blocks/Block$1.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/blocks/Block.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/blocks/BooleanBlock$1.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/blocks/BooleanBlock.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/blocks/BorderedTitledPane.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/blocks/ButtonBlock$1.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/blocks/ButtonBlock$2.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/blocks/ButtonBlock$3.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/blocks/ButtonBlock$4.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/blocks/ButtonBlock$5.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/blocks/ButtonBlock$6.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/blocks/ButtonBlock.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/blocks/CaseBlock.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/blocks/DefaultBlock$1.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/blocks/DefaultBlock.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/blocks/DoubleBlock$1.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/blocks/DoubleBlock.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/blocks/ElseBlock$1.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/blocks/ElseBlock.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/blocks/ForBlock.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/blocks/ForConditionBlock.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/blocks/ForTrueBlock.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/blocks/IfBlock.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/blocks/IfConditionBlock.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/blocks/IfTrueBlock.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/blocks/IntBlock$1.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/blocks/IntBlock.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/blocks/MainBlock.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/blocks/OperationBlock.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/blocks/ReadBlock.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/blocks/StringBlock$1.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/blocks/StringBlock.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/blocks/SwitchBlock.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/blocks/WhileBlock.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/blocks/WhileConditionBlock.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/blocks/WhileTrueBlock.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/blocks/WriteBlock.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/blocks/condition/EqualsBlock$1.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/blocks/condition/EqualsBlock.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/blocks/condition/GreaterBlock$1.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/blocks/condition/GreaterBlock.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/blocks/condition/GreaterEqualsBlock$1.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/blocks/condition/GreaterEqualsBlock.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/blocks/condition/LessBlock$1.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/blocks/condition/LessBlock.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/blocks/condition/LessEqualsBlock$1.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/blocks/condition/LessEqualsBlock.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/blocks/condition/NotEqualsBlock$1.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/blocks/condition/NotEqualsBlock.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/blocks/logic/AndBlock$1.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/blocks/logic/AndBlock.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/blocks/logic/NotBlock$1.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/blocks/logic/NotBlock.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/blocks/logic/OrBlock$1.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/blocks/logic/OrBlock.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/interpreter/exceptions/IncompatibilityTypes.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/interpreter/exceptions/NotParsed.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/interpreter/exceptions/UnauthorizedOperation.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/interpreter/exceptions/UnknownOperator.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/interpreter/exceptions/UnknownType.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/interpreter/exceptions/VariableNotFound.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/interpreter/expression/Constant.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/interpreter/expression/Expression.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/interpreter/expression/NewString.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/interpreter/expression/Operator.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/interpreter/expression/Value.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/interpreter/expression/Variable.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/interpreter/instruction/complex/Composition.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/interpreter/instruction/complex/If.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/interpreter/instruction/complex/While.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/interpreter/instruction/program/Program.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/interpreter/instruction/simple/Assing.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/interpreter/instruction/simple/Read.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/interpreter/instruction/simple/Skip.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/interpreter/instruction/simple/Write.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/interpreter/instruction/simple/WriteFromCode.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/interpreter/main/Main.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/interpreter/parser/Parser.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/interpreter/parser/WrapInt.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/interpreter/parser/expression/ParserExpression.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/bin/application/interpreter/parser/program/ParserProgram.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/application/Console.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/application/FileToBlocks.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/application/Main.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/application/application.css</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/application/interpreter/exceptions/IncompatibilityTypes.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/application/interpreter/exceptions/NotParsed.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/application/interpreter/exceptions/UnauthorizedOperation.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/application/interpreter/exceptions/UnknownOperator.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/application/interpreter/exceptions/UnknownType.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/application/interpreter/exceptions/VariableNotFound.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/application/interpreter/expression/Operator.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/application/interpreter/instruction/simple/Read.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/application/interpreter/main/Main.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/application/interpreter/parser/program/ParserProgram.java</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Created" />
+          <option name="myStatusName" value="Created" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="CREATED" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Deleted" />
+          <option name="myStatusName" value="Deleted" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="true" />
+          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Restored" />
+          <option name="myStatusName" value="Will be restored" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="RESTORED" />
+        </FILE-GROUP>
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Modified" />
+        <option name="myStatusName" value="Modified" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MODIFIED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Skipped" />
+        <option name="myStatusName" value="Skipped" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SKIPPED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with conflicts" />
+        <option name="myStatusName" value="Will be merged with conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_CONFLICTS" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with tree conflicts" />
+        <option name="myStatusName" value="Merged with tree conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with property conflicts" />
+        <option name="myStatusName" value="Will be merged with property conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged" />
+        <option name="myStatusName" value="Will be merged" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Not in repository" />
+        <option name="myStatusName" value="Not in repository" />
+        <option name="mySupportsDeletion" value="true" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="UNKNOWN" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally added" />
+        <option name="myStatusName" value="Locally added" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_ADDED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally removed" />
+        <option name="myStatusName" value="Locally removed" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_REMOVED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Switched" />
+        <option name="myStatusName" value="Switched" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SWITCHED" />
+      </FILE-GROUP>
+    </UpdatedFiles>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -344,7 +600,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1544734570825</updated>
-      <workItem from="1547556273158" duration="5772000" />
+      <workItem from="1547556273158" duration="8722000" />
     </task>
     <task id="LOCAL-00001" summary="Poprawiono interpreter">
       <created>1547563171434</created>
@@ -353,14 +609,31 @@
       <option name="project" value="LOCAL" />
       <updated>1547563171434</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Naprawiono write i read">
+      <created>1547563789215</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1547563789215</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5772000" />
+    <option name="totallyTimeSpent" value="8722000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19349681" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -442,7 +715,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Poprawiono interpreter" />
-    <option name="LAST_COMMIT_MESSAGE" value="Poprawiono interpreter" />
+    <MESSAGE value="Naprawiono write i read" />
+    <option name="LAST_COMMIT_MESSAGE" value="Naprawiono write i read" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -458,6 +732,12 @@
           <line>138</line>
           <properties />
           <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/application/interpreter/expression/Value.java</url>
+          <line>148</line>
+          <properties />
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -655,17 +935,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/application/interpreter/expression/Value.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="167" column="13" lean-forward="true" selection-start-line="167" selection-start-column="13" selection-end-line="167" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/application/Console.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="302">
-          <caret line="89" column="57" lean-forward="true" selection-start-line="89" selection-start-column="57" selection-end-line="89" selection-end-column="57" />
+        <state relative-caret-position="455">
+          <caret line="83" column="57" lean-forward="true" selection-start-line="83" selection-start-column="57" selection-end-line="83" selection-end-column="57" />
         </state>
       </provider>
     </entry>
@@ -685,8 +958,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/application/interpreter/parser/program/ParserProgram.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-452">
-          <caret line="79" selection-start-line="79" selection-end-line="79" />
+        <state relative-caret-position="1027">
+          <caret line="124" lean-forward="true" selection-start-line="124" selection-end-line="124" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/interpreter/expression/Value.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1432">
+          <caret line="148" selection-start-line="148" selection-end-line="148" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/interpreter/instruction/simple/Read.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="455">
+          <caret line="50" column="5" selection-start-line="50" selection-start-column="5" selection-end-line="50" selection-end-column="5" />
         </state>
       </provider>
     </entry>
